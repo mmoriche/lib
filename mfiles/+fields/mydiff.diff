@@ -1,0 +1,19 @@
+Index: genarray.m
+===================================================================
+--- genarray.m	(revision 2112)
++++ genarray.m	(working copy)
+@@ -3,12 +3,13 @@
+ % @date 10-10-2014 by M.Moriche \
+ 
+ stag = 0; % stag  can be 0 or 1
++per = 0;
+ ghost = false;
+ misc.assigndefaults(varargin{:});
+ 
+ dx = (xf-x0)/double(nx);
+ 
+-n = double(nx) - stag;
++n = double(nx) - stag + per;
+ if ~ghost
+    x = x0 + dx*(1:n) - (1-stag)*0.5*dx;
+ else
