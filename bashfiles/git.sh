@@ -22,3 +22,21 @@ else
   echo
 fi
 }
+
+function gitci {
+   githubhey
+   git submodule foreach --recursive 'git commit -a -m glb | true'
+   git commit -a -m glb
+}
+
+function gitpull {
+   githubhey
+   git pull
+   git submodule foreach --recursive 'git pull | true'
+}
+
+function gitpush {
+   githubhey
+   git submodule foreach --recursive 'git push'
+   git push 
+}
