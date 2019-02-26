@@ -34,6 +34,7 @@ function filelist = save(self,objectspath, ansysnm, varargin)
    % objectspath/ansysnm/ansysnm_<indx>_data/
    saveargs = {};
    frmt = 'pdf';
+   skipexisting = false;
    misc.assigndefaults(varargin{:});
 
    display(sprintf('saving XYPlot  %d, %s, %s',self.indx,self.cap,self.glb))
@@ -41,7 +42,7 @@ function filelist = save(self,objectspath, ansysnm, varargin)
    % save the figure object, caption and global caption
    %filelist_1 = save@MatlabFigure(self, fnm, frmt, 'saveargs', saveargs);
    filelist_1 = save@MatlabFigure(self,objectspath,ansysnm,frmt,...
-                                 'saveargs',saveargs);
+                                 'saveargs',saveargs,'skipexisting',skipexisting);
 
    % save legend if it has to
    cap0 = self.cap;

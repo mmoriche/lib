@@ -38,6 +38,7 @@ properties
    glbnm
    capnm
    auxfiles
+   skipexisting
 end
 
 methods
@@ -52,12 +53,14 @@ function self = Results(ansysnm, objectspath, varargin)
    capnm = 'Caption';
    glbnm = 'Global Cap.';
    auxfiles=true;
+   skipexisting=false;
    misc.assigndefaults(varargin{:});
    self.ansysnm     = ansysnm;
    self.objectspath = objectspath;
    self.capnm = capnm;
    self.glbnm = glbnm;
    self.auxfiles = auxfiles;
+   self.skipexisting = skipexisting;
   
    self.items   = {};
    self.indices = [];
@@ -276,7 +279,7 @@ function save(self, varargin);
       if isempty(find(self.savedindx == indx)) | force
          item = self.getitembyindx(indx);
          item = item{1};
-         filelist = item.save(objectspath,ansysnm, varargin{:});
+         filelist = item.save(objectspath,ansysnm, varargin{:},'skipexisting',self.skipexisting);
          self.savedindx = cat(1, self.savedindx, indx);
          self.savedfiles = cat(1, self.savedfiles, filelist);
       end

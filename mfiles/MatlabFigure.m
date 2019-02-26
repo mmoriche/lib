@@ -26,6 +26,7 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
 
    saveargs = {};
    trim = false;
+   skipexisting = false;
    misc.assigndefaults(varargin{:});
 
    fnm = self.getfullfilename(objectspath, ansysnm);
@@ -42,27 +43,31 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
 
    ffig = [fnm '.' frmt];
    filelist = {ffig};
-   if strcmp(frmt, 'pdf')
-      set(fig, 'InvertHardCopy','off')
-      print(fig,ffig,'-dpdf',saveargs{:});
-   elseif strcmp(frmt, 'png')
-      print(fig,ffig,'-dpng',saveargs{:});
-      if trim
-         systep(sprintf('convert -trim %s %s',ffig,ffig))
-      end
-   elseif strcmp(frmt, 'eps')
-      ax2 = axes('Parent',fig,'Units', 'normalize', ...
-       'Position', [0 0 1 1], 'Color', papercolor,'XColor',papercolor,'YColor',papercolor);
-      uistack(ax2, 'bottom')
-      set(fig, 'InvertHardCopy','off')
-      set(ax2, 'Position', [0 0 1 1]);
-      set(fig, 'Position', figsize);
-      set(fig,'PaperPosition',[0 0 figsize(3) figsize(4)]);
-      %print(fig,ffig,'-dpsc2',saveargs{:});
-      print(fig,ffig,'-depsc',saveargs{:});
-      delete(ax2)
+   if exist(ffig,'file') && skipexisting 
+      disp('skipping existing file')
    else
-      saveas(fig,ffig,frmt,saveargs{:});
+      if strcmp(frmt, 'pdf')
+         set(fig, 'InvertHardCopy','off')
+         print(fig,ffig,'-dpdf',saveargs{:});
+      elseif strcmp(frmt, 'png')
+         print(fig,ffig,'-dpng',saveargs{:});
+         if trim
+            systep(sprintf('convert -trim %s %s',ffig,ffig))
+         end
+      elseif strcmp(frmt, 'eps')
+         ax2 = axes('Parent',fig,'Units', 'normalize', ...
+          'Position', [0 0 1 1], 'Color', papercolor,'XColor',papercolor,'YColor',papercolor);
+         uistack(ax2, 'bottom')
+         set(fig, 'InvertHardCopy','off')
+         set(ax2, 'Position', [0 0 1 1]);
+         set(fig, 'Position', figsize);
+         set(fig,'PaperPosition',[0 0 figsize(3) figsize(4)]);
+         %print(fig,ffig,'-dpsc2',saveargs{:});
+         print(fig,ffig,'-depsc',saveargs{:});
+         delete(ax2)
+      else
+         saveas(fig,ffig,frmt,saveargs{:});
+      end
    end
 
    % achtung
