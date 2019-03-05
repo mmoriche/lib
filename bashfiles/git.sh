@@ -24,19 +24,19 @@ fi
 }
 
 function gitci {
-   githubhey
+   # githubhey
    git submodule foreach --recursive 'git commit -a -m glb | true'
    git commit -a -m glb
 }
 
 function gitpull {
-   githubhey
+   # githubhey
    git pull
    git submodule foreach --recursive 'git pull | true'
 }
 
 function gitpush {
-   githubhey
+   # githubhey
    git submodule foreach --recursive 'git push'
    git push 
 }
