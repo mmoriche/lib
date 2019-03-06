@@ -12,7 +12,7 @@ fi
 
 eval $(ssh-agent)
 
-fnm=${GITHUB_PATH}/keys/github_rsa
+fnm=${TANK_PATH}/WORK/github/github_rsa
 
 if [ -f "${fnm}" ]; then
   ssh-add  ${fnm}
