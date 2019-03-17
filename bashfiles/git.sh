@@ -30,7 +30,7 @@ function gitci {
 
 function gitpull {
    git pull
-   git submodule foreach --recursive 'git pull | true'
+   git submodule foreach --recursive ' echo =================================; echo; git config --get remote.origin.url; echo; git pull | true;'
    git pull
 }
 
