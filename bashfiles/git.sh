@@ -24,17 +24,16 @@ fi
 }
 
 function gitci {
-   git submodule foreach --recursive 'git commit -a -m glb | true'
+   git submodule foreach --recursive ' echo =================================; echo; git config --get remote.origin.url; echo; git commit -a -m glb | true;'
    git commit -a -m glb
 }
 
 function gitpull {
    git pull
    git submodule foreach --recursive ' echo =================================; echo; git config --get remote.origin.url; echo; git pull | true;'
-   git pull
 }
 
 function gitpush {
-   git submodule foreach --recursive 'git push'
+   git submodule foreach --recursive ' echo =================================; echo; git config --get remote.origin.url; echo; git push;'
    git push 
 }
