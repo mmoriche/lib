@@ -63,8 +63,8 @@ function [xf varargout] = airfoil_4d(digits, c, dx, varargin)
 alfadeg = 0;
 zerothickness=true;
 maxds = -1;
-maxangle = 0.005;
-
+maxangle = 0.006;
+tol=1e-8;
 misc.assigndefaults(varargin{:});
 
 if maxds == -1

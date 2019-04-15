@@ -1,4 +1,4 @@
-function [xl xu yl yu]=naca_4d(digits,x,c,varargin)
+function [xl xu yl yu]=naca_4r(digits,x,c,varargin)
 % @author M.Moriche
 %
 % @date 13-12-2013 by M.Moriche \n
