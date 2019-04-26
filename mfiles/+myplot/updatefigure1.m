@@ -42,6 +42,7 @@ zflag = true;
 prxr = -1;
 pryr = -1;
 axequal = false;
+axtransposed = false;
 wa = 0.4; wx = 0.1;
 ha = 0.4; hx = 0.1;
 fsxf = 1;
@@ -79,7 +80,11 @@ y0 = yl(1); yf = yl(2);
 if prxr == -1 & pryr == -1
    prxr = 2.4;
    if axequal
-      pryr = prxr/(xf-x0)*(yf-y0);
+      if axtransposed
+         pryr = prxr/(yf-y0)*(xf-x0);
+      else
+         pryr = prxr/(xf-x0)*(yf-y0);
+      end
    else
       pryr = prxr/aurea;
    end
@@ -88,17 +93,27 @@ elseif prxr ~= -1 & pryr ~= -1
    dummydummy=1; 
 elseif prxr ~= -1 
    if axequal
-      pryr = prxr/(xf-x0)*(yf-y0);
+      if axtransposed
+         pryr = prxr/(yf-y0)*(xf-x0);
+      else
+         pryr = prxr/(xf-x0)*(yf-y0);
+      end
    else
       pryr = prxr/aurea;
    end
 elseif pryr ~= -1
    if axequal
-      prxr = pryr/(yf-y0)*(xf-x0);
+      if axtransposed
+         prxr = pryr/(xf-x0)*(yf-y0);
+      else
+         prxr = pryr/(yf-y0)*(xf-x0);
+      end
    else
       prxr = pryr*aurea;
    end
 end
+
+
 
 % sizes are defined. Enlarge with scale
 prxr = prxr/figscale;
@@ -149,21 +164,37 @@ if vv >= 2014
 end
 
 if rotation == 0
-   set(ylab,'Rotation', rotation,'HorizontalAlignment','right', ...
-   'VerticalAlignment', 'middle') 
+   if axtransposed
+      set(xlab,'Rotation', rotation,'HorizontalAlignment','right', ...
+      'VerticalAlignment', 'middle') 
+   else
+      set(ylab,'Rotation', rotation,'HorizontalAlignment','right', ...
+      'VerticalAlignment', 'middle') 
+   end
 else
-   set(ylab,'Rotation', rotation)
+   if axtransposed
+      set(xlab,'Rotation', rotation)
+   else
+      set(ylab,'Rotation', rotation)
+   end
 end
-
 
 % HAS BOTH AXES?
 if ~xflag
-   ha = hx;
+   if axtransposed
+      wa = wx;
+   else
+      ha = hx;
+   end
    set(get(ax, 'XLabel'), 'String', '');
    set(ax, 'XTickLabel', []);
 end
 if ~yflag
-   wa = wx;
+   if axtransposed
+      ha = hx;
+   else
+      wa = wx;
+   end
    set(get(ax, 'YLabel'), 'String', '');
    set(ax, 'YTickLabel', []);
 end
