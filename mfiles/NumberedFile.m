@@ -8,6 +8,8 @@ classdef NumberedFile < dynamicprops
 %       Created
 % \date 15-05-2014 by M.Moriche \n
 %       Modified
+% \date 15-06-2014 by M.Moriche \n
+%       Bug in  getfileformat(self)
 %
 % \details
 %
@@ -135,9 +137,16 @@ function self = NumberedFile(path,basenm,ext,ifrpos,varargin)
 return
 end
 
+%
+% @date 15.06.2019 by M.Moriche \n
+%                  bug in call to regex
 function stat = getfileformat(self)
 
-   [narray stat] = misc.getformatlength(self.regex,'path',fullfile(self.path,self.basenm));
+   %[narray stat] = misc.getformatlength(self.regex,'path',fullfile(self.path,self.basenm));
+   [narray stat] = misc.getformatlength(self.regex_ifr,'path',fullfile(self.path,self.basenm));
+
+
+
    if stat == 0
       self.frmt=['%s' self.joiner '%0' num2str(narray(self.ifrpos)) 'd' self.joiner '%s'];
    else
