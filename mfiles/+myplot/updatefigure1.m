@@ -54,8 +54,8 @@ figscale=0.5;
 fstick = 8;
 fslabel = 10;
 misc.assigndefaults(varargin{:});
+fsyf
 aurea=1.61803398875;
-fstick
 %ax = get(fig, 'Children');
 set(fig, 'Resize', 'off');
 ax = findobj(fig, 'Type', 'Axes');

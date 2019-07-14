@@ -229,9 +229,8 @@ function summ(self, varargin);
       item = item{1};
       flag = item.summ;
       if flag
-         indx
-      tab(i+1,:) = {class(item),num2str(item.indx),editcap(strrep(item.cap,nl,' ')),...
-                                                   editcap(strrep(item.glb,nl,' '))};
+         tab(i+1,:) = {class(item),num2str(item.indx),editcap(strrep(item.cap,nl,' ')),...
+                                                      editcap(strrep(item.glb,nl,' '))};
       end
    end
 
