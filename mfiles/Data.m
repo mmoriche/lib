@@ -14,8 +14,10 @@ function self = Data(buffer, indx, cap, glb, varargin)
 
    varlist = '*';
    multiflag = '*';
-   frmtlist  = cell(size(buffer,2),1);
-   hfrmtlist = cell(size(buffer,2),1);
+   %frmtlist  = cell(size(buffer,2),1);
+   %hfrmtlist = cell(size(buffer,2),1);
+   frmtlist  = {'*'};
+   hfrmtlist = {'*'};
    joiner = '';
    auxfiles=true;
    misc.assigndefaults(varargin{:});
@@ -34,9 +36,11 @@ function self = Data(buffer, indx, cap, glb, varargin)
       end
    end
    % format list
-   for i1 = 1:size(buffer,2)
-      if isempty(frmtlist{i1})
-         frmtlist{i1} = '%18.8E';
+   if ~strcmp(frmtlist{1}, '*')
+      for i1 = 1:size(buffer,2)
+         if isempty(frmtlist{i1})
+            frmtlist{i1} = '%18.8E';
+         end
       end
    end
 
@@ -78,11 +82,15 @@ function filelist = save(self,objectspath,ansysnm,varargin)
 
    if strcmp(class(self.handle), 'cell')
       for i0 = 1:size(self.handle,1)
-         n = size(self.handle,2);
+         n = size(self.handle,2)
          for i1 = 1:(n-1)
+            self.frmtlist{i1}
+            self.handle{i0,i1}
             fprintf(fid,self.frmtlist{i1}, self.handle{i0,i1});
             fprintf(fid,self.joiner);
          end
+         self.frmtlist{n}
+         self.handle{i0,n}
          fprintf(fid,self.frmtlist{n}, self.handle{i0,n});
          fprintf(fid,'\n');
       end

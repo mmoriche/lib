@@ -76,13 +76,16 @@ function indx = addData(self, buffer, varargin)
    glb = ' ';
    tex = ' ';
    multiflag = '*';
-   hfrmtlist = cell(size(buffer, 2), 1);
-   frmtlist = cell(size(buffer, 2), 1);
+   %hfrmtlist = cell(size(buffer, 2), 1);
+   %frmtlist = cell(size(buffer, 2), 1);
+   hfrmtlist = {'*'};
+   frmtlist = {'*'};
    varlist = '*';
    joiner = '';
    auxfiles = self.auxfiles;
    misc.assigndefaults(varargin{:});
 
+   frmtlist
    indx = self.finduniqueindx('ResultsItem',indx);
    item = Data(buffer,indx, cap, glb, ...
     'hfrmtlist', hfrmtlist, 'varlist', varlist, 'frmtlist', frmtlist, ...
