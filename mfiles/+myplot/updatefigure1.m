@@ -72,8 +72,12 @@ end
 
 
 xl = get(ax, 'XLim');
-yl = get(ax, 'YLim');
 x0 = xl(1); xf = xl(2);
+if zflag
+   yl = get(ax, 'ZLim');
+else
+   yl = get(ax, 'YLim');
+end
 y0 = yl(1); yf = yl(2);
 
 % if neither prxr or pryr is set, set defaults
