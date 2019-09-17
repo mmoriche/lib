@@ -70,7 +70,6 @@ if length(ax) > 1
    return
 end
 
-
 xl = get(ax, 'XLim');
 x0 = xl(1); xf = xl(2);
 if zflag
