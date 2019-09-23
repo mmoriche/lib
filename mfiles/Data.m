@@ -71,10 +71,15 @@ function filelist = save(self,objectspath,ansysnm,varargin)
    fid = fopen(ftab, 'w');
 
    n = size(self.handle,2);
+   
    if ~strcmp(self.hfrmtlist{1}, '*')
+       disp('hola')
+       n
       for i1 = 1:(n-1)
          fprintf(fid,self.hfrmtlist{i1}, self.varlist{i1});
          fprintf(fid,self.joiner);
+   %      self.hfrmtlist{i1}
+   %      self.varlist{i1}
       end
       fprintf(fid,self.hfrmtlist{n}, self.varlist{n});
       fprintf(fid,'\n');
@@ -82,15 +87,11 @@ function filelist = save(self,objectspath,ansysnm,varargin)
 
    if strcmp(class(self.handle), 'cell')
       for i0 = 1:size(self.handle,1)
-         n = size(self.handle,2)
+         n = size(self.handle,2);
          for i1 = 1:(n-1)
-            self.frmtlist{i1}
-            self.handle{i0,i1}
             fprintf(fid,self.frmtlist{i1}, self.handle{i0,i1});
             fprintf(fid,self.joiner);
          end
-         self.frmtlist{n}
-         self.handle{i0,n}
          fprintf(fid,self.frmtlist{n}, self.handle{i0,n});
          fprintf(fid,'\n');
       end
