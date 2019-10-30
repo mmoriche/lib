@@ -1,7 +1,19 @@
 function updateax(ax,varargin)
-
+%function updateax(ax,varargin)
+%
+% INPUT PARAMETERS (AND DEFAULT VALUES):
+%  - seq='xy'
+%  - ax_lw=1
+%  - fshf=1
+%  - fsvf=1
+%  - fslabel = 6
+%  - fstick = 10
+%  - figscale=0.5
+%  - rotation=0
+%
 % h: horizontal axis
 % v: vertical   axis
+%
 
 seq='xy';
 ax_lw=1;

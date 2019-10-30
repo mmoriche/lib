@@ -1,4 +1,16 @@
 function updateaxfig(fig,ax,varargin)
+%function updateaxfig(fig,ax,varargin)
+%
+%figscale=0.5;
+%ha=0.4; hx=0.1;
+%va=0.4; vx=0.1;
+%axequal=false;
+%prhr=-1;
+%prvr=-1;
+%seq='xy';
+%hflag=true;
+%vflag=true;
+%misc.assigndefaults(varargin{:});
 
 figscale=0.5;
 ha=0.4; hx=0.1;
