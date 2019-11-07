@@ -238,15 +238,39 @@ function summ(self, varargin);
    end
 
    if longtable
-      mystr = mytab.tab2ascii(tab,'cap',self.ansysnm);
+      mystr = mytab.tab2ascii_md(tab,'cap',self.ansysnm);
    else
-      mystr = mytab.tab2ascii2(tab,[10,7,26,26],'cap',self.ansysnm);
+      mystr = mytab.tab2ascii2_md(tab,[10,7,26,26],'cap',self.ansysnm);
    end
    display(mystr)
- 
+
    fnm = self.getREADMEfnm();
    fid = fopen(fnm,'w');
+
+   nt = 80;
+   ln = ''; for i = 1:nt, ln = [ln '_']; end
+   % get help of file, machine and date
+   [istat,thismachine]=system('uname -n');
+   aa=dbstack('-completenames');
+   caller_file=aa(2).file
+   fid2=fopen(caller_file,'r');
+   firstchar=char(fread(fid2,1,'char'));
+   % WRITE FIRST COMMENTS TO README
+   fprintf(fid, ['\n' ln '\n\n']);
+   fprintf(fid, 'script:\n%s\n', caller_file);
+   fprintf(fid, 'run at %s on %s\n', thismachine(1:end-1), date);
+   while firstchar == '%'
+      fprintf(fid,fgets(fid2));
+      firstchar=char(fread(fid2,1,'char'));
+   end
+   fclose(fid2);
+   fprintf(fid,'\n\n');
+   fprintf(fid, [ln '\n\n']);
+   fprintf(fid,'OBJECTS GENERATED AT:\n');
+   fprintf(fid,[fullfile(objectspath,ansysnm) '\n']);
+   system(sprintf('mkdir -p %s' , fullfile(objectspath, ansysnm )));
    fwrite(fid,mystr);
+   fprintf(fid, ['\n' ln '\n\n']);
    fclose(fid);
 
 return
@@ -355,7 +379,7 @@ function appendToREADME(self, mycontent, varargin)
    fid = fopen(fnm, 'a');
    fprintf(fid, '\n\n');
    fwrite(fid, ln);
-   fprintf(fid, '\n' );
+   fprintf(fid, '\n\n' );
    if ~strcmp(title,'*')
       fwrite(fid, title);
       fprintf(fid, '\n' );
