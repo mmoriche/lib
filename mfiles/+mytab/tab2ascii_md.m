@@ -141,7 +141,7 @@ addRequired(p,'ncols');
 addRequired(p,'nmax');
 addOptional(p,'HA',defaultHA,validHA);
 parse(p,mystr,i,table,ncols,nmax,varargin{:});
-HA=p.Results.HA
+HA=p.Results.HA;
 
 if strcmp(HA,'r')
    mys='%';
