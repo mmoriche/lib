@@ -1,4 +1,20 @@
 function mystr = tab2ascii_md(table,varargin)
+%function mystr = tab2ascii_md(table,varargin)
+%
+% Optional parameters:
+% HA='r': Horizontal Alignment, possible values:
+%   - 'r': right
+%   - 'l': left
+%
+validTable = @(x) iscell(x) && ndims(x)==2;
+validHA = @(x) nnz(x=='rl')==1;
+defaultHA='r';
+
+p=inputParser();
+addRequired(p,'table',validTable);
+addOptional(p,'HA',defaultHA,validHA);
+parse(p,table,varargin{:});
+HA=p.Results.HA;
 
 %cap = [];
 %misc.assigndefaults(varargin{:});
@@ -21,7 +37,7 @@ mystr = '';
 mystr = row(mystr,1,table,ncols,nmax);
 mystr = hline(mystr,ncols,nmax);
 for i = 2:nrows
-   mystr = row(mystr,i,table,ncols,nmax);
+   mystr = row(mystr,i,table,ncols,nmax,'HA',HA);
 end
 %mystr = hlinebot(mystr,ncols,nmax);
 
@@ -112,11 +128,31 @@ return
 end
 
 %________________________________________________________________________________
-function mystr = row(mystr,i,table,ncols,nmax)
+function mystr = row(mystr,i,table,ncols,nmax,varargin)
+%
+validHA = @(x) nnz(x=='rl')==1;
+defaultHA='r';
+
+p=inputParser();
+addRequired(p,'mystr');
+addRequired(p,'i');
+addRequired(p,'table');
+addRequired(p,'ncols');
+addRequired(p,'nmax');
+addOptional(p,'HA',defaultHA,validHA);
+parse(p,mystr,i,table,ncols,nmax,varargin{:});
+HA=p.Results.HA
+
+if strcmp(HA,'r')
+   mys='%';
+elseif strcmp(HA,'l')
+   mys='%-';
+end
+
 for j = 1:ncols
    %mystr=[mystr '│'];
    mystr=[mystr '|'];
-   myfrmt = ['%' num2str(nmax(j)-1) 's'];
+   myfrmt = [mys num2str(nmax(j)-1) 's'];
    uu = table{i,j};
    mystr  = [mystr sprintf(myfrmt , uu) ' '];
 end
