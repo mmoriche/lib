@@ -14,8 +14,9 @@ function self = MatlabFigure(handle, indx, cap, glb, tex, varargin)
 
    papercolor  = 'w';
    auxfiles=true;
+   summ=true;
    misc.assigndefaults(varargin{:});
-   self@ResultsItem(handle, indx, cap, glb,'auxfiles',auxfiles)
+   self@ResultsItem(handle, indx, cap, glb,'auxfiles',auxfiles,'summ',summ)
    self.tex = tex;
    self.papercolor = papercolor;
 

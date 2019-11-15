@@ -107,13 +107,15 @@ function indx = addXYPlot(self, handle, varargin)
    scale = 0.4;
    papercolor = 'w';
    auxfiles = self.auxfiles;
+   summ=true;
    misc.assigndefaults(varargin{:});
 
    indx = self.finduniqueindx('ResultsItem',indx);
  
    item = XYPlot(handle,indx, cap, glb, tex, ...
     'legendjoiner', legendjoiner, 'scale', scale, ...
-    'papercolor', papercolor, 'auxfiles',auxfiles); 
+    'papercolor', papercolor, 'auxfiles',auxfiles, ...
+    'summ',summ); 
    
    self.items = [self.items {item}];
    self.indices = [self.indices indx];
@@ -221,26 +223,37 @@ function summ(self, varargin);
    system(sprintf('mkdir -p %s' , objectspath ));
    system(sprintf('mkdir -p %s' , fullfile(objectspath, ansysnm )));
 
-   tab = cell(1,4);
+   tab = cell(1,3);
    %tab(1,:) = {'Object','index', 'caption','Global caption'};
-   tab(1,:) = {'Object','index', self.capnm, self.glbnm};
+   %tab(1,:) = {'Object','index', self.capnm, self.glbnm};
+   tab(1,:) = {'Object','index', self.capnm};
    editcap = @(cap) strrep(cap,'\newline',' ');
    nl = sprintf('\n');
+   flag2=false;
+   irow=1;
    for i = 1:length(indxlist)
       indx = indxlist(i);
       item = self.getitembyindx(indx);
       item = item{1};
       flag = item.summ;
       if flag
-         tab(i+1,:) = {class(item),num2str(item.indx),editcap(strrep(item.cap,nl,' ')),...
-                                                      editcap(strrep(item.glb,nl,' '))};
+         %tab(i+1,:) = {class(item),num2str(item.indx),editcap(strrep(item.cap,nl,' ')),...
+         %                                             editcap(strrep(item.glb,nl,' '))};
+         irow=irow+1
+         tab(irow,:) = {class(item),num2str(item.indx),editcap(strrep(item.cap,nl,' '))};
+         flag2=false;
+      elseif ~flag2
+         irow=irow+1
+         tab(irow,:) = {'...','...','...'};
+         flag2=true;
       end
    end
 
    if longtable
-      mystr = mytab.tab2ascii_md(tab,'cap',self.ansysnm);
+      %mystr = mytab.tab2ascii_md(tab,'cap',self.ansysnm);
+      mystr = mytab.tab2ascii_md(tab);
    else
-      mystr = mytab.tab2ascii2_md(tab,[10,7,26,26],'cap',self.ansysnm);
+      mystr = mytab.tab2ascii2(tab,[10,7,55],'cap',self.ansysnm);
    end
    display(mystr)
 
@@ -258,9 +271,22 @@ function summ(self, varargin);
    % WRITE FIRST COMMENTS TO README
    fprintf(fid, ['\n' ln '\n\n']);
    fprintf(fid, 'script:\n%s\n', caller_file);
-   fprintf(fid, 'run at %s on %s\n', thismachine(1:end-1), date);
+   fprintf(fid, 'run at %s on %s\n\n\n', thismachine(1:end-1), date);
+   pat='.*<(.*)>.*';
    while firstchar == '%'
-      fprintf(fid,fgets(fid2));
+      ln0=fgets(fid2);
+      tkns=regexp(ln0,pat,'tokens');
+      if isempty(tkns)
+         fprintf(fid,ln0);
+      else
+         ln1=ln0;
+         for i3=1:length(tkns)
+            ln1=strrep(ln1,['<' tkns{i3}{1} '>'], ...
+                string(evalin('caller',tkns{i3}{1})));
+         end
+         fprintf(fid,ln1);
+   
+      end
       firstchar=char(fread(fid2,1,'char'));
    end
    fclose(fid2);

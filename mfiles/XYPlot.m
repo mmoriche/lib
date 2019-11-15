@@ -19,9 +19,10 @@ function self = XYPlot(handle,indx,cap,glb,tex,varargin)
   scale = 0.4;
   papercolor = 'w';
   auxfiles=true;
+  summ=true;
   misc.assigndefaults(varargin{:});
   self@MatlabFigure(handle, indx, cap, glb,tex, ...
-   'papercolor', papercolor,'auxfiles',auxfiles);
+   'papercolor', papercolor,'auxfiles',auxfiles,'summ',summ);
   self.legendjoiner = legendjoiner;
   self.legendbeg= legendbeg;
   self.scale = scale;

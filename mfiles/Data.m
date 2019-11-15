@@ -34,6 +34,11 @@ function self = Data(buffer, indx, cap, glb, varargin)
             hfrmtlist{i1} = '%18s';
          end
       end
+   else
+      hfrmtlist{1} = '%18s';
+      for i1 = 2:size(buffer,2)
+         hfrmtlist = cat(1,hfrmtlist,{'%18s'});;
+      end
    end
    % format list
    if ~strcmp(frmtlist{1}, '*')
@@ -41,6 +46,11 @@ function self = Data(buffer, indx, cap, glb, varargin)
          if isempty(frmtlist{i1})
             frmtlist{i1} = '%18.8E';
          end
+      end
+   else
+      frmtlist{1} = '%18.8E';
+      for i1 = 2:size(buffer,2)
+         frmtlist = cat(1,frmtlist,{'%18.8E'});;
       end
    end
 
