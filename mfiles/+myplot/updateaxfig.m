@@ -13,8 +13,8 @@ function updateaxfig(fig,ax,varargin)
 %misc.assigndefaults(varargin{:});
 
 figscale=0.5;
-ha=0.4; hx=0.1;
-va=0.4; vx=0.1;
+ha=0.5; hx=0.2;
+va=0.4; vx=0.2;
 axequal=false;
 prhr=-1;
 prvr=-1;
