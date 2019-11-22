@@ -16,11 +16,11 @@ function updateax(ax,varargin)
 %
 
 seq='xy';
-ax_lw=1;
+ax_lw=0.5;
 fshf=1;
 fsvf=1;
-fslabel = 6;
-fstick = 10;
+fslabel = 4;
+fstick = 8;
 figscale=0.5;
 rotation=0;
 
@@ -66,6 +66,8 @@ if rotation==0
    set(vlab,'Rotation', rotation, ...
             'HorizontalAlignment','right', ...
             'VerticalAlignment', 'middle') 
+else
+   set(vlab,'Rotation', rotation);
 end
 
 return
