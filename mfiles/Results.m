@@ -279,10 +279,14 @@ function summ(self, varargin);
       if isempty(tkns)
          fprintf(fid,ln0);
       else
-         ln1=ln0;
-         for i3=1:length(tkns)
-            ln1=strrep(ln1,['<' tkns{i3}{1} '>'], ...
-                string(evalin('caller',tkns{i3}{1})));
+         while ~isempty(tkns)
+            ln1=ln0;
+            for i3=1:length(tkns)
+               ln1=strrep(ln1,['<' tkns{i3}{1} '>'], ...
+                   string(evalin('caller',tkns{i3}{1})));
+            end
+            ln0=ln1;
+            tkns=regexp(ln0,pat,'tokens');
          end
          fprintf(fid,ln1);
    

@@ -39,20 +39,21 @@ if prhr == -1 & prvr == -1
    prhr = 2.4;
 end
 
-if prhr ~= -1 
-   if axequal
-      prvr = prhr/hr*vr;
-   else
-      prvr = prhr/aurea;
-   end
-elseif prvr ~= -1
-   if axequal
-      prhr = prvr/vr*hr;
-   else
-      prhr = prvr*aurea;
+if prhr == -1 ||  prvr == -1
+   if prhr ~= -1 
+      if axequal
+         prvr = prhr/hr*vr;
+      else
+         prvr = prhr/aurea;
+      end
+   elseif prvr ~= -1
+      if axequal
+         prhr = prvr/vr*hr;
+      else
+         prhr = prvr*aurea;
+      end
    end
 end
-
 
 % sizes are defined. Enlarge with scale
 prhr = prhr/figscale;
