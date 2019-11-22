@@ -13,8 +13,8 @@ function updateaxfig(fig,ax,varargin)
 %misc.assigndefaults(varargin{:});
 
 figscale=0.5;
-ha=0.4; hx=0.1;
-va=0.4; vx=0.1;
+ha=0.5; hx=0.2;
+va=0.4; vx=0.2;
 axequal=false;
 prhr=-1;
 prvr=-1;
@@ -39,20 +39,21 @@ if prhr == -1 & prvr == -1
    prhr = 2.4;
 end
 
-if prhr ~= -1 
-   if axequal
-      prvr = prhr/hr*vr;
-   else
-      prvr = prhr/aurea;
-   end
-elseif prvr ~= -1
-   if axequal
-      prhr = prvr/vr*hr;
-   else
-      prhr = prvr*aurea;
+if prhr == -1 ||  prvr == -1
+   if prhr ~= -1 
+      if axequal
+         prvr = prhr/hr*vr;
+      else
+         prvr = prhr/aurea;
+      end
+   elseif prvr ~= -1
+      if axequal
+         prhr = prvr/vr*hr;
+      else
+         prhr = prvr*aurea;
+      end
    end
 end
-
 
 % sizes are defined. Enlarge with scale
 prhr = prhr/figscale;
