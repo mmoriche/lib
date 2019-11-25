@@ -282,8 +282,12 @@ function summ(self, varargin);
          while ~isempty(tkns)
             ln1=ln0;
             for i3=1:length(tkns)
-               ln1=strrep(ln1,['<' tkns{i3}{1} '>'], ...
-                   string(evalin('caller',tkns{i3}{1})));
+               try
+                  ln1=strrep(ln1,['<' tkns{i3}{1} '>'], ...
+                      string(evalin('caller',tkns{i3}{1})));
+               catch
+                  ln1=strrep(ln1,['<' tkns{i3}{1} '>'], ['.' tkns{i3}{1} '.']);...
+               end
             end
             ln0=ln1;
             tkns=regexp(ln0,pat,'tokens');
