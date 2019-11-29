@@ -1,5 +1,13 @@
 function helpdoc(myfile,fid,itank,ifnmlist,otank,ofnmlist)
 %
+%
+% @example (inside script)
+%
+% thisfile=[mfilename('fullpath'),'.m'];
+% README = fullfile(otank,[mfilename '.README']);
+% misc.helpdoc(thisfile,README);
+%
+
 
 nt = 80;
 ln = ''; for i = 1:nt, ln = [ln '_']; end
