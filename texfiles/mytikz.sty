@@ -1,0 +1,277 @@
+%
+%
+%
+% Styles defined:
+% ===============
+%
+% mynodepreview: see nodes in black to check the size
+% mysthorzlinesup: Horizontal lines shading from black to thcolor
+% mysthorzlinesdn: Horizontal lines shading from black to thcolor
+% mystleftline: Vertical line shading from black to thcolor
+%
+% Lengths defined:
+%
+% dxnode: 0.1cm
+% dynode: 0.1cm
+%
+% Commands defined:
+%
+% To draw a grid on the plot. For frames built with
+%  tikzpicture[overlay, remember picture]
+%
+%  \myrule
+%
+% To draw a grid on the node with primary and secondary lines
+% 
+% \drawnodecoordinates{nodename}{nx1}{ny1}{nx2}{ny2}
+%   where n[xy][12] is the number of [12]mary lines in [xy] dir
+%
+% Draw two horizontal lines at top and bottom of the node:
+% ========================================================
+%
+% \horzlines{nodename}   The width is 0.08cm, inside: black , outside: thcolor
+% \horzlinesm{nodename}  The width is 0.16cm, inside: black , outside: thcolor
+% \horzlinesl{nodename}  The width is 0.24cm, inside: black , outside: thcolor
+%
+% Draw one vertical line at the left of the node:
+% ===============================================
+%
+% \myleftline{nodename}  The width is 0.08cm, inside: black, outside: thcolor
+% \myleftlinem{nodename} The width is 0.16cm, inside: black, outside: thcolor
+% \myleftlinel{nodename} The width is 0.24cm, inside: black, outside: thcolor
+%
+
+\newcounter{iii}
+\newlength{\dxaxis}
+\newlength{\dyaxis}
+%\setlength{\dxaxis}{2.25cm}
+%
+%\forLoop[1]{iii}{-1}{\value{iii} < 2}{
+%   
+%  \setcounter{jjj}{1} 
+%  \addtocounter{jjj}{\value{iii} }
+%  \node(X\arabic{jjj}) at ([xshift=\arabic{jjj}\dxaxis, yshift=-0.3cm]SW) {$10^{\arabic{iii}}$};
+%}
+%
+%% y axis
+%\setlength{\dyaxis}{0.7cm}
+%
+%\forLoop[1]{iii}{-3}{\value{iii} < 2}{
+%   
+%  \setcounter{jjj}{3} 
+%  \addtocounter{jjj}{\value{iii} }
+%  \node(Y\arabic{jjj}) at ([yshift=\arabic{jjj}\dyaxis, xshift=-0.32cm]SW) {$10^{\arabic{iii}}$};
+%}
+
+\ProvidesPackage{mytikz}
+\RequirePackage{mybasic}
+\RequirePackage{tikz}
+\tikzset{%
+    mynodepreview/.style={thin,color=red,fill=black},
+    mysthorzlinesup/.style={bottom color=black, top color=thcolor},
+    mysthorzlinesdn/.style={bottom color=thcolor, top color=black},
+    mysthorzlinesuplight/.style={bottom color=black, top color=thcolorlight},
+    mysthorzlinesdnlight/.style={bottom color=thcolorlight, top color=black},
+    mystleftline/.style ={left color=black, right color=thcolor},
+    mystrightline/.style ={right color=black, left color=thcolor},
+    mystleftlinelight/.style ={left color=black, right color=thcolorlight},
+    mystrightlinelight/.style ={right color=black, left color=thcolorlight},
+}
+
+% myrule --------------------------------------------------------
+\newcommand\myrule{
+\draw[help lines] (-6, -4) grid (6, 4);
+\draw[-,line width=0.2mm]  (-5 , 0) -- (5,  0);
+\draw[-,line width=0.2mm]  ( 0, -4) -- (0,  4);
+% xaxis labels
+\forLoop[1]{iii}{-5}{\value{iii} < 6}{
+  \draw (\arabic{iii} , -4) node[below]{\arabic{iii}};
+}
+\forLoop[1]{iii}{-5}{\value{iii} < 6}{
+  \draw (\arabic{iii} ,  4) node[above]{\arabic{iii}};
+}
+% yaxis labels
+\forLoop[1]{iii}{-4}{\value{iii} < 5}{
+  \draw (-5, \arabic{iii} ) node[left]{\arabic{iii}};
+}
+% yaxis labels
+\forLoop[1]{iii}{-4}{\value{iii} < 5}{
+  \draw (5, \arabic{iii} ) node[right]{\arabic{iii}};
+}
+}
+%________________________________________________________________
+
+\newcommand\mywrule{
+\draw[help lines] (-9, -4) grid (9, 4);
+\draw[-,line width=0.2mm]  (-5 , 0) -- (5,  0);
+\draw[-,line width=0.2mm]  ( 0, -4) -- (0,  4);
+% xaxis labels
+\forLoop[1]{iii}{-5}{\value{iii} < 6}{
+  \draw (\arabic{iii} , -4) node[below]{\arabic{iii}};
+}
+\forLoop[1]{iii}{-5}{\value{iii} < 6}{
+  \draw (\arabic{iii} ,  4) node[above]{\arabic{iii}};
+}
+% yaxis labels
+\forLoop[1]{iii}{-4}{\value{iii} < 5}{
+  \draw (-5, \arabic{iii} ) node[left]{\arabic{iii}};
+}
+% yaxis labels
+\forLoop[1]{iii}{-4}{\value{iii} < 5}{
+  \draw (5, \arabic{iii} ) node[right]{\arabic{iii}};
+}
+}
+%________________________________________________________________
+
+% drawnodecoordinates -------------------------------------------
+\newlength{\dynode}
+\setlength{\dynode}{0.1cm}
+\newlength{\dxnode}
+\setlength{\dxnode}{0.1cm}
+\newcommand\drawnodecoordinates[5]{
+% draw secondary horizontal lines
+\forLoop[2]{iii}{0}{\value{iii} < #5}{
+  \draw[color=blue]  ([yshift=\arabic{iii}\dynode]#1.south west) -- ([yshift=\arabic{iii}\dynode]#1.south east);
+}
+\forLoop[2]{iii}{1}{\value{iii} < #5}{
+  \draw[color=green] ([yshift=\arabic{iii}\dynode]#1.south west) -- ([yshift=\arabic{iii}\dynode]#1.south east);
+}
+% draw secondary vertical lines
+\forLoop[2]{iii}{0}{\value{iii} < #4}{
+  \draw[color=blue]  ([xshift=\arabic{iii}\dxnode]#1.south west) -- ([xshift=\arabic{iii}\dxnode]#1.north west);
+}
+\forLoop[2]{iii}{1}{\value{iii} < #4}{
+  \draw[color=green] ([xshift=\arabic{iii}\dxnode]#1.south west) -- ([xshift=\arabic{iii}\dxnode]#1.north west);
+}
+% draw main horizontal lines
+\forLoop[1]{iii}{0}{\value{iii} < #3}{
+  \draw[color=black,thick]  ([yshift=\arabic{iii}cm]#1.south west) -- ([yshift=\arabic{iii}cm]#1.south east);
+}
+% draw main vertical lines
+\forLoop[1]{iii}{0}{\value{iii} < #2}{
+  \draw[color=black,thick]  ([xshift=\arabic{iii}cm]#1.south west) -- ([xshift=\arabic{iii}cm]#1.north west);
+}
+}
+%________________________________________________________________
+
+% #1: node
+% #2: x0
+% #3: xf 
+% #4: y0
+% #5: yf
+% #6: ww
+% #7: hh
+\newcommand\blankaxis[7]{
+\coordinate(SW) at ([xshift=#2, yshift=#4]#1.south west);
+\coordinate(NW) at ([xshift=#2, yshift=#5]#1.south west);
+\coordinate(SE) at ([xshift=#3, yshift=#4]#1.south west);
+% BLANK Y AXIS
+\draw[fill=white, draw=white] ([xshift=-0.01cm]NW) -- ([xshift=-0.01cm,yshift=-#7]SW) -- %
+                              ([xshift=-#6,yshift=-#7]SW) -- ([xshift=-#6]NW) -- cycle;
+% BLANK X AXIS
+\draw[fill=white, draw=white] ([yshift=-0.01cm]SW) -- ([yshift=-0.01cm]SE) -- %
+                              ([yshift=-#7]SE)  -- ([yshift=-#7]SW) -- cycle;
+
+}
+
+% Function to generate 2 horizontal lines up and down the node
+% With the color of the theme and black
+%
+\newcommand\horzlines[1]{
+\shade[mysthorzlinesup](#1.north west) rectangle ([yshift=+0.08cm]#1.north east);
+\shade[mysthorzlinesdn](#1.south west) rectangle ([yshift=-0.08cm]#1.south east);}
+\newcommand\horzlinesm[1]{
+\shade[mysthorzlinesup](#1.north west) rectangle ([yshift=+0.16cm]#1.north east);
+\shade[mysthorzlinesdn](#1.south west) rectangle ([yshift=-0.16cm]#1.south east);}
+\newcommand\horzlinesl[1]{
+\shade[mysthorzlinesup](#1.north west) rectangle ([yshift=+0.24cm]#1.north east);
+\shade[mysthorzlinesdn](#1.south west) rectangle ([yshift=-0.24cm]#1.south east);}
+% with light color
+\newcommand\horzlineslight[1]{
+\shade[mysthorzlinesuplight](#1.north west) rectangle ([yshift=+0.08cm]#1.north east);
+\shade[mysthorzlinesdnlight](#1.south west) rectangle ([yshift=-0.08cm]#1.south east);}
+
+\newcommand\horzlinesNu[2]{
+\shade<#2>[mysthorzlinesup](#1.north west) rectangle ([yshift=+0.08cm]#1.north east);
+\shade<#2>[mysthorzlinesdn](#1.south west) rectangle ([yshift=-0.08cm]#1.south east);}
+\newcommand\horzlineslightNu[2]{
+\shade<#2>[mysthorzlinesuplight](#1.north west) rectangle ([yshift=+0.08cm]#1.north east);
+\shade<#2>[mysthorzlinesdnlight](#1.south west) rectangle ([yshift=-0.08cm]#1.south east);}
+
+\newcommand\myleftline[1]{
+\shade[mystleftline](#1.south west) rectangle ([xshift=-0.08cm]#1.north west);}
+\newcommand\myleftlinem[1]{
+\shade[mystleftline](#1.south west) rectangle ([xshift=-0.16cm]#1.north west);}
+\newcommand\myleftlinel[1]{
+\shade[mystleftline](#1.south west) rectangle ([xshift=-0.24cm]#1.north west);}
+
+\newcommand\myrectangle[1]{
+\draw[](#1.south west) rectangle (#1.north east);
+}
+\newcommand\myrectangleNu[2]{
+\draw<#2>[](#1.south west) rectangle (#1.north east);
+}
+
+
+
+\newcommand\mytikzmultiIIxIII[9][0.2]{
+\def\myscale{#1}
+\def\mypath{#2}
+\def\mybasenm{#3}
+\def\myfrmt{#4}
+\def\myxs{#5}
+\def\myys{#6}
+\def\myfa{#7}
+\def\myfb{#8}
+\def\myfc{#9}
+\mytikzmultiIIxIIIcont}
+\newcommand\mytikzmultiIIxIIIcont[3]{
+\def\myfd{#1}
+\def\myfe{#2}
+\def\myff{#3}
+
+\begin{tikzpicture}
+
+\coordinate(O) at (0., 0.);
+\node(A1) at (O)              {\includegraphics[scale=\myscale]{\mypath/\mybasenm/\mybasenm_\myfa.\myfrmt}};
+\node(A2) at ([xshift=+\myxs]A1.east) [right]{\includegraphics[scale=\myscale]{\mypath/\mybasenm/\mybasenm_\myfb.\myfrmt}};
+\node(A3) at ([xshift=+\myxs]A2.east) [right]{\includegraphics[scale=\myscale]{\mypath/\mybasenm/\mybasenm_\myfc.\myfrmt}};
+\node(B1) at ([yshift=-\myys]A1.south)[below]{\includegraphics[scale=\myscale]{\mypath/\mybasenm/\mybasenm_\myfd.\myfrmt}};
+\node(B2) at ([xshift=+\myxs]B1.east) [right]{\includegraphics[scale=\myscale]{\mypath/\mybasenm/\mybasenm_\myfe.\myfrmt}};
+\node(B3) at ([xshift=+\myxs]B2.east) [right]{\includegraphics[scale=\myscale]{\mypath/\mybasenm/\mybasenm_\myff.\myfrmt}};
+\end{tikzpicture}
+
+
+}
+
+\newcommand\mytikzmultiVI[9][0.2]{
+\def\myscale{#1}
+\def\mypath{#2}
+\def\mybasenm{#3}
+\def\myfrmt{#4}
+\def\myxs{#5}
+\def\myys{#6}
+\def\myfa{#7}
+\def\myfb{#8}
+\def\myfc{#9}
+\mytikzmultiVIcont}
+\newcommand\mytikzmultiVIcont[3]{
+\def\myfd{#1}
+\def\myfe{#2}
+\def\myff{#3}
+
+\begin{tikzpicture}
+
+\coordinate(O) at (0., 0.);
+\node(A1) at (O)              {\includegraphics[scale=\myscale]{\mypath/\mybasenm/\mybasenm_\myfa.\myfrmt}};
+\node(A2) at ([xshift=+\myxs]A1.east)[right]{\includegraphics[scale=\myscale]{\mypath/\mybasenm/\mybasenm_\myfb.\myfrmt}};
+\node(A3) at ([xshift=+\myxs]A2.east)[right]{\includegraphics[scale=\myscale]{\mypath/\mybasenm/\mybasenm_\myfc.\myfrmt}};
+\node(A4) at ([yshift=+\myxs]A3.east)[right]{\includegraphics[scale=\myscale]{\mypath/\mybasenm/\mybasenm_\myfd.\myfrmt}};
+\node(A5) at ([xshift=+\myxs]A4.east)[right]{\includegraphics[scale=\myscale]{\mypath/\mybasenm/\mybasenm_\myfe.\myfrmt}};
+\node(A6) at ([xshift=+\myxs]A5.east)[right]{\includegraphics[scale=\myscale]{\mypath/\mybasenm/\mybasenm_\myff.\myfrmt}};
+\end{tikzpicture}
+
+
+}
+
+\endinput
