@@ -1,0 +1,18 @@
+\ProvidesPackage{mybasic}
+
+
+%-------------------------------------------------------------------------------
+% FOR LOOP
+\newcommand{\forLoop}[5][1]{
+\setcounter{#2}{#3}
+\ifthenelse{#4}
+{
+#5
+\addtocounter{#2}{#1}
+\forLoop[#1]{#2}{\value{#2}}{#4}{#5}
+}
+{
+}
+}
+
+\endinput

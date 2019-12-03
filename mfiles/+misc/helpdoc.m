@@ -1,5 +1,13 @@
 function helpdoc(myfile,README,filemode,itank,ifnmlist,otank,ofnmlist)
 %
+%
+% @example (inside script)
+%
+% thisfile=[mfilename('fullpath'),'.m'];
+% README = fullfile(otank,[mfilename '.README']);
+% misc.helpdoc(thisfile,README);
+%
+
 
 
 fid=fopen(README,filemode);
