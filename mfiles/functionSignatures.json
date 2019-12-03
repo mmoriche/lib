@@ -1,0 +1,8 @@
+{
+"xml2struct":
+{"inputs":
+  [
+    {"name":"file"     , "kind":"required", "type":"filepath"}
+ ]
+}
+}

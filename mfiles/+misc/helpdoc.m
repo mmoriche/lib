@@ -1,5 +1,8 @@
-function helpdoc(myfile,fid,itank,ifnmlist,otank,ofnmlist)
+function helpdoc(myfile,README,filemode,itank,ifnmlist,otank,ofnmlist)
 %
+
+
+fid=fopen(README,filemode);
 
 nt = 80;
 ln = ''; for i = 1:nt, ln = [ln '_']; end
@@ -10,8 +13,30 @@ fid2=fopen(myfile,'r');
 firstchar=char(fread(fid2,1,'char'));
 % WRITE FIRST COMMENTS TO fid
 fprintf(fid, ['\n' ln '\n\n']);
-fprintf(fid, 'script:\n%s\n', myfile);
-fprintf(fid, 'run at %s on %s\n\n\n', thismachine(1:end-1), date);
+% readme
+fprintf(fid, 'this README:\n');
+nleft=length(README);
+nwrite=round(nleft)/nt;
+ia=1;
+while nleft>0
+   ib=ia+min(nt,nleft)-1;
+   fprintf(fid,' %s\n', README(ia:ib));
+   nleft=length(README)-ib;
+   ia=ia+nt;
+end
+fprintf(fid, 'script:\n');
+nleft=length(myfile);
+nwrite=round(nleft)/nt;
+ia=1;
+while nleft>0
+   ib=ia+min(nt,nleft)-1;
+   fprintf(fid,' %s\n', myfile(ia:ib));
+   nleft=length(myfile)-ib;
+   ia=ia+nt;
+end
+%
+fprintf(fid, '\nrun on %s on %s\n', thismachine(1:end-1), date);
+fprintf(fid, [ln '\n\n']);
 pat='.*<(.*)>.*';
 while firstchar == '%'
    ln0=fgets(fid2);
@@ -35,7 +60,7 @@ while firstchar == '%'
 end
 fclose(fid2);
 
-if nargin>2
+if nargin>3
 
    fprintf(fid, '\nFiles used:\n\n');
    fnmlist2={};
@@ -48,7 +73,7 @@ if nargin>2
 
 end
 
-if nargin>4
+if nargin>5
    fprintf(fid, '\nFiles generated:\n\n');
    fnmlist2={};
    fnmlist2=cat(1,fnmlist2,['O=' otank]);
@@ -59,7 +84,7 @@ if nargin>4
    fprintf(fid,mytab.tab2ascii_md(fnmlist2,'HA','l'));
 end
 
-
+fclose(fid);
 return
 end
 
