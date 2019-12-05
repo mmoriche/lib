@@ -46,6 +46,9 @@ end
 fprintf(fid, '\nrun on %s on %s\n', thismachine(1:end-1), date);
 fprintf(fid, [ln '\n\n']);
 pat='.*<(.*)>.*';
+pattharr='-(.*)-';
+pattvarr='\|(.*)\|';
+pattvarrfull='<\|(.*)\|>';
 while firstchar == '%'
    ln0=fgets(fid2);
    tkns=regexp(ln0,pat,'tokens');
@@ -55,8 +58,27 @@ while firstchar == '%'
       while ~isempty(tkns)
          ln1=ln0;
          for i3=1:length(tkns)
-            ln1=strrep(ln1,['<' tkns{i3}{1} '>'], ...
-                string(evalin('caller',tkns{i3}{1})));
+            varnm=tkns{i3}{1};
+            tknsharr=regexp(varnm,pattharr,'tokens');
+            tknsvarr=regexp(varnm,pattvarr,'tokens');
+            if ~isempty(tknsharr)
+               varnmarr=tknsharr{1}{1};
+               var  =evalin('caller',varnmarr);
+               mystr=['[',misc.strjoin(var,','),']']
+            elseif ~isempty(tknsvarr)
+               varnmarr=tknsvarr{1}{1};
+               tknsext=regexp(ln0,pattvarrfull,'tokenExtents');
+               nchars=diff(tknsext{1})+1;
+               nchars=tknsext{1}(1)-2;
+               ee='';
+               for i5=1:nchars, ee=[ee,' ']; end
+               var  =evalin('caller',varnmarr);
+               mystr=['[',misc.strjoin(var,[',\n',ee]),']']
+            else
+               var  =evalin('caller',varnm);
+               mystr=string(var);
+            end
+            ln1=strrep(ln1,['<' varnm '>'], mystr);
          end
          ln0=ln1;
          tkns=regexp(ln0,pat,'tokens');
