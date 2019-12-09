@@ -276,25 +276,27 @@ function summ(self, varargin);
    fprintf(fid, ['\n' ln '\n\n']);
    % readme
    fprintf(fid, 'this README:\n');
-   nleft=length(README);
-   nwrite=round(nleft)/nt;
-   ia=1;
-   while nleft>0
-      ib=ia+min(nt,nleft)-1;
-      fprintf(fid,' %s\n', README(ia:ib));
-      nleft=length(README)-ib;
-      ia=ia+nt;
-   end
+   fprintf(fid,' %s\n', README);
+   %nleft=length(README);
+   %nwrite=round(nleft)/nt;
+   %ia=1;
+   %while nleft>0
+   %   ib=ia+min(nt,nleft)-1;
+   %   fprintf(fid,' %s\n', README(ia:ib));
+   %   nleft=length(README)-ib;
+   %   ia=ia+nt;
+   %end
    fprintf(fid, 'script:\n');
-   nleft=length(caller_file);
-   nwrite=round(nleft)/nt;
-   ia=1;
-   while nleft>0
-      ib=ia+min(nt,nleft)-1;
-      fprintf(fid,' %s\n', caller_file(ia:ib));
-      nleft=length(caller_file)-ib;
-      ia=ia+nt;
-   end
+   fprintf(fid,' %s\n', caller_file);
+   %nleft=length(caller_file);
+   %nwrite=round(nleft)/nt;
+   %ia=1;
+   %while nleft>0
+   %   ib=ia+min(nt,nleft)-1;
+   %   fprintf(fid,' %s\n', caller_file(ia:ib));
+   %   nleft=length(caller_file)-ib;
+   %   ia=ia+nt;
+   %end
    %
    fprintf(fid, '\nrun on %s on %s\n', thismachine(1:end-1), date);
    fprintf(fid, [ln '\n\n']);
