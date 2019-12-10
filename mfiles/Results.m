@@ -253,11 +253,11 @@ function summ(self, varargin);
 
    if longtable
       %mystr = mytab.tab2ascii_md(tab,'cap',self.ansysnm);
-      mystr = mytab.tab2ascii_md(tab);
+      myfigstr = mytab.tab2ascii_md(tab);
    else
-      mystr = mytab.tab2ascii2(tab,[10,7,55],'cap',self.ansysnm);
+      myfigstr = mytab.tab2ascii2(tab,[10,7,55],'cap',self.ansysnm);
    end
-   display(mystr)
+   display(myfigstr)
 
    aa=dbstack('-completenames');
    caller_file=aa(2).file
@@ -358,18 +358,13 @@ function summ(self, varargin);
    
    end
 
-
-
-
-
-
    fid=fopen(README,'a');
    fprintf(fid,'\n\n');
    fprintf(fid, [ln '\n\n']);
    fprintf(fid,'OBJECTS GENERATED AT:\n');
    fprintf(fid,[fullfile(objectspath,ansysnm) '\n']);
    system(sprintf('mkdir -p %s' , fullfile(objectspath, ansysnm )));
-   fwrite(fid,mystr);
+   fwrite(fid,myfigstr);
    fprintf(fid, ['\n' ln '\n\n']);
    fclose(fid);
 
