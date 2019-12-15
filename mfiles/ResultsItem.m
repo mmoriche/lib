@@ -17,6 +17,7 @@ glb
 auxfiles
 %
 summ
+%
 end
 methods
 function self = ResultsItem(handle, indx, cap, glb, varargin)
@@ -82,7 +83,7 @@ function filelist = save(self,objectspath, ansysnm)
        fclose(fid);
 
        %display(sprintf('%10d%40s%40s',self.indx, self.cap, self.glb))
-       filelist = {datadir;fcap; fglb};
+       filelist = {datadir;fcap;fglb};
     else
        filelist = {};
     end
