@@ -3,9 +3,24 @@ function helpdoc(myfile,README,filemode,itank,ifnmlist,otank,ofnmlist)
 %
 % @example (inside script)
 %
+% GITHUB=getenv('GITHUB_PATH')
+%
+% EXTRA=misc.getextrapath(GITHUB);
+% ansysnm = [mfilename,'-ic',num2str(ic)];
+% otank = fullfile(TANK,EXTRA,ansysnm);
+%
+% ifnmlist={};
+% ofnmlist={};
+%
+% ifnmlist=cat(1,ifnmlist,ifnm);;
+% ofnmlist=cat(1,ofnmlist,ofnm);;
+%
 % thisfile=[mfilename('fullpath'),'.m'];
-% README = fopen(fullfile(otank,[mfilename '.README'],'w');
-% misc.helpdoc(thisfile,README);
+% README = [otank '.README'];
+% misc.helpdoc(thisfile,README,'w');
+%
+% misc.helpdoc(thisfile,README,'w',itank,ifnmlist,otank,ofnmlist);
+%
 %
 
 
