@@ -1,0 +1,90 @@
+\ProvidesPackage{myfortran}
+
+% defines fortran style. Which is subordinated to:
+%   style: mystyle
+
+\RequirePackage{mycolors}
+\RequirePackage{mycollect}
+\RequirePackage{mylistings}
+
+\lstdefinestyle{myfortran}{language=Fortran,
+   style=mystyle,
+   morekeywords={dsqrt, dacos, dexp, cmplx, dimag},
+   %basicstyle={\color{white}},
+   %backgroundcolor=\color{black},
+   % commentstyle=\bf\color{green},
+   % alsodigit={d},
+   % global variables
+   morekeywords={[6]sdv, sdvout,
+                    xib, xib0, yib, yib0, zib, zib0,
+                    uxib, uyib, uzib,
+                    ux0,uy0,uz0,p0},
+   % functions 
+   morekeywords={[4]uxeastfun, uxwestfun, uxsouthfun, uxnorthfun, uxbottomfun, uxtopfun,
+                    uyeastfun, uywestfun, uysouthfun, uynorthfun, uybottomfun, uytopfun,
+                    uzeastfun, uzwestfun, uzsouthfun, uznorthfun, uzbottomfun, uztopfun,
+                    peastfun, pwestfun, psouthfun, pnorthfun, pbottomfun, ptopfun,
+                    uxini, uyini, uzini, pini,
+                    h5readbuff}
+}
+
+%  INCLUDES --------------------------------------------------------------------
+
+% INCLUDE FOR RANGE
+\newcommand{\includeFortranRange}[3]{
+   \includeStyleRange{#1}{#2}{#3}{#2}{myfortran}
+}
+
+% INCLUDE FOR RANGE
+\newcommand{\includeFORrange}[4]{
+   \includeStyleRange{#1}{#2}{#3}{#4}{myfortran}
+}
+
+
+% \includeFORcode{../tags/mytag}{myclock.f}{clock routine}
+\newcommand{\includeFORcode}[3]{
+   \lstinputlisting[language=Fortran,
+                    label=code:#3for,
+                    caption=#3for,
+                    ]{#1/#2}
+}
+\newcommand{\includeFORrangei}[6]{
+   \lstinputlisting[language=Fortran,
+                    label=code:#2for,
+                    caption=#2for,
+                    rangeprefix=#3,
+                    rangesuffix=#4,
+                    linerange={#5-#6,#5-#6,#5-#6,#5-#6,#5-#6,#5-#6},
+                    includerangemarker=false
+                    ]{#1}
+}
+
+\newcommand{\includeFORrangeii}[9]{
+   \lstinputlisting[language=Fortran,
+                    ulabel=code:#3for,
+                    caption=#3for,
+                    rangebeginprefix=#4,
+                    rangebeginsuffix=#5,
+                    rangeendprefix=#6,
+                    rangeendsuffix=#7,
+                    linerange={#8,#8,#8,#8,#8,#8,#8,#8,#8,#8,#8,#8,#8,#8,#8,#8,#8,#8,#8,#8,#8,#8},
+                    includerangemarker=true
+                    ]{#1/#2}
+}
+
+\newcommand{\includeFORtiming}[3]{
+   \lstinputlisting[language=Fortran,
+                    label=myclock:#3,
+                    caption=#3,
+                    numbers=left,
+                    rangebeginprefix={call\ myclock(},
+                    rangebeginsuffix={\,\ openclock)},
+                    rangeendprefix={call\ myclock(},
+                    rangeendsuffix={\,\ closeclock)},
+                    linerange={#2,#2,#2,#2,#2,#2,#2,#2,#2,#2,#2,#2,#2,#2,#2,#2,#2,#2,#2,#2,#2,#2},
+                    includerangemarker=true
+                    ]{#1}
+}
+
+
+\endinput

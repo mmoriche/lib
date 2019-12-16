@@ -1,0 +1,103 @@
+\ProvidesPackage{mylistings}
+
+\RequirePackage[formats]{listings}
+ 
+\newcommand\includeRange[4]{
+   % MANDATORY ARGUMENTS: 
+   % #1: Full file name
+   % #2: Range key
+   % #3: Caption
+   % #4: Label
+   % 
+   %  Example of source code:
+   % 
+   %   !!! range_key beg !!! 
+   % 
+   % 
+   %   some code 
+   % 
+   %   !!! range_key end !!! 
+   % 
+   %  The latex file:
+   % 
+   %  \includeRange{/path/to/file.f}{range_key}{Caption}{label}
+   % 
+   \lstinputlisting[label=#4,
+                    caption=#3,
+                    rangebeginprefix={!!!\ },
+                    rangebeginsuffix={\ beg\ !!!},
+                    rangeendprefix={!!!\ },
+                    rangeendsuffix={\ end\ !!!},
+                    linerange={#2,#2,#2,#2,#2,#2,#2,#2},
+                    includerangemarker=false]{#1}}
+
+\newcommand\includeStyleRange[5]{
+    % MANDATORY ARGUMENTS: 
+    % #1: Full file name
+    % #2: Range key
+    % #3: Caption
+    % #4: Label
+    % #5: style
+    % 
+    %  Example of source code:
+    % 
+    %   !!! range_key beg !!! 
+    % 
+    % 
+    %   some code 
+    % 
+    %   !!! range_key end !!! 
+    % 
+    %  The latex file:
+    % 
+    %  \includeRange{/path/to/file.f}{range_key}{Caption}{label}
+    % 
+    %  The style must be defined via the command lstnewenvironment
+    % 
+    \lstinputlisting[label=#4,
+                     caption=#3,
+                     style=#5,
+                     rangebeginprefix={!!!\ },
+                     rangebeginsuffix={\ beg\ !!!},
+                     rangeendprefix={!!!\ },
+                     rangeendsuffix={\ end\ !!!},
+                     linerange={#2,#2,#2,#2,#2,#2,#2,#2},
+                     includerangemarker=false]{#1}}
+
+\lstdefinestyle{mystyle}{keywordstyle={[1]\styleclasses},
+                         keywordstyle={[2]\stylemethods},
+                         keywordstyle={[3]\styleproperties},
+                         keywordstyle={[4]\stylefunctions},
+                         keywordstyle={[5]\stylelocal},
+                         keywordstyle={[6]\styleglobal},
+                         keywordstyle={[8]\stylemodules},
+                         keywordstyle={[9]\stylelocalindices},
+                         keywordstyle={[10]\styleglobalindices},
+                         keywordstyle={[11]\stylelocalstrings},
+                         keywordstyle={[12]\styleglobalstrings},
+                         mathescape=false,
+	%backgroundcolor=\color{black},
+        %basewidth=0.6em,
+        %linewidth=48em,
+	tabsize=4,
+	rulecolor=,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+        showstringspaces=false,
+        extendedchars=true,
+        %%breaklines=true,
+        %prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\stylecomments,
+        numberstyle=\stylenumbers,
+        stringstyle=\color[rgb]{0.627,0.126,0.941},
+        breaklines=true,
+        postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}}
+\endinput

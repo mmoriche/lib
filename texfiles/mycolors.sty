@@ -1,0 +1,52 @@
+\ProvidesPackage{mycolors}
+
+\RequirePackage[usenames,dvipsnames]{xcolor}
+
+% package that defines color for highlighting
+
+\definecolor{colorcomments}{rgb}{0,0.5,0}                 % COMMENTS
+\definecolor{colornumbers}{rgb}{1,0,0}                    % NUMBERS
+
+\definecolor{colorclasses}{rgb}{1,0.5,0}                  %1  CLASSES
+\definecolor{colormethods}{rgb}{0.443,0.443,0.776}        %2  METHODS
+\definecolor{colorproperties}{rgb}{0.443,0.443,0.276}     %3  PROPERTIES
+\definecolor{colorfunctions}{rgb}{1,0.1015625,0.103125}   %4  FUNCTIONS
+\definecolor{colorlocal}{rgb}{0,0,0}                      %5  LOCAL
+\definecolor{colorglobal}{rgb}{0,0.5,0.5}                 %6  GLOBAL 
+\definecolor{colorpackages}{rgb}{0.545,0.1098,0.384}      %7  PACKAGES
+\definecolor{colormodules}{rgb}{0.545,0.1098,0.384}       %8  MODULES 
+\definecolor{colorindices}{rgb}{1.0,0.4,0.1}              %9,10  INDICES 
+\definecolor{colorstrings}{rgb}{0.0,0.5,0.8}              %11,12 STRINGS
+
+
+\newcommand\styleclasses{\bf\color{colorclasses}}         % 1 CLASSES
+\newcommand\stylemethods{\bf\color{colormethods}}         % 2 METHODS
+\newcommand\styleproperties{\bf\color{colorproperties}}   % 3 PROPERTIES
+\newcommand\stylefunctions{\bf\color{colorfunctions}}     % 4 FUNCTIONS
+\newcommand\stylelocal{\color{colorlocal}}                % 5 LOCAL
+\newcommand\styleglobal{\bf\color{colorglobal}}           % 6 GLOBAL
+\newcommand\stylepackages{\bf\color{colorpackages}}        % 7 PACKAGES
+\newcommand\stylemodules{\bf\color{colormodules}}         % 8 MODULES
+\newcommand\stylelocalindices{\color{colorindices}}       % 9 LOCAL INDICES
+\newcommand\styleglobalindices{\bf\color{colorindices}}   %10 GLOBAL INDICES
+\newcommand\stylelocalstrings{\color{colorstrings}}        %11 LOCAL STRINGS
+\newcommand\styleglobalstrings{\bf\color{colorstrings}}    %12 GLOBAL STRINGS
+
+% comments
+\newcommand\stylecomments{\color{colorcomments}}   
+% numbers
+\newcommand\stylenumbers{\color{colornumbers}}   
+
+\definecolor{mygreen}{rgb}{0,0.5,0}  
+
+% greys
+\definecolor{mygreya}{rgb}{0,0,0}  
+\definecolor{mygreyb}{rgb}{0.1,0.1,0.1}  
+\definecolor{mygreyc}{rgb}{0.2,0.2,0.2}  
+\definecolor{mygreyd}{rgb}{0.3,0.3,0.3}  
+\definecolor{mygreye}{rgb}{0.4,0.4,0.4}  
+\definecolor{mygreyf}{rgb}{0.5,0.5,0.5}  
+\definecolor{mygreyg}{rgb}{0.6,0.6,0.6}  
+\definecolor{mygreyh}{rgb}{0.7,0.7,0.7}  
+
+\endinput
