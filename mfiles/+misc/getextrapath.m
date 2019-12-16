@@ -26,7 +26,7 @@ function [relativepath isrel] = getextrapath( shortpath)
 %
 
 aa=dbstack('-completenames');
-caller_file=aa(2).file;
+caller_file=aa(2).file
 [callerpath,callerbase,callerext]=fileparts(caller_file);
 
 [relativepath isrel] = misc.relatepaths(callerpath,shortpath)
