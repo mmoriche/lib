@@ -561,5 +561,18 @@ function clean(self, varargin)
 return
 end
 
+function flag = exist(self, indx, frmt)
+
+   item = self.getitembyindx(indx);
+   item=item{1};
+   fnm=item.getfullfilename(self.objectspath,self.ansysnm);
+   fnm2=[fnm,'.',frmt];
+
+   flag=exist(fnm2,'file');
+   
+return
+end
+
+
 end % methods
 end % class
