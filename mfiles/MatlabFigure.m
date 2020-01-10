@@ -55,6 +55,25 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
          if trim
             systep(sprintf('convert -trim %s %s',ffig,ffig))
          end
+
+      elseif strcmp(frmt, 'pgfpng')
+
+         fpgf = [fnm '_pgfpng.tex'];
+         ffig = [fnm '_pgfpng.png'];
+
+         pp=get(fig,'Position');
+         pp=pp*0.5;
+         ax=get(fig,'Children');
+         xl=get(ax,'XLim'); yl=get(ax,'YLim');
+
+         fid=fopen(fpgf,'w');
+         fprintf(fid,'\\begin{axis}[scale only axis, enlargelimits=false, axis on top,width=%fin,height=%fin]',pp(3),pp(4));
+         fprintf(fid,'\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {/%s}',xl(1),xl(2),yl(1),yl(2),ffig);
+         fclose(fid);
+         print(fig,ffig,'-dpng',saveargs{:});
+         if trim
+            systep(sprintf('convert -trim %s %s',ffig,ffig))
+         end
       elseif strcmp(frmt, 'eps')
          ax2 = axes('Parent',fig,'Units', 'normalize', ...
           'Position', [0 0 1 1], 'Color', papercolor,'XColor',papercolor,'YColor',papercolor);
@@ -64,6 +83,31 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
          set(fig, 'Position', figsize);
          set(fig,'PaperPosition',[0 0 figsize(3) figsize(4)]);
          %print(fig,ffig,'-dpsc2',saveargs{:});
+         print(fig,ffig,'-depsc',saveargs{:});
+         delete(ax2)
+      elseif strcmp(frmt, 'pgfeps')
+
+         fpgf = [fnm '_pgfeps.tex'];
+         ffig = [fnm '_pgfeps.eps'];
+
+         pp=get(fig,'Position');
+         pp=pp*0.5;
+         ax=get(fig,'Children');
+         xl=get(ax,'XLim'); yl=get(ax,'YLim');
+
+         fid=fopen(fpgf,'w');
+         fprintf(fid,'\\begin{axis}[scale only axis, enlargelimits=false, axis on top,width=%fin,height=%fin]',pp(3),pp(4));
+         fprintf(fid,'\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {/%s}',xl(1),xl(2),yl(1),yl(2),ffig);
+         fclose(fid);
+
+         ax2 = axes('Parent',fig,'Units', 'normalize', ...
+          'Position', [0 0 1 1], 'Color', papercolor,'XColor',papercolor,'YColor',papercolor);
+         uistack(ax2, 'bottom')
+         set(fig, 'InvertHardCopy','off')
+         set(ax2, 'Position', [0 0 1 1]);
+         set(fig, 'Position', figsize);
+         set(fig,'PaperPosition',[0 0 figsize(3) figsize(4)]);
+
          print(fig,ffig,'-depsc',saveargs{:});
          delete(ax2)
       else
