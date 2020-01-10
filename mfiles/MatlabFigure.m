@@ -31,6 +31,7 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
    misc.assigndefaults(varargin{:});
 
    fnm = self.getfullfilename(objectspath, ansysnm);
+   shortfnm = self.getpathname(ansysnm);
 
    fig = self.handle;
    figsize = get(fig,'Position');
@@ -60,6 +61,7 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
 
          fpgf = [fnm '_pgfpng.tex'];
          ffig = [fnm '_pgfpng.png'];
+         sfig = [shortfnm '_pgfpng.png'];
 
          pp=get(fig,'Position');
          pp=pp*0.5;
@@ -67,8 +69,8 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
          xl=get(ax,'XLim'); yl=get(ax,'YLim');
 
          fid=fopen(fpgf,'w');
-         fprintf(fid,'\\begin{axis}[scale only axis, enlargelimits=false, axis on top,width=%fin,height=%fin]',pp(3),pp(4));
-         fprintf(fid,'\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {/%s}',xl(1),xl(2),yl(1),yl(2),ffig);
+         fprintf(fid,'\%\\begin{axis}[scale only axis, enlargelimits=false, axis on top,width=%fin,height=%fin]\n',pp(3),pp(4));
+         fprintf(fid,'\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\tbm/%s};',xl(1),xl(2),yl(1),yl(2),sfig);
          fclose(fid);
          print(fig,ffig,'-dpng',saveargs{:});
          if trim
@@ -89,6 +91,7 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
 
          fpgf = [fnm '_pgfeps.tex'];
          ffig = [fnm '_pgfeps.eps'];
+         sfig = [shortfnm '_pgfeps.eps'];
 
          pp=get(fig,'Position');
          pp=pp*0.5;
@@ -96,8 +99,8 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
          xl=get(ax,'XLim'); yl=get(ax,'YLim');
 
          fid=fopen(fpgf,'w');
-         fprintf(fid,'\\begin{axis}[scale only axis, enlargelimits=false, axis on top,width=%fin,height=%fin]',pp(3),pp(4));
-         fprintf(fid,'\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {/%s}',xl(1),xl(2),yl(1),yl(2),ffig);
+         fprintf(fid,'%\\begin{axis}[scale only axis, enlargelimits=false, axis on top,width=%fin,height=%fin]\n',pp(3),pp(4));
+         fprintf(fid,'\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\tbm/%s};',xl(1),xl(2),yl(1),yl(2),sfig);
          fclose(fid);
 
          ax2 = axes('Parent',fig,'Units', 'normalize', ...

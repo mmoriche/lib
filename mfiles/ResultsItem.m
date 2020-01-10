@@ -47,6 +47,13 @@ function fnm = getfilename(self, ansysnm)
 return
 end
 
+function fnm = getpathname(self, ansysnm)
+
+   fnm = fullfile(ansysnm,sprintf('%s_%d',ansysnm, self.indx));
+
+return
+end
+
 function fnm = getdatadir(self, objectspath, ansysnm)
 
    fnm1 = self.getfullfilename(objectspath, ansysnm);
