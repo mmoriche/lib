@@ -1,8 +1,11 @@
 classdef MatlabFigure  < ResultsItem
 %
+%
 % cap: specific info of figure, only for info, should be short
 % glb: common info with more figures, only for info, should be short
 % tex: field to use as caption in figure, can be long, not appearss in summ
+%
+%
 properties
 tex
 papercolor
@@ -65,7 +68,8 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
 
          pp=get(fig,'Position');
          pp=pp*0.5;
-         ax=get(fig,'Children');
+         %ax=get(fig,'Children');
+         ax=findobj(fig,'Type','Axes');
          xl=get(ax,'XLim'); yl=get(ax,'YLim');
 
          fid=fopen(fpgf,'w');
@@ -95,7 +99,8 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
 
          pp=get(fig,'Position');
          pp=pp*0.5;
-         ax=get(fig,'Children');
+         %ax=get(fig,'Children');
+         ax=findobj(fig,'Type','Axes');
          xl=get(ax,'XLim'); yl=get(ax,'YLim');
 
          fid=fopen(fpgf,'w');
@@ -113,8 +118,11 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
 
          print(fig,ffig,'-depsc',saveargs{:});
          delete(ax2)
+
       else
+
          saveas(fig,ffig,frmt,saveargs{:});
+
       end
    end
 
