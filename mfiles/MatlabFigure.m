@@ -62,6 +62,8 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
 
       elseif strcmp(frmt, 'pgfpng')
 
+         set(fig, 'InvertHardCopy','off')
+
          fpgf = [fnm '_pgfpng.tex'];
          ffig = [fnm '_pgfpng.png'];
          sfig = [shortfnm '_pgfpng.png'];
@@ -70,7 +72,29 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
          pp=pp*0.5;
          %ax=get(fig,'Children');
          ax=findobj(fig,'Type','Axes');
-         xl=get(ax,'XLim'); yl=get(ax,'YLim');
+         [az,el]=view();
+         cu=camup/norm(camup);
+         if el == 0
+            if az == 0
+              if abs(cu(3))==1
+                 xl=get(ax,'XLim'); yl=get(ax,'ZLim');
+              elseif abs(cu(1))==1
+                 xl=get(ax,'ZLim'); yl=get(ax,'XLim');
+              end
+            elseif az == 90
+              if abs(cu(3))==1
+                 xl=get(ax,'YLim'); yl=get(ax,'ZLim');
+              elseif abs(cu(2))==1
+                 xl=get(ax,'ZLim'); yl=get(ax,'YLim');
+              end
+            end
+         else
+            if abs(cu(2))==1
+               xl=get(ax,'XLim'); yl=get(ax,'YLim');
+            elseif abs(cu(1))==1
+               xl=get(ax,'YLim'); yl=get(ax,'XLim');
+            end
+         end
 
          fid=fopen(fpgf,'w');
          fprintf(fid,'\%\\begin{axis}[scale only axis, enlargelimits=false, axis on top,width=%fin,height=%fin]\n',pp(3),pp(4));

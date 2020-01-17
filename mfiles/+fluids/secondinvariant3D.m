@@ -44,9 +44,9 @@ global xuy yuy zuy
 global xuz yuz zuz
 global nx ny nz
 global perx pery perz
-perx = 0;
-pery = 0;
-perz = 0;
+%perx = 0;
+%pery = 0;
+%perz = 0;
 % nx,ny,nz number of cells 
 Q = zeros(nx,ny,nz);
 Q = (diff(ux(1:end-perx,2:end-1,2:end-1),1,1)./dx).^2;
