@@ -311,7 +311,7 @@ function summ(self, varargin);
          fprintf(fid,ln0);
       else
          while ~isempty(tkns)
-            ln1=ln0;
+            ln1=ln0
             for i3=1:length(tkns)
                varnm=tkns{i3}{1};
                tknsharr=regexp(varnm,pattharr,'tokens');
@@ -338,7 +338,8 @@ function summ(self, varargin);
             ln0=ln1;
             tkns=regexp(ln0,pat,'tokens');
          end
-         fprintf(fid,ln1);
+
+         if ~isempty(ln1), fprintf(fid,ln1); end
    
       end
       firstchar=char(fread(fid2,1,'char'));
@@ -560,6 +561,19 @@ function clean(self, varargin)
 
 return
 end
+
+function flag = exist(self, indx, frmt)
+
+   item = self.getitembyindx(indx);
+   item=item{1};
+   fnm=item.getfullfilename(self.objectspath,self.ansysnm);
+   fnm2=[fnm,'.',frmt];
+
+   flag=exist(fnm2,'file');
+   
+return
+end
+
 
 end % methods
 end % class
