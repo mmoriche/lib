@@ -380,8 +380,8 @@ function save(self, varargin);
    indxlist = self.getindxlist('ResultsItem');
    indxlist0 = indxlist;
    force = false;
+   def='tbm';
    misc.assigndefaults(varargin{:});
-
    indxlist = sort(indxlist);
 
    objectspath = self.objectspath;
