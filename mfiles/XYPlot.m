@@ -21,7 +21,7 @@ function self = XYPlot(handle,indx,cap,glb,tex,varargin)
   auxfiles=true;
   summ=true;
   misc.assigndefaults(varargin{:});
-  self@MatlabFigure(handle, indx, cap, glb,tex, ...
+  self@MatlabFigure(handle, indx, cap, glb,tex,...
    'papercolor', papercolor,'auxfiles',auxfiles,'summ',summ);
   self.legendjoiner = legendjoiner;
   self.legendbeg= legendbeg;
@@ -35,6 +35,7 @@ function filelist = save(self,objectspath, ansysnm, varargin)
    % objectspath/ansysnm/ansysnm_<indx>_data/
    saveargs = {};
    frmt = 'pdf';
+   def='tbm';
    skipexisting = false;
    misc.assigndefaults(varargin{:});
 
@@ -43,7 +44,8 @@ function filelist = save(self,objectspath, ansysnm, varargin)
    % save the figure object, caption and global caption
    %filelist_1 = save@MatlabFigure(self, fnm, frmt, 'saveargs', saveargs);
    filelist_1 = save@MatlabFigure(self,objectspath,ansysnm,frmt,...
-                                 'saveargs',saveargs,'skipexisting',skipexisting);
+                      'saveargs',saveargs,'skipexisting',skipexisting, ...
+                      'def',def);
 
    % save legend if it has to
    cap0 = self.cap;
