@@ -68,6 +68,7 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
 
          fpgf = [fnm '_pgfpng.tex'];
          ffig = [fnm '_pgfpng.png'];
+         filelist = {ffig;fpgf};
          sfig = [shortfnm '_pgfpng.png'];
 
          pp=get(fig,'Position');
@@ -121,6 +122,7 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
 
          fpgf = [fnm '_pgfeps.tex'];
          ffig = [fnm '_pgfeps.eps'];
+         filelist = {ffig;fpgf};
          sfig = [shortfnm '_pgfeps.eps'];
 
          pp=get(fig,'Position');
