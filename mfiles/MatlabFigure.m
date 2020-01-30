@@ -31,7 +31,9 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
    saveargs = {};
    trim = false;
    skipexisting = false;
+   def='tbm';
    misc.assigndefaults(varargin{:});
+   varargin
 
    fnm = self.getfullfilename(objectspath, ansysnm);
    shortfnm = self.getpathname(ansysnm);
@@ -66,6 +68,7 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
 
          fpgf = [fnm '_pgfpng.tex'];
          ffig = [fnm '_pgfpng.png'];
+         filelist = {ffig;fpgf};
          sfig = [shortfnm '_pgfpng.png'];
 
          pp=get(fig,'Position');
@@ -95,10 +98,10 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
                xl=get(ax,'YLim'); yl=get(ax,'XLim');
             end
          end
-
+         set(ax,'Color', papercolor);
          fid=fopen(fpgf,'w');
          fprintf(fid,'\%\\begin{axis}[scale only axis, enlargelimits=false, axis on top,width=%fin,height=%fin]\n',pp(3),pp(4));
-         fprintf(fid,'\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\tbm/%s};',xl(1),xl(2),yl(1),yl(2),sfig);
+         fprintf(fid,'\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/%s};',xl(1),xl(2),yl(1),yl(2),def,sfig);
          fclose(fid);
          print(fig,ffig,'-dpng',saveargs{:});
          if trim
@@ -119,6 +122,7 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
 
          fpgf = [fnm '_pgfeps.tex'];
          ffig = [fnm '_pgfeps.eps'];
+         filelist = {ffig;fpgf};
          sfig = [shortfnm '_pgfeps.eps'];
 
          pp=get(fig,'Position');
@@ -129,19 +133,19 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
 
          fid=fopen(fpgf,'w');
          fprintf(fid,'%\\begin{axis}[scale only axis, enlargelimits=false, axis on top,width=%fin,height=%fin]\n',pp(3),pp(4));
-         fprintf(fid,'\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\tbm/%s};',xl(1),xl(2),yl(1),yl(2),sfig);
+         fprintf(fid,'\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/%s};',xl(1),xl(2),yl(1),yl(2),def,sfig);
          fclose(fid);
 
-         ax2 = axes('Parent',fig,'Units', 'normalize', ...
-          'Position', [0 0 1 1], 'Color', papercolor,'XColor',papercolor,'YColor',papercolor);
-         uistack(ax2, 'bottom')
+         %ax2 = axes('Parent',fig,'Units', 'normalize', ...
+          %'Position', [0 0 1 1], 'Color', papercolor,'XColor',papercolor,'YColor',papercolor);
+         %uistack(ax2, 'bottom')
          set(fig, 'InvertHardCopy','off')
-         set(ax2, 'Position', [0 0 1 1]);
+         %set(ax2, 'Position', [0 0 1 1]);
          set(fig, 'Position', figsize);
          set(fig,'PaperPosition',[0 0 figsize(3) figsize(4)]);
 
          print(fig,ffig,'-depsc',saveargs{:});
-         delete(ax2)
+         %delete(ax2)
 
       else
 
