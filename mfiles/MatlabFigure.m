@@ -75,6 +75,8 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
          pp=pp*0.5;
          %ax=get(fig,'Children');
          ax=findobj(fig,'Type','Axes');
+         set(ax,'Color', papercolor);
+         set(fig,'Color', papercolor);
          [az,el]=view();
          cu=camup/norm(camup);
          if el == 0
@@ -98,7 +100,6 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
                xl=get(ax,'YLim'); yl=get(ax,'XLim');
             end
          end
-         set(ax,'Color', papercolor);
          fid=fopen(fpgf,'w');
          fprintf(fid,'\%\\begin{axis}[scale only axis, enlargelimits=false, axis on top,width=%fin,height=%fin]\n',pp(3),pp(4));
          fprintf(fid,'\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/%s};',xl(1),xl(2),yl(1),yl(2),def,sfig);
@@ -129,18 +130,39 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
          pp=pp*0.5;
          %ax=get(fig,'Children');
          ax=findobj(fig,'Type','Axes');
-         xl=get(ax,'XLim'); yl=get(ax,'YLim');
-
+         [az,el]=view();
+         cu=camup/norm(camup);
+         if el == 0
+            if az == 0
+              if abs(cu(3))==1
+                 xl=get(ax,'XLim'); yl=get(ax,'ZLim');
+              elseif abs(cu(1))==1
+                 xl=get(ax,'ZLim'); yl=get(ax,'XLim');
+              end
+            elseif az == 90
+              if abs(cu(3))==1
+                 xl=get(ax,'YLim'); yl=get(ax,'ZLim');
+              elseif abs(cu(2))==1
+                 xl=get(ax,'ZLim'); yl=get(ax,'YLim');
+              end
+            end
+         else
+            if abs(cu(2))==1
+               xl=get(ax,'XLim'); yl=get(ax,'YLim');
+            elseif abs(cu(1))==1
+               xl=get(ax,'YLim'); yl=get(ax,'XLim');
+            end
+         end
          fid=fopen(fpgf,'w');
          fprintf(fid,'%\\begin{axis}[scale only axis, enlargelimits=false, axis on top,width=%fin,height=%fin]\n',pp(3),pp(4));
          fprintf(fid,'\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/%s};',xl(1),xl(2),yl(1),yl(2),def,sfig);
          fclose(fid);
 
-         %ax2 = axes('Parent',fig,'Units', 'normalize', ...
-          %'Position', [0 0 1 1], 'Color', papercolor,'XColor',papercolor,'YColor',papercolor);
-         %uistack(ax2, 'bottom')
          set(fig, 'InvertHardCopy','off')
-         %set(ax2, 'Position', [0 0 1 1]);
+         ax2 = axes('Parent',fig,'Units', 'normalize', ...
+          'Position', [0 0 1 1], 'Color', papercolor,'XColor',papercolor,'YColor',papercolor);
+         set(ax2, 'Position', [0 0 1 1]);
+         uistack(ax2, 'bottom')
          set(fig, 'Position', figsize);
          set(fig,'PaperPosition',[0 0 figsize(3) figsize(4)]);
 
