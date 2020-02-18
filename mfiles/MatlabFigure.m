@@ -167,7 +167,7 @@ function filelist = save(self,objectspath,ansysnm,frmt,varargin)
          set(fig,'PaperPosition',[0 0 figsize(3) figsize(4)]);
 
          print(fig,ffig,'-depsc',saveargs{:});
-         %delete(ax2)
+         delete(ax2)
 
       else
 
