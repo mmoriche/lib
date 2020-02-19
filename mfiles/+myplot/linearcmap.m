@@ -6,7 +6,8 @@ misc.assigndefaults(varargin{:});
 vmin = min(values(:));
 vmax = max(values(:));
 
-vref = linspace(vmin, vmax,nc);
+%vref = linspace(vmin, vmax,nc);
+vref = linspace(vmin, vmax,nc-0);
 %nv = length(values);
 %xx = linspace(1,nc,nv);
 %vref = interpn(xx, values, 1:nc);

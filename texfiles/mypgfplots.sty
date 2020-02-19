@@ -1,0 +1,79 @@
+
+\ProvidesPackage{mypgfplots}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\RequirePackage{pgfplotstable}
+\RequirePackage{xcolor}
+\RequirePackage{alphalph}
+\RequirePackage{siunitx}
+
+
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{colorbrewer,patchplots,groupplots}
+\usepgfplotslibrary{colormaps} 
+
+
+
+
+\makeatletter
+\pgfplotsset{
+    auto title/.style={
+        title=(\alphalph{\pgfplots@group@current@plot})
+    }
+}
+\makeatother
+
+\definecolor{mycyan}{rgb}{0,0.75,0.75}
+\definecolor{mygreen}{rgb}{0,0.5,0}
+
+
+
+
+\pgfplotsset{label  style={font=\normalsize},
+        tick label  style={font=\footnotesize},
+             legend style={font=\footnotesize, yshift=1mm,at={(1,1)},anchor=south east},
+           y label  style={at={(-0.1,0.5)},anchor=east,rotate=-90},
+% yyplot (left black by default, right set to red)
+plotyy left/.style={ axis y line* =  left, every axis plot/.style={thick, black}},
+plotyy right/.style={axis y line* = right, every axis plot/.style={thick, red  }, hide x axis, axis line style={red}, ytick style={red}, 
+ y label style= {at={(1.05,0.5)}, anchor=west}},
+% x3/4 plots
+plots x3_4/.style={ width=0.675\textwidth, height=0.4172\textwidth, }, 
+% x2 plots
+plots x2/.style={ width=0.45\textwidth, height=0.2781\textwidth, }, 
+% x3 plots
+plots x3/.style={ width=0.3\textwidth, height=0.185\textwidth, }, 
+%plots x3/.style={ width=0.4\textwidth, height=0.247\textwidth, }, 
+% x1 plots wide
+plots x1 wide/.style={ width=0.90\textwidth, height=0.450\textwidth, }, 
+% x1 plots wide
+plots x3_4 wide/.style={ width=0.675\textwidth, height=0.3375\textwidth, }, 
+% x2 plots wide
+plots x2 wide/.style={ width=0.45\textwidth, height=0.225\textwidth, }, 
+% 1x2 plots layout
+plots1x2/.style={ width=0.45\textwidth, height=0.35\textwidth, }, 
+% 2x1 plots layout
+plots2x1wide/.style={ width=0.8\textwidth, height=0.3\textwidth, }, 
+% 2x2 plots aurea
+plots2x2/.style={ width=0.45\textwidth, height=0.30902\textwidth, }, 
+% 2x2 plots layout
+plots2x2wide/.style={ width=0.45\textwidth, height=0.35\textwidth, }, 
+% one plot layout
+plots1x1/.style={ width=0.9\textwidth, height=0.6\textwidth, }, 
+% 1x3 plots layout
+plots1x3/.style={ width=0.45\textwidth, height=0.3\textwidth, },
+%  NO LABELs
+nox/.style={ xlabel=\empty, xtick = \empty },
+noy/.style={ ylabel=\empty, ytick = \empty },
+}
+
+
+
+
+
+
+
+
+
+
+\endinput
