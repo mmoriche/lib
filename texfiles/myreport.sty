@@ -1,0 +1,49 @@
+\ProvidesPackage{myreport}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{longtable,tabularx}
+
+%\usepackage{pgfplotstable}
+\usepackage{mypgfplotstable}
+
+\usepackage{natbib}
+
+
+\usepackage{caption}
+\usepackage{newfloat}
+
+\usepackage{todo}
+
+
+\let\ig\includegraphics
+
+
+% Internal data:
+% if for internal data
+% inside the document use as:
+%  \ifinternal
+%     ...
+%  \else
+%     ...
+%  \fi
+%
+\newif\ifinternal
+
+\newenvironment{internal}
+{\ifinternal \color{iblue} \footnotesize }
+{\fi}
+
+\definecolor{iblue}{rgb}{0,0,0.6}
+
+\DeclareCaptionFont{iblue}{\color{iblue}}
+\DeclareFloatingEnvironment[fileext=itab,placement={!ht},name=Internal Table]{itab}
+\captionsetup[itab]{labelfont={iblue},font={iblue}}
+\DeclareFloatingEnvironment[fileext=itab,placement={!ht},name=Internal Figure]{ifig}
+\captionsetup[ifig]{labelfont={iblue},font={iblue}}
+
+\endinput
