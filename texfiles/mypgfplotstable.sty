@@ -4,11 +4,79 @@
 \RequirePackage{colortbl}
 \RequirePackage{booktabs}
 
+\pgfplotstableset{frmt1/.style={%
+ every head row/.style={before row=\toprule,after row=\toprule},
+ every last row/.style={after row=\toprule},
+ }
+}
+
 \pgfplotstableset{frmt2/.style={%
  every head row/.style={before row=\toprule,after row=\toprule},
  every last row/.style={after row=\toprule},
  every even row/.style={before row={\rowcolor[gray]{0.9}}},
  }
 }
+
+\pgfplotstableset{SUSPENSE/.style={%
+  % dataset
+  columns/dataset/.style  ={verb string type,column type=l},
+  % exe 
+  columns/exe/.style  ={verb string type,column type=l},
+  % gravity vector
+  columns/vg/.style  ={string type,column type=l,column name={gravity }},
+  create on use/vg/.style={
+    create col/assign/.code={%
+      \edef\entry{(\noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{gx}},% 
+                   \noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{gy}},
+                   \noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{gz}})}%
+      \pgfkeyslet{/pgfplots/table/create col/next content}\entry
+    }
+  },%
+  %  PROCESSOR GRID, created  from nx,ny,nz
+  columns/procgrid/.style  ={string type,column type=l,column name={Processor grid size }},
+  create on use/procgrid/.style={
+    create col/assign/.code={%
+      \edef\entry{\noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{ndx}}$\times$% 
+                  \noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{ndy}}$\times$
+                  \noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{ndy}}}%
+      \pgfkeyslet{/pgfplots/table/create col/next content}\entry
+    }
+  },%
+  % GRID, created  from nx,ny,nz
+  columns/grid/.style  ={string type,column type=l,column name={Grid size }},
+  create on use/grid/.style={
+    create col/assign/.code={%
+      \edef\entry{\noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{nx}}$\times$% 
+                  \noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{ny}}$\times$
+                  \noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{ny}}}%
+      \pgfkeyslet{/pgfplots/table/create col/next content}\entry
+    }
+  },%
+  % domain, created  from lx,ly,lz
+  columns/domain/.style  ={string type,column type=l,column name={Domain }},
+  create on use/domain/.style={
+    create col/assign/.code={%
+      \edef\entry{\noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{lx}}$\times$% 
+                  \noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{ly}}$\times$
+                  \noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{ly}}}%
+      \pgfkeyslet{/pgfplots/table/create col/next content}\entry
+    }
+  },%
+  % iimag available, iimagb:iimage
+  columns/iimagavail/.style  ={string type,column type=l,column name={iimag avail. }},
+  create on use/iimagavail/.style={
+    create col/assign/.code={%
+      \edef\entry{\noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{iimagb}}:% 
+                  \noexpand\pgfmathprintnumber[fixed zerofill, precision=0]{\thisrow{iimage}}}%
+      \pgfkeyslet{/pgfplots/table/create col/next content}\entry
+    }
+  },%
+}
+}
+
+ 
+
+
+
 
 \endinput
