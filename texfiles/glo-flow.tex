@@ -1,0 +1,46 @@
+
+\newglossaryentry{mu}{ name={\ensuremath{\mu}}     , sort=B00, description={Fluid dynamic viscosity}}
+\newglossaryentry{nu}{ name={\ensuremath{\nu}}     , sort=B00, description={Fluid kinematic viscosity}}
+\newglossaryentry{rhof}{ name={\ensuremath{\rho}}  , sort=B00, description={Fluid density}}
+\newglossaryentry{thk}{    name={\ensuremath{k}     }, type=print, sort=RB00, description={Thermal conduction}}
+\newglossaryentry{thcp}{   name={\ensuremath{C_p}},    type=print, sort=RB00, description={Specific heat}}
+\newglossaryentry{thkappa}{name={\ensuremath{\kappa}}, type=print, sort=RB00, description={Thermal diffusivity 
+$\gls{thkappa}=\gls{thk}/(\gls{thcp}\gls{rho})$}}
+\newglossaryentry{thalpha}{name={\ensuremath{\alpha}}, type=print, sort=RB00, description={Thermal expansion}}
+% flow field variables
+\newglossaryentry{ux}{name={\ensuremath{u_x}},      sort=B00, description={Velocity in $x$ coordinate}}
+\newglossaryentry{uy}{name={\ensuremath{u_y}},      sort=B00, description={Velocity in $y$ coordinate}}
+\newglossaryentry{uz}{name={\ensuremath{u_z}},      sort=B00, description={Velocity in $z$ coordinate}}
+
+\newglossaryentry{ws}{name={\ensuremath{\omega_s}}, sort=B00, description={Streamwise vorticity}}
+\newglossaryentry{wx}{name={\ensuremath{\omega_x}}, sort=B00, description={Component $x$ of the vorticity}}
+\newglossaryentry{wy}{name={\ensuremath{\omega_y}}, sort=B00, description={Component $y$ of the vorticity}}
+\newglossaryentry{wz}{name={\ensuremath{\omega_z}}, sort=B00, description={Component $z$ of the vorticity}}
+
+\newglossaryentry{Q}{name={\ensuremath{Q}},          sort=B00, description={Q criterion}}
+
+% EULERIAN FIELD | VECTORS
+\newglossaryentry{te}{   name={\ensuremath{T}}      ,  type=print, sort=E00, description={Temperature field}}
+\newglossaryentry{p}{   name={\ensuremath{p}}      ,  type=print, sort=E00, description={Pressure field}}
+\newglossaryentry{vu}{name={\ensuremath{\vec{u}}}              , sort=D01, description={Velocity field vector in the Eulerian frame}}
+\newglossaryentry{vu_x}{name={\ensuremath{u}} ,       type=print, sort=E00, description={$x$ component of Velocity field vector}}
+\newglossaryentry{vu_y}{name={\ensuremath{v}} ,       type=print, sort=E00, description={$y$ component of Velocity field vector}}
+\newglossaryentry{vu_z}{name={\ensuremath{w}} ,       type=print, sort=E00, description={$z$ component of Velocity field vector}}
+\newglossaryentry{vur}{  name={\ensuremath{\vec{u}_r}}, type=print, sort=E10, description={Relative velocity field relative to fix csys}}
+\newglossaryentry{vur_x}{name={\ensuremath{u_r}} ,    type=print, sort=E00, description={$x$ component of Velocity field vector relative to particle velocity}}
+\newglossaryentry{vur_y}{name={\ensuremath{v_r}} ,    type=print, sort=E00, description={$y$ component of Velocity field vector relative to particle velocity}}
+\newglossaryentry{vur_z}{name={\ensuremath{w_r}} ,    type=print, sort=E00, description={$z$ component of Velocity field vector relative to particle velocity}}
+\newglossaryentry{vw}{name={\ensuremath{\vec{\omega}}}, sort=D01, description={Vorticity field vector}}
+\newglossaryentry{vf}{name={\ensuremath{\vec{f}}},      sort=D01, description={Volume force vector in the Eulerian frame}}
+
+% averaged quantities
+
+
+\newglossaryentry{vur_ll}{ name={\ensuremath{u_{r||}}} ,      type=print, sort=E20, description={Parallel component of \gls{vur}}}
+\newglossaryentry{vur_Hzp}{name={\ensuremath{u_{rHz\perp}}} , type=print, sort=E20, description={Horizontal component perpendicular to $z$ of \gls{vur}}}
+\newglossaryentry{vur_p}{  name={\ensuremath{u_{r\perp}}} ,   type=print, sort=E20, description={Perpendicular component of \gls{vur}}}
+
+% Raleygh bernard
+\newglossaryentry{RB_h}{    name={\ensuremath{h}}       , type=print, sort=RB00, description={Semi distance between walls in Raley-Bernard}}
+\newglossaryentry{RB_H}{    name={\ensuremath{H}}       , type=print, sort=RB00, description={Distance between walls in Raley-Bernard}}
+\newglossaryentry{RB_DT}{   name={\ensuremath{\Delta T}}, type=print, sort=RB00, description={Temperature difference between walls}}
