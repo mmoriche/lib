@@ -1,12 +1,31 @@
 \ProvidesPackage{myreport}
 
+%% 'sans serif' option
+\DeclareOption{internal}{ \internaltrue }
+\DeclareOption{labels}{   \labelstrue   }
+
+\newif\ifinternal
+\newif\iflabels
+
+\internalfalse
+\labelsfalse
+
+\ProcessOptions\relax
+
+\iflabels
+   \usepackage[left=2cm,bottom=3cm,right=4cm,top=3cm]{geometry}
+\else
+   \usepackage[left=2cm,bottom=3cm,right=2cm,top=3cm]{geometry}
+\fi
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{tikz}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{siunitx}
+\usepackage{hyperref}
 \usepackage{longtable,tabularx}
+\usepackage{comment}
 
 \usetikzlibrary{calc}
 %\usepackage{pgfplotstable}
@@ -14,30 +33,28 @@
 
 \usepackage{natbib}
 
+\usepackage{float}
 
 \usepackage{caption}
 \usepackage{newfloat}
 
+\usepackage{url}
 %\usepackage{todo}
 
 
 \let\ig\includegraphics
 
-
-% Internal data:
-% if for internal data
-% inside the document use as:
-%  \ifinternal
-%     ...
-%  \else
-%     ...
-%  \fi
-%
-\newif\ifinternal
-
-\newenvironment{internal}
-{\ifinternal \color{iblue} \footnotesize }
-{\fi}
+\newlength\mystoreparindent
+\ifinternal
+   \newenvironment{internal}
+   { \setlength{\mystoreparindent}{\the\parindent}
+     \setlength{\parindent}{0mm}
+     \color{iblue} \footnotesize }
+     {\setlength{\parindent}{\mystoreparindent}
+    }
+\else
+\excludecomment{internal}
+\fi
 
 \definecolor{iblue}{rgb}{0,0,0.6}
 
@@ -48,6 +65,30 @@
 \captionsetup[ifig]{labelfont={iblue},font={iblue}}
 
 
+% LABELS
+\iflabels
+   % show labels to support writting
+   % show labels of:
+   % - figs/tabs in blue
+   % - cites in red
+   %\usepackage[inline]{showlabels}
+   \usepackage[]{showlabels}
+   %\usepackage[]{rotating}
+   \showlabels[\color{red}]{cite}
+   \showlabels[\color{red}]{citep}
+   \showlabels[\color{red}]{citet}
+   \showlabels[\color{blue}]{bibitem}
+   \showlabels[\color{blue}]{glossentry}
+   % 
+   %\renewcommand{\showlabelsetlabel}[1]
+   %{\begin{turn}{45}\showlabelfont #1\end{turn}}
+   %\renewcommand{\showlabelfont}{\small\color{red}}
+   \renewcommand{\showlabelfont}{\small\color{red}}
+   \renewcommand{\showlabelrefline}{
+   \color{red}\hrule width 0.2em height 1.5ex depth 1pt}
+\fi
+
+
 % help for math%
 \newcommand{\ppx}[1]{\frac{\partial #1}{\partial x}}
 \newcommand{\ppy}[1]{\frac{\partial #1}{\partial y}}
@@ -55,5 +96,21 @@
 \newcommand{\ddt}[1]{\frac{\text{d}#1}{\text{d}t}}
 \newcommand{\ppt}[1]{\frac{\partial #1}{\partial t}}
 \newcommand{\wrt}{\text{d}}
+
+% includegraphics aadding path to the title for internal reports so that 
+
+% Put all figures HERE if the report is internal
+\ifinternal
+   \makeatletter \renewcommand*{\fps@figure}{H} \makeatother
+   \makeatletter \renewcommand*{\fps@table}{H}  \makeatother
+   \makeatletter \renewcommand*{\fps@ifig}{H}   \makeatother
+   \makeatletter \renewcommand*{\fps@itab}{H}   \makeatother
+\fi
+
+
+% remove red boxes in clickable objects
+\hypersetup{hidelinks
+}
+
 
 \endinput
