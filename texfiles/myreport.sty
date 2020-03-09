@@ -45,17 +45,27 @@
 \let\ig\includegraphics
 
 \newlength\mystoreparindent
+%\newlength\mystoreparskip
 \ifinternal
    \newenvironment{internal}
-   { \setlength{\mystoreparindent}{\the\parindent}
+   { %
+     \setlength{\mystoreparindent}{\the\parindent}
+     %\setlength{\mystoreparskip}{\the\parskip}
      \setlength{\parindent}{0mm}
-     \color{iblue} \footnotesize }
-     {\setlength{\parindent}{\mystoreparindent}
+     %\setlength{\parskip}{8mm}
+     \color{iblue}  }
+     %\color{iblue} \footnotesize }
+     {%
+     \setlength{\parindent}{\mystoreparindent}
+     %\setlength{\parskip}{\mystoreparskip}
     }
 \else
 \excludecomment{internal}
 \fi
 
+
+\parindent 0mm
+\parskip 6mm
 \definecolor{iblue}{rgb}{0,0,0.6}
 
 \DeclareCaptionFont{iblue}{\color{iblue}}
