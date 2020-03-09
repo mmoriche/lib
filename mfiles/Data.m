@@ -21,6 +21,9 @@ function self = Data(buffer, indx, cap, glb, varargin)
    joiner = '';
    auxfiles=true;
    misc.assigndefaults(varargin{:});
+
+   self@ResultsItem(buffer, indx, cap, glb,'auxfiles',auxfiles)
+
    if strcmp(varlist,'*')
       varlist = {};
       for i1 = 1:size(buffer,2)
@@ -48,13 +51,18 @@ function self = Data(buffer, indx, cap, glb, varargin)
          end
       end
    else
-      frmtlist{1} = '%18.8E';
-      for i1 = 2:size(buffer,2)
-         frmtlist = cat(1,frmtlist,{'%18.8E'});;
+      %frmtlist{1} = '%18.8E';
+      frmtlist = {};
+      for i1 = 1:size(buffer,2)
+         %frmtlist = cat(1,frmtlist,{'%18.8E'});;
+         if max(abs(self.handle(:,i1)-round(self.handle(:,i1)))) == 0
+            frmtlist = cat(1,frmtlist,{'%18d'});;
+         else
+            frmtlist = cat(1,frmtlist,{'%18.8E'});;
+         end
       end
    end
 
-   self@ResultsItem(buffer, indx, cap, glb,'auxfiles',auxfiles)
    self.hfrmtlist  =hfrmtlist;
    self.frmtlist   = frmtlist;
    self.varlist    = varlist;
@@ -83,8 +91,6 @@ function filelist = save(self,objectspath,ansysnm,varargin)
    n = size(self.handle,2);
    
    if ~strcmp(self.hfrmtlist{1}, '*')
-       disp('hola')
-       n
       for i1 = 1:(n-1)
          fprintf(fid,self.hfrmtlist{i1}, self.varlist{i1});
          fprintf(fid,self.joiner);
