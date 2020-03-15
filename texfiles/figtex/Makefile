@@ -61,7 +61,7 @@ $(OTANK)/%.tex: %.tab
 	$(shell echo '\end{document}'                        >> aux/job.tex)
 	(export TEXINPUTS=.:$(DOC)/:$(LIB)//: &&  pdflatex --shell-escape -jobname=aux/job -interaction=nonstopmode \
          "\def\tank{$(TANK_PATH)}\input{aux/job.tex}" && \
-          cp hola.tex  $@ && cp aux/job.tex  $(OTANK)/$*_source.tex && \
+          cp hola.tex  $@ && cp aux/job.tex  $(OTANK)/$*_source.tex && cp aux/job.pdf  $(OTANK)/$*.pdf && \
           cp aux/job.pdf  $(CATALOGUE)/$(DATELABEL)_$*.pdf && cp aux/job.tex  $(CATALOGUE)/$(DATELABEL)_$*.tex )
 	echo $@
 	echo $@
