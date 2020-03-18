@@ -3,6 +3,8 @@
 \RequirePackage{pgfplotstable}
 \RequirePackage{colortbl}
 \RequirePackage{booktabs}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
 
 %\usepackage[utf8]{inputenc}
 %\usepackage[T1]{fontenc}
@@ -86,6 +88,9 @@
 \newcolumntype{G}{>{\centering\arraybackslash}m{6em}}
 \newcolumntype{H}{>{\centering\arraybackslash}m{7em}}
 
+\pgfplotstableset{myverbl/.style={column type={>{\ttfamily\catcode`_=12 }l}}}
+\pgfplotstableset{myverbc/.style={column type={>{\ttfamily\catcode`_=12 }c}}}
+\pgfplotstableset{myverbr/.style={column type={>{\ttfamily\catcode`_=12 }r}}}
 
 
 
