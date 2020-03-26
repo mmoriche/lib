@@ -88,9 +88,10 @@
 \newcolumntype{G}{>{\centering\arraybackslash}m{6em}}
 \newcolumntype{H}{>{\centering\arraybackslash}m{7em}}
 
-\pgfplotstableset{myverbl/.style={column type={>{\ttfamily\catcode`_=12 }l}}}
-\pgfplotstableset{myverbc/.style={column type={>{\ttfamily\catcode`_=12 }c}}}
-\pgfplotstableset{myverbr/.style={column type={>{\ttfamily\catcode`_=12 }r}}}
+%                                 To print it directly           to be read as an input file
+\pgfplotstableset{myverbl/.style={verb string type, column type={>{\ttfamily\catcode`_=12 }l}}}
+\pgfplotstableset{myverbc/.style={verb string type, column type={>{\ttfamily\catcode`_=12 }c}}}
+\pgfplotstableset{myverbr/.style={verb string type, column type={>{\ttfamily\catcode`_=12 }r}}}
 
 
 

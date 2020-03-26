@@ -16,7 +16,7 @@ PDFLATEX=pdflatex
 # 0: deliverable report
 # 1: internal report
 # 2: internal + labels
-include make.inc
+-include make.inc
 #INTERNAL=1
 
 ifeq ($(INTERNAL),2)

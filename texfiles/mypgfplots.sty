@@ -18,10 +18,12 @@
 \makeatletter
 \pgfplotsset{
     auto title/.style={
-        title=(\alphalph{\pgfplots@group@current@plot})
+        title=\alphalph{\pgfplots@group@current@plot})
+        %title=(\alphalph{\pgfplots@group@current@plot})
     }
 }
 \makeatother
+
 
 \definecolor{mycyan}{rgb}{0,0.75,0.75}
 \definecolor{mygreen}{rgb}{0,0.5,0}
