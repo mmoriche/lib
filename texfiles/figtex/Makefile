@@ -34,7 +34,7 @@ $(OTANK)/%.pdf: %.tex
 	$(shell cat standalone_header.tex                     > aux/job.tex)
 	$(shell cat $<                                       >> aux/job.tex)
 	$(shell echo '\end{document}'                        >> aux/job.tex)
-	(export TEXINPUTS=.:$(DOC)/:$(LIB)//: &&  pdflatex --shell-escape -jobname=aux/job -interaction=nonstopmode \
+	(export TEXINPUTS=.:$(DOC)/:$(LIB)//: &&  lualatex --shell-escape -jobname=aux/job -interaction=nonstopmode \
          "\def\tank{$(TANK_PATH)}\input{aux/job.tex}" && \
           cp aux/job.pdf  $@ && cp aux/job.tex  $(OTANK)/$*_source.tex && \
           cp aux/job.pdf  $(CATALOGUE)/$(DATELABEL)_$*.pdf && cp aux/job.tex  $(CATALOGUE)/$(DATELABEL)_$*.tex )

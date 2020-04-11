@@ -69,6 +69,9 @@ if ~vflag, va=vx; end
 % FIGURE DIMENSIONS
 wf = ha + prhr + hx;
 hf = va + prvr + vx;
+ha
+prhr
+wf
 set(fig, 'Units', 'inches');
 set(ax , 'Units', 'inches');
 set(fig, 'Position', [1.0 1.0 wf hf]);

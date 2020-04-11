@@ -1,0 +1,115 @@
+\ProvidesPackage{mybash}
+
+\RequirePackage{mycolors}
+\RequirePackage{mycollect}
+\RequirePackage{mylistings}
+\RequirePackage{textcomp}
+
+\lstdefinestyle{mybash}{language=matlab,
+        style=mystyle,
+        morekeywords={fileparts, mfilename, xlabel, ylabel,
+                      xlim, ylim, interpn, ndgrid, fullfile
+                      },
+        % Matlab Classes
+        morekeywords={[2]Results,Frame2D,Frame3D,Stats},
+        % Matlab Classes.methods 
+        morekeywords={[3]addTable,save,summ,appendToREADME,
+                         addXYPlot, readfields, readfieldsh5,
+                         tab2ascii,table,table2,
+                         appendToREADME,
+                         readmerge, merge,
+                         getvalue},
+        % Matlab Classes.properties
+        morekeywords={[8]fxsum,fysum,fzsum, ifrlist,
+                         mxsum, mysum, mzsum,
+                         sdv, time},
+        % Matlab functions defined
+        morekeywords={[4]interpfield,editbasenm,editfnm,
+                         body2file,
+                         airfoil_4d,
+                         redblue,
+                         findminmax,
+                         genmesheu,  
+                         assigndefaults, 
+                         writeh5file,
+                         psd_o, signal_build, 
+                         labels, geth5dset },
+        % Matlab Aux vars typically used
+        morekeywords={[5]datapath, datapath0, datapath1, datapath2,
+                         basenm, basenm1, basenm2, 
+                         basenmlist,
+                         tab, tab0, tab1, tab2,
+                         ansysnm, objectspath, notespath,
+                         startup\_vars, fsbig, propsbig },
+        % Matlab Class Aux vars typically used
+        morekeywords={[6]fr,st,rs,rn,
+                         fr0,st0,rs0,rn0,
+                         fr1,st1,rs1,rn1,
+                         fr2,st2,rs2,rn2,
+                         fr3,st3,rs3,rn3,
+                         fr4,st4,rs4,rn4,
+                         st2D, st3D,
+                         fr2D, fr3D},
+        % Matlab packages
+        morekeywords={[7] mytab, myplot, mysignal, fields,misc,io }}
+
+
+% INCLUDE M RANGE
+\newcommand{\includeMrange}[4]{
+   %\setlstMnotes
+   \includeStyleRange{#1}{#2}{#3}{#4}{mymatlab}
+}
+
+% Usage example:
+% \includeMfileI{my_full_path_to_script_with_underscores.m}{caption without underscores}
+% arg1: file name 
+% arg2: caption
+% arg3: label
+\newcommand{\includeMfileI}[3]{
+   \mnotesglossary{name=#2, description = Script \hyperlink{code:#3}{#3}}
+   {\bf \hyperref[code:#3]{#3}. \hypertarget{code:#3.back}{ } }
+   \begin{collect}{codes}{\par}{\par}
+   \newpage
+   \hyperlink{code:#3.back}{{\bf BACK}}
+   %\setlstMnotes
+   \lstinputlisting[style=mymatlab, label=code:#3,caption=#2]{#1}
+   \hyperlink{code:#3.back}{{\bf BACK}}
+   \end{collect}
+}
+
+% Usage example:
+% \includeMfile{my_script_with_underscores.m}{caption without underscores}
+% arg1: file name 
+% arg2: caption
+\newcommand{\includeMfile}[2]{
+   \glossary{name=Matlab file: #2}
+   {\bf \hyperref[code:#1]{#2}. \hypertarget{code:#1.back}{ } }
+   \begin{collect}{codes}{\par}{\par}
+   \newpage
+   \hyperlink{code:#1.back}{{\bf BACK}}
+   \verb #1
+   \lstinputlisting[style=mymatlab,label=code:#1,caption=#2]{\mymfilespath/#1}
+   \hyperlink{code:#1.back}{{\bf BACK}}
+   \end{collect}
+}
+
+% \includeMnotes{20141001}
+%
+% To refer to the code: \ref{code:20141001m}
+\newcommand{\includeMnotes}[1]{
+   \mnotesglossary{name=#1, description = Script \hyperlink{code:#1m}{#1m}}
+   {\bf Script \hyperlink{code:#1m}{#1m}. \hypertarget{code:#1m.back}{ } }
+   \begin{collect}{codes}{\par}{\par}
+   \newpage
+   \hyperlink{code:#1m.back}{{\bf BACK}} \hypertarget{code:#1m}{ }
+   %\setlstMnotes
+   \lstinputlisting[style=mymatlab,label=code:#1m,caption=#1m]{\mymfilespath/+notes/notes_#1.m}
+
+   \hyperlink{code:#1m.back}{{\bf BACK}}
+   \end{collect}
+}
+
+
+
+\endinput
+
