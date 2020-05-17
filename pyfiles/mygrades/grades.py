@@ -49,7 +49,7 @@ def evaluator(crt,grp,valByCrit,commByCrit,desc=''):
     if len(valcom) > 1:
          com = ' '.join(valcom[1:]).replace(' ','_')
     else:
-         com = ''
+         com = ' '.join(valcom).replace(' ','_')
     #
     if not com in commByCrit[crt] and com:
        commByCrit[crt].append(com)
@@ -71,6 +71,7 @@ def corrector(criterias0,save=True,fname='grades.py',descriptionByCrit={}):
    valByCrit         = {}
    commByCritByGroup = {}
    valByCritByGroup  = {}
+
    # import data from fname if it exists
    if fname in os.listdir('.'):
        #execfile(fname)       
@@ -85,8 +86,9 @@ def corrector(criterias0,save=True,fname='grades.py',descriptionByCrit={}):
       print 
       # if grp is empty, finish
       if grp:
-        commByCritByGroup[grp] = {} 
-        valByCritByGroup[grp] = {}
+        if grp not in commByCritByGroup.keys():
+           commByCritByGroup[grp] = {} 
+           valByCritByGroup[grp] = {}
         i=0
         criterias=criterias0
         while i < len(criterias0):
@@ -148,7 +150,7 @@ def corrector(criterias0,save=True,fname='grades.py',descriptionByCrit={}):
 
 def grades2wb(valByCritByGroup,commByCritByGroup,
               criterias='*',groups='*',wgtByCrit='*',
-              bookName  = 'grades'):
+              bookName  = 'grades', book=None, label='', write=True):
    """
    Function to generate .xls file with evalutaion information
     contained in valByCritByGroup and commByCritByGroup dicts.
@@ -183,9 +185,9 @@ def grades2wb(valByCritByGroup,commByCritByGroup,
        for crt in sorted(valByCritByGroup[grp].keys()):
           wgtByCrit[crt] = 0.
    # 
-   book = Workbook()
+   if book is None: book = Workbook()
    # _____________ criteria and weights sheet ___________________________________________
-   sh = book.add_sheet('weights')    
+   sh = book.add_sheet('%s_weights' % label)    
    #
    row = 1 
    critcol = 1
@@ -200,7 +202,7 @@ def grades2wb(valByCritByGroup,commByCritByGroup,
        sh.write(row,wgtcol,  wgt,right1arr[row%2])
        row+=1
    # _____________ evaluation sheet _____________________________________________________
-   sh = book.add_sheet('eval')    
+   sh = book.add_sheet('%s_eval' % label)    
    # 
    sh.write(1,1, 'GROUP',header1)
    # crierias row
@@ -225,7 +227,7 @@ def grades2wb(valByCritByGroup,commByCritByGroup,
         crtcol+=2
       row+=1 
    # _____________ grades sheet _____________________________________________________
-   sh = book.add_sheet('grades')    
+   sh = book.add_sheet('%s_grades' % label)    
    sh.write(1,1, 'GROUP',header1)
    # crierias row
    sh.write(1,2,'TOTAL',header1)
@@ -242,7 +244,7 @@ def grades2wb(valByCritByGroup,commByCritByGroup,
        row+=1
    # values and comments
    A = ord('A')
-   mystring = []
+   #mystring = []
    row    = 2
    grpi = 2
    for grp in groups:  
@@ -250,16 +252,18 @@ def grades2wb(valByCritByGroup,commByCritByGroup,
       crti=0
       for crt in criterias:
         #uu = 'eval!%s%d*weights!%s%d'% (chr(A+crti*2+2),grpi+1,chr(A+2),crti+3)
-        uu = 'eval!%s%d*weights!%s%d'% (excelletters(crti*2+2),grpi+1,\
+        uu = '%s_eval!%s%d*%s_weights!%s%d'% (label,excelletters(crti*2+2),grpi+1,label,\
               excelletters(2),crti+3)
         sh.write(row,crtcol,Formula(uu),right1arr[row%2])
-        mystring.append(uu) 
+        #mystring.append(uu) 
         crti+=1
         crtcol+=1
-      sh.write(row,2,Formula('SUM(%s%d:%s%d)' % ( excelletters(3) , row+1, excelletters(crtcol) ,row+1)),rower2arr[row%2])
+      #sh.write(row,2,Formula('SUM(%s%d:%s%d)' % ( excelletters(3) , row+1, excelletters(crtcol) ,row+1)),rower2arr[row%2])
+      sh.write(row,2,Formula('SUM(%s%d:%s%d)' % ( excelletters(3) , row+1, excelletters(crtcol-1) ,row+1)),rower2arr[row%2])
       grpi+=1
       row+=1 
-   book.save(bookName+'.xls')
+   if write: book.save(bookName+'.xls')
+   else: return book
 
 def excelletters(index):
    maxlett=26

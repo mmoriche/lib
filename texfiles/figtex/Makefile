@@ -71,4 +71,4 @@ $(OTANK)/%.tex: %.tab
 	@echo -e "Congratulations! File \033[7;32m $@ \033[0m built"
 	@echo ""
 
-          #cp hola.tex  $@ && cp aux/job.tex  $(OTANK)/_$*.tab )
+

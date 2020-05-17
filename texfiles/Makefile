@@ -5,7 +5,11 @@
 
 SHELL := /bin/bash --init-file $(GITHUB_PATH)/WORK/lib/bashfiles/getextrapath.sh 
 EXTRADIR = $(shell getextrapath ${GITHUB_PATH})
-ODIR=$(TANK_PATH)/$(EXTRADIR)
+ifdef SUFFIX
+   ODIR=$(TANK_PATH)/$(EXTRADIR)$(SUFFIX)
+else
+   ODIR=$(TANK_PATH)/$(EXTRADIR)
+endif
 
 
 LATEXMK=latexmk
@@ -29,7 +33,7 @@ BUILDFLAGS = -pdflatex="$(PDFLATEX)  -synctex=1 -shell-escape -interaction=nonst
 BIBFLAGS = -bibtex
 
 #FEX=-deps  # use this to see dependencies
-FEX=
+#FEX=
 
 dir: 
 	if ! [ -d "aux" ]; then mkdir aux; fi
@@ -42,6 +46,9 @@ doc: main.tex dir
          cp aux/job.pdf $(ODIR).pdf)
 	@echo -e "Congratulations! File \033[7;35m$(ODIR).pdf \033[0m built"
 	@echo ""
+
+compress:
+	gs -sDEVICE=pdfwrite -dPDFSETTINGS=/default -q -o $(ODIR)_comp.pdf $(ODIR).pdf
 
 clean:
 	$(LATEXMK) -c -jobname=aux/job main.tex

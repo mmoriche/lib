@@ -1,0 +1,3 @@
+[submodule "thirdparty/geographiclib"]
+	path = thirdparty/geographiclib
+	url = https://git.code.sf.net/p/geographiclib/code
