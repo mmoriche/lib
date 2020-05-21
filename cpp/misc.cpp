@@ -2,10 +2,12 @@
 #include <fstream>
 #include <string>
 #include <cstring>
-#include <filesystem> // compile with -std=c++17
+//#include <filesystem> // compile with -std=c++17
+#include <experimental/filesystem>
 #include "misc.h"
 
-namespace fs = std::filesystem;
+//namespace fs = std::filesystem;
+namespace fs = std::experimental::filesystem;
 using namespace std;
 
 void printHeader(string afile, ostream& unit) {
