@@ -1,0 +1,27 @@
+\ProvidesPackage{mycpp}
+\RequirePackage{mycolors}
+\RequirePackage{mycollect}
+\RequirePackage{mylistings}
+
+\lstdefinestyle{mycpp}{language=C++,
+   style=mystyle,
+   morekeywords={dsqrt, dacos, dexp, cmplx, dimag},
+   %basicstyle={\color{white}},
+   %backgroundcolor=\color{black},
+   % commentstyle=\bf\color{green},
+   % alsodigit={d},
+   % global variables
+   morekeywords={[6]sdv, sdvout,
+                    xib, xib0, yib, yib0, zib, zib0,
+                    uxib, uyib, uzib,
+                    ux0,uy0,uz0,p0},
+   % functions 
+   morekeywords={[4]uxeastfun, uxwestfun, uxsouthfun, uxnorthfun, uxbottomfun, uxtopfun,
+                    uyeastfun, uywestfun, uysouthfun, uynorthfun, uybottomfun, uytopfun,
+                    uzeastfun, uzwestfun, uzsouthfun, uznorthfun, uzbottomfun, uztopfun,
+                    peastfun, pwestfun, psouthfun, pnorthfun, pbottomfun, ptopfun,
+                    uxini, uyini, uzini, pini,
+                    h5readbuff}
+}
+
+\endinput

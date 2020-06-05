@@ -14,6 +14,8 @@ sp = sin(0.5*ac(2));
 cr = cos(0.5*ac(3));
 sr = sin(0.5*ac(3));
 
+quat=zeros(4,1);
+
 quat(4) =cy*cp*cr+sy*sp*sr;
 
 quat(1) =cy*cp*sr-sy*sp*cr;

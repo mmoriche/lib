@@ -22,6 +22,7 @@
 \usepackage{tikz}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{pifont} %\usepackage{amssymb}
 \usepackage{pdflscape}
 \usepackage{siunitx}
 \usepackage{hyperref}
@@ -139,5 +140,11 @@
 
 
 \DeclareSIUnit\cpuh{cpuh}
+
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\mok}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
 
 \endinput

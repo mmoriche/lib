@@ -1,4 +1,4 @@
-function helpdoc(myfile,README,filemode,itank,ifnmlist,otank,ofnmlist)
+function helpdoc(myfile,README,filemode,itank,ifnmlist,otank,ofnmlist,prsr)
 %
 %
 % @example (inside script)
@@ -22,8 +22,6 @@ function helpdoc(myfile,README,filemode,itank,ifnmlist,otank,ofnmlist)
 % misc.helpdoc(thisfile,README,'w',itank,ifnmlist,otank,ofnmlist);
 %
 %
-
-
 
 fid=fopen(README,filemode);
 
@@ -129,6 +127,42 @@ if nargin>5
                strrep(ofnmlist{i1},[otank '/'],'O:'));
    end
    fprintf(fid,mytab.tab2ascii_md(fnmlist2,'HA','l'));
+end
+
+if nargin>7
+   fprintf(fid, '\nParser input details:\n\n');
+   dflt=prsr.UsingDefaults;
+   vars=setdiff(fields(prsr.Results),dflt);
+   lab = '';
+   if ~isempty(vars)
+      for i1 = 1:length(vars)
+         val=prsr.Results.(vars{i1});
+         %if any(find(strcmp(vars{i1},dflt))),lab='[default]';end
+         try
+            mystr=num2str(val);
+            fprintf(fid,' - %s = %s %s \n', vars{i1},mystr,lab);
+         catch
+            mystr=string(val);
+            fprintf(fid,' - %s = %s  %s\n', vars{i1},mystr,lab);
+         end
+      end
+   end
+   vars=dflt;
+   lab = '[default]';
+   if ~isempty(vars)
+      for i1 = 1:length(vars)
+         val=prsr.Results.(vars{i1});
+         %lab = '';
+         %if any(find(strcmp(vars{i1},dflt))),lab='[default]';end
+         try
+            mystr=num2str(val);
+            fprintf(fid,' - %s = %s %s \n', vars{i1},mystr,lab);
+         catch
+            mystr=string(val);
+            fprintf(fid,' - %s = %s  %s\n', vars{i1},mystr,lab);
+         end
+      end
+   end
 end
 
 fclose(fid);
