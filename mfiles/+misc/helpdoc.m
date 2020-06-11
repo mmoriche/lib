@@ -107,26 +107,30 @@ fclose(fid2);
 
 if nargin>3
 
-   fprintf(fid, '\nFiles used:\n\n');
-   fnmlist2={};
-   fnmlist2=cat(1,fnmlist2,['I=' itank]);
-   for i1=1:length(ifnmlist)
-      fnmlist2=cat(1,fnmlist2,...
-               strrep(ifnmlist{i1},[itank '/'],'I:'));
-   end
-   fprintf(fid,mytab.tab2ascii_md(fnmlist2,'HA','l'));
+   if ~isempty(ifnmlist)
+      fprintf(fid, '\nFiles used:\n\n');
+      fnmlist2={};
+      fnmlist2=cat(1,fnmlist2,['I=' itank]);
+      for i1=1:length(ifnmlist)
+         fnmlist2=cat(1,fnmlist2,...
+                  strrep(ifnmlist{i1},[itank '/'],'I:'));
+      end
+      fprintf(fid,mytab.tab2ascii_md(fnmlist2,'HA','l'));
 
+   end
 end
 
 if nargin>5
-   fprintf(fid, '\nFiles generated:\n\n');
-   fnmlist2={};
-   fnmlist2=cat(1,fnmlist2,['O=' otank]);
-   for i1=1:length(ofnmlist)
-      fnmlist2=cat(1,fnmlist2,...
-               strrep(ofnmlist{i1},[otank '/'],'O:'));
+   if ~isempty(ofnmlist)
+      fprintf(fid, '\nFiles generated:\n\n');
+      fnmlist2={};
+      fnmlist2=cat(1,fnmlist2,['O=' otank]);
+      for i1=1:length(ofnmlist)
+         fnmlist2=cat(1,fnmlist2,...
+                  strrep(ofnmlist{i1},[otank '/'],'O:'));
+      end
+      fprintf(fid,mytab.tab2ascii_md(fnmlist2,'HA','l'));
    end
-   fprintf(fid,mytab.tab2ascii_md(fnmlist2,'HA','l'));
 end
 
 if nargin>7
