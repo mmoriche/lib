@@ -6,7 +6,7 @@ SHELL := /bin/bash --init-file $(GITHUB_PATH)/WORK/lib/bashfiles/getextrapath.sh
 
 EXTRADIR = $(shell getextrapath ${GITHUB_PATH})
 
-FIG=$(TANK_PATH)/$(EXTRADIR)/figures
+FIG=$(DROPBOX_PATH)/$(EXTRADIR)/figures
 
 LATEXMKRC=$(GITHUB_PATH)/WORK/lib/texfiles/reports/latexmkrc
 MAKEFILE=$(GITHUB_PATH)/WORK/lib/texfiles/reports/Makefile
@@ -20,15 +20,15 @@ PDFLATEX=pdflatex
 #INTERNAL=1
 
 ifeq ($(INTERNAL),2)
-   ODIR=$(TANK_PATH)/$(EXTRADIR)_internal
+   ODIR=$(DROPBOX_PATH)/$(EXTRADIR)_internal
    $(shell sed -i "s|usepackage\[.*\]{myreport}|usepackage[internal,labels]{myreport}|g" main.tex )
 endif
 ifeq ($(INTERNAL),1)
-   ODIR=$(TANK_PATH)/$(EXTRADIR)_internal
+   ODIR=$(DROPBOX_PATH)/$(EXTRADIR)_internal
    $(shell sed -i "s|usepackage\[.*\]{myreport}|usepackage[internal]{myreport}|g" main.tex )
 endif
 ifeq ($(INTERNAL),0)
-   ODIR=$(TANK_PATH)/$(EXTRADIR)
+   ODIR=$(DROPBOX_PATH)/$(EXTRADIR)
    $(shell sed -i "s|usepackage\[.*\]{myreport}|usepackage[]{myreport}|g" main.tex )
 endif
 
