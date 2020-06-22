@@ -31,12 +31,14 @@ ln = ''; for i = 1:nt, ln = [ln '_']; end
 [istat,thismachine]=system('uname -n');
 
 fid2=fopen(myfile,'r');
+% readme. Only when writting mode
+if strcmp(filemode,'w')
+   fprintf(fid, 'this README:\n');
+   fprintf(fid,' %s\n\n', README);
+end
 firstchar=char(fread(fid2,1,'char'));
 % WRITE FIRST COMMENTS TO fid
 fprintf(fid, ['\n' ln '\n\n']);
-% readme
-fprintf(fid, 'this README:\n');
-fprintf(fid,' %s\n', README);
 %%%nleft=length(README);
 %%%nwrite=round(nleft)/nt;
 %%%ia=1;
