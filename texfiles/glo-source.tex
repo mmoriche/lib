@@ -1,0 +1,84 @@
+
+% SOURCE 
+\newglossaryentry{s_al}{name={\ensuremath{\alpha}}, sort=ZA02, type=print, description={Runge kutta coefficient for $k-1$ implicit terms}}
+\newglossaryentry{s_be}{name={\ensuremath{\beta}} , sort=ZA02, type=print, description={Runge kutta coefficient for $k$ implicit terms}}
+\newglossaryentry{s_ga}{name={\ensuremath{\gamma}}, sort=ZA02, type=print, description={Runge kutta coefficient for $k-1$ explicit terms}}
+\newglossaryentry{s_xi}{name={\ensuremath{\xi}}   , sort=ZA02, type=print, description={Runge kutta coefficient for $k-2$ explicit terms}}
+
+\newcommand\makeold[1]{#1^\text{old}}
+\newcommand\makeini[1]{#1^\text{ini}}
+\newcommand\indx[1]{ #1_l }
+
+% NEWTON STEP VARIABLES
+\newglossaryentry{s_xg}{  name={\ensuremath{\vec{xc}    }}, sort=ZA04, type=print, description={Buffer for position of center of gravity \gls{xg}}}
+\newglossaryentry{s_quat}{name={\ensuremath{\vec{q}     }}, sort=ZA04, type=print, description={Buffer for quaternions \gls{quat}}}
+\newglossaryentry{s_ug}{  name={\ensuremath{\vec{uc}    }}, sort=ZA04, type=print, description={Buffer for velocity of center of gravity \gls{ug}}}
+\newglossaryentry{s_ome}{ name={\ensuremath{\vec{\Omega}}}, sort=ZA04, type=print, description={Buffer for angular velocity \gls{ome}}}
+% RIGHT HAND SIDES
+\newglossaryentry{rhso}{      name={\ensuremath{\text{rhso}}}, sort=ZA04, type=print, description={Buffer for rhs of angular velocity evolution}}
+\newglossaryentry{rhsq}{      name={\ensuremath{\text{rhsq}}}, sort=ZA04, type=print, description={Buffer for rhs of quaternion evolution}}
+
+
+\newglossaryentry{s_xg_old}{text={\makeold{\gls{s_xg}}},name={\ensuremath{\makeold{\gls{s_xg}}}}  , sort=ZA04, type=print, description={Auxiliar buffer for position of center of gravity}}
+\newglossaryentry{s_xg_ini}{                            name={\ensuremath{\makeini{\gls{s_xg}}}}  , sort=ZA04, type=print, description={Auxiliar buffer for initial position of center of gravity}}
+\newglossaryentry{s_ug_old}{text={\makeold{\gls{s_ug}}},name={\ensuremath{\makeold{\gls{s_ug}}}}  , sort=ZA04, type=print, description={Auxiliar buffer for position of center of gravity}}
+\newglossaryentry{s_ug_ini}{                            name={\ensuremath{\makeini{\gls{s_ug}}}}  , sort=ZA04, type=print, description={Auxiliar buffer for initial position of center of gravity}}
+\newglossaryentry{s_quat_old}{                          name={\ensuremath{\makeold{\gls{s_quat}}}}, sort=ZA04, type=print, description={Auxiliar buffer for Quaternions}}
+\newglossaryentry{s_quat_ini}{                          name={\ensuremath{\makeini{\gls{s_quat}}}}, sort=ZA04, type=print, description={Auxiliar buffer for Quaternions}}
+\newglossaryentry{s_ome_old}{                           name={\ensuremath{\makeold{\gls{s_ome}}}} , sort=ZA04, type=print, description={Auxiliar buffer for angular velocity}}
+\newglossaryentry{s_ome_ini}{                           name={\ensuremath{\makeini{\gls{s_ome}}}} , sort=ZA04, type=print, description={Auxiliar buffer for initial angular velocity}}
+% right hand sides
+\newglossaryentry{rhso_old}{name={\ensuremath{\makeold{\gls{rhso}}}}, sort=ZA04, type=print, description={Auxiliar buffer for rhs of angular velocity evolution}}
+\newglossaryentry{rhsq_old}{name={\ensuremath{\makeold{\gls{rhsq}}}}, sort=ZA04, type=print, description={Auxiliar buffer for rhs of quaternion evolution}}
+
+% immersed boundaries
+\newglossaryentry{s_xyib}{    name={\ensuremath{\vec{X}               }}, sort=ZA03, type=print, description={Buffer with Lagrangian coordinates}}
+\newglossaryentry{s_xyib_old}{name={\ensuremath{\makeold{\gls{s_xyib}}}}, sort=ZA03, type=print, description={Auxiliar buffer with Lagrangian coordinates}}
+\newglossaryentry{s_xyib_ini}{name={\ensuremath{\makeini{\gls{s_xyib}}}}, sort=ZA03, type=print, description={Auxiliar buffer with Lagrangian coordinates}}
+\newglossaryentry{s_dv}{      name={\ensuremath{\gls{dv}              }}, sort=ZA03, type=print, description={Buffer with Lagrangian markers volume \gls{dv}}}
+\newglossaryentry{s_vf}{      name={\ensuremath{\gls{vf}             }}, sort=ZA03, type=print, description={Buffer with forcing term calculated from the IBM \gls{vf}}}
+
+\newglossaryentry{tau}{name={\ensuremath{\tens{\tau}}}, sort=A00, description={Stress tensor}}
+
+% lagrangian forces
+\newglossaryentry{s_faero}{text={{\text{faero}}},name={\ensuremath{{\text{faero}}}}, sort=ZA03, type=print, description={Buffer with the Aerodynamic force \gls{faero}}}
+\newglossaryentry{s_maero}{text={{\text{maero}}},name={\ensuremath{{\text{maero}}}}, sort=ZA03, type=print, description={Buffer with the Aerodynamic torque \gls{maero}}}
+\newglossaryentry{s_flag}{text={{\text{flag}}},name={\ensuremath{{\text{flag}}}}  , sort=ZA03, type=print, description={Buffer with the Lagrangian force \gls{flag}}}
+\newglossaryentry{s_mlag}{text={{\text{mlag}}},name={\ensuremath{{\text{mlag}}}}  , sort=ZA03, type=print, description={Buffer with the Lagrangian torque \gls{mlag}}}
+\newglossaryentry{s_fsum}{text={{\text{fsum}}},name={\ensuremath{{\text{fsum}}}}   , sort=ZA03, type=print, description={Buffer with the specific Lagrangian force \gls{fsum}}}
+\newglossaryentry{s_msum}{text={{\text{msum}}},name={\ensuremath{{\text{msum}}}}   , sort=ZA03, type=print, description={Buffer with the specific Lagrangian torque \gls{msum}}}
+
+% auxiliar
+\newglossaryentry{s_ff1}{text={{\text{f}_1}},name={\ensuremath{\text{f}_1}}, sort=ZA01, type=print, description={Auxilar variable 1}}
+\newglossaryentry{s_ff2}{text={{\text{f}_2}},name={\ensuremath{\text{f}_2}}, sort=ZA01, type=print, description={Auxilar variable 2}}
+\newglossaryentry{s_ff3}{text={{\text{f}_3}},name={\ensuremath{\text{f}_3}}, sort=ZA01, type=print, description={Auxilar variable 3}}
+
+% properties of particles
+\newglossaryentry{s_Vp}{text={Vp},name={\ensuremath{\text{vol}}},sort=PA00, description={Volume of the particle }}
+\newglossaryentry{s_Sp}{name={Sp},name={\ensuremath{\text{srf}}},sort=PA00, description={Surface of the particle }}
+\newglossaryentry{s_M}{name={\ensuremath{M}}, sort=PA00, description={Mass of the particle}}
+
+% spheroids
+\newglossaryentry{s_c_sph}{name={\ensuremath{\text{AFPD}}}, sort=ZA01, type=print, description={Buffer for coefficients to define the ellipse }}
+
+% derivative of angular momentum
+\newglossaryentry{s_spi}{                    name={\ensuremath{\gls{J}}}, sort=ZA01, type=print, description={Specific moment of inertia \gls{J}}}
+\newglossaryentry{s_hgi}{text={\text{dhdt}} ,name={\ensuremath{\text{dhdt}}}, sort=ZA01, type=print,description={Time derivative of the angular momentum \gls{hgi}}}
+% physical properties
+\newglossaryentry{s_vg}{  name={\ensuremath{g}}, sort=ZA01, type=print, description={Vector of gravity acceleration \gls{vg}}}
+\newglossaryentry{s_rhof}{name={\ensuremath{\rho_f}}, sort=ZA01, type=print, description={Fluid density \gls{rhof}}}
+\newglossaryentry{s_rhop}{name={\ensuremath{\rho_p}}, sort=ZA01, type=print, description={Particle density \gls{rhop}}}
+
+% CONTACT IN SOURCE CODE
+\newglossaryentry{s_kn}{name={\ensuremath{k_n}}, sort=ZA10, type=print, description={normal stiffness coefficient \gls{kn}}}
+\newglossaryentry{s_en}{  name={\ensuremath{e}}  , sort=ZA10, type=print, description={Restitution coefficient \gls{en}}}
+\newglossaryentry{s_v0}{  name={\ensuremath{v_0}}  , sort=ZA10, type=print, description={Collision velocities \gls{v0}}}
+\newglossaryentry{s_dm}{  name={\ensuremath{\delta_{\text{max}}}}  , sort=ZA10, type=print, description={Maximum overlapping distance allowed \gls{dm}}}
+\newglossaryentry{s_gan}{ name={\ensuremath{\gamma_n}} , sort=ZA10, type=print, description={normal damping coefficient \gls{gan}}}
+\newglossaryentry{s_gat}{ name={\ensuremath{\gamma_t}} , sort=ZA10, type=print, description={tangential damping coefficient \gls{gat}}}
+\newglossaryentry{s_muc}{ name={\ensuremath{\mu}}  , sort=ZA10, type=print, description={Coulomb friction coefficient \gls{muc}}}
+\newglossaryentry{s_rgat}{name={\ensuremath{r_\gamma}}, sort=ZA10, type=print, description={Ratio of tangential to normal damping coefficient $\gls{rgat} = \gls{gat}/\gls{gan}$}}
+
+\newglossaryentry{s_dtc}{name={\ensuremath{{\Delta t}_c}},sort=ZA10, type=print, text={\ensuremath{{\Delta t}_c}},description={Time step needed for the contact \gls{dtc}}}
+
+

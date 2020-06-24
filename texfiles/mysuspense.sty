@@ -1,0 +1,34 @@
+\ProvidesPackage{mysuspense}
+
+%\RequirePackage{mylistings}
+\RequirePackage{myfortran}
+
+\lstdefinestyle{mysuspense}{language=Fortran,
+   style=myfortran,
+   % subroutines
+   morekeywords={[4]q2a,a2q},
+   % global variables
+   morekeywords={[6]realprec, nclmx},
+   % commons 
+   morekeywords={[8]geometry4,geometry6},
+   % macros
+   morekeywords={[2]ifdef,endif,NON_SPHERICAL_PARTICLES},
+  }
+
+%\includeSUSPENSEsub{/file/...F}{subroutine}{title}
+\newcommand\includeSUSPENSEsub[2]{
+\lstinputlisting[%
+   style=mysuspense,
+   rangebeginprefix={\ \ \ \ \ \ subroutine\ },
+   rangebeginsuffix={},
+   rangeendprefix={endsubroutine\ },
+   rangeendsuffix={},
+   linerange={#2},
+   numbers=left,
+   xleftmargin=4em, 
+   framexrightmargin=-1.5em,
+   includerangemarker=true]{#1}
+}
+
+\endinput
+
