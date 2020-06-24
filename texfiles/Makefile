@@ -5,10 +5,11 @@
 
 SHELL := /bin/bash --init-file $(GITHUB_PATH)/WORK/lib/bashfiles/getextrapath.sh 
 EXTRADIR = $(shell getextrapath ${GITHUB_PATH})
+BASENM = $(shell basename $(EXTRADIR))
 ifdef SUFFIX
-   ODIR=$(DROPBOX_PATH)/$(EXTRADIR)$(SUFFIX)
+   ODIR=$(DROPBOX_PATH)/$(EXTRADIR)/$(BASENM)$(SUFFIX)
 else
-   ODIR=$(DROPBOX_PATH)/$(EXTRADIR)
+   ODIR=$(DROPBOX_PATH)/$(EXTRADIR)/$(BASENM)
 endif
 
 

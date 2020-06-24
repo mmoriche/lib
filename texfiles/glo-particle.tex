@@ -16,9 +16,9 @@
 \newcommand{\myrad}{\text{rad}}
 
 % spin, tumbling vert and horiz
-\newcommand{\mys}{ p\hspace{-0.2mm}s}
-\newcommand{\myth}{p\hspace{-0.2mm}t\hspace{-0.2mm}H}
-\newcommand{\mytv}{p\hspace{-0.2mm}t\hspace{-0.2mm}V}
+\newcommand{\myps}{ p\hspace{-0.2mm}s}
+\newcommand{\mypth}{p\hspace{-0.2mm}t\hspace{-0.2mm}H}
+\newcommand{\myptv}{p\hspace{-0.2mm}t\hspace{-0.2mm}V}
 
 \newglossaryentry{alpha_p}{   name={\ensuremath{\varphi}}               ,type=print, sort=J00, description={Angle rotated by the particle wrt to ephzP}}
 \newglossaryentry{rhop}{ name={\ensuremath{\rho_p}}, sort=B00, description={Particle's density}}
@@ -81,6 +81,7 @@
 \newglossaryentry{vomep_i}{  name={\ensuremath{      \omega_{pi}}}      , type=print, sort=G40, description={$i$ component of \gls{vomep}}}
 \newglossaryentry{vomep_i_k}{  name={\ensuremath{    \omega_{pi}^k}}      , type=print, sort=G40, description={$i$ component of \gls{vomep} at sub-stage $k$}}
 \newglossaryentry{vomep_i_kk}{ name={\ensuremath{    \omega_{pi}^{k\shortminus{}1}}}      , type=print, sort=G40, description={$i$ component of \gls{vomep} at sub-stage $k-1$}}
+\newglossaryentry{vomep_i_km1}{name={\ensuremath{    \omega_{pi}^{k\shortminus{}1}}}      , type=print, sort=G40, description={$i$ component of \gls{vomep} at sub-stage $k-1$}}
 
 \newglossaryentry{vomep_pre}{name={\ensuremath{{  \vec{\omega}_p^{\ast}}}}                , type=print, sort=M20, description={\gls{vomep} at sub-stage $k$}}
 \newglossaryentry{vomep_km1}{name={\ensuremath{{\vec{\omega}_p^{k\shortminus{}1}}}}, type=print, sort=M20, description={\gls{vomep} at sub-stage $k-1$}}
@@ -89,6 +90,9 @@
 \newglossaryentry{vomep_0_k}{name={\ensuremath{{  \vec{\omega}_p^{'k}}}}                , type=print, sort=M20, description={\gls{vomep} at sub-stage $k$}}
 \newglossaryentry{vomep_0_km1}{name={\ensuremath{{\vec{\omega}_p^{'k\shortminus{}1}}}}, type=print, sort=M20, description={\gls{vomep} at sub-stage $k-1$}}
 \newglossaryentry{vomep_0_km2}{name={\ensuremath{{\vec{\omega}_p^{'k\shortminus{}2}}}}, type=print, sort=M20, description={\gls{vomep} at sub-stage $k-2$}}
+
+\newglossaryentry{vomep_0_i_k}{  name={\ensuremath{    \omega_{pi}^{'k}}}      , type=print, sort=G40, description={$i$ component of \gls{vomep} at sub-stage $k$}}
+\newglossaryentry{vomep_0_i_km1}{name={\ensuremath{    \omega_{pi}^{'k\shortminus{}1}}}      , type=print, sort=G40, description={$i$ component of \gls{vomep} at sub-stage $k-1$}}
 % source terms
 \newglossaryentry{s:vomep_0_k}{name={  {\tt ome\_b\_k}},              , type=print, sort=M20, description={}}
 \newglossaryentry{s:vomep_0_km1}{name={{\tt ome\_b\_km1}},            , type=print, sort=M20, description={}}
@@ -142,11 +146,12 @@
 \newglossaryentry{vomep_hzp}{name={\ensuremath{    \omega_{pHz\perp}}}, sort=A00, description={Component 3 of the angular velocity}}
 \newglossaryentry{vomep_v}{  name={\ensuremath{      \omega_{pV}}}      , sort=A00, description={Component 3 of the angular velocity}}
 \newglossaryentry{vomep_pp}{ name={\ensuremath{      \omega_{\myperp}}}      , sort=A00, description={Component 3 of the angular velocity}}
-\newglossaryentry{vomep_s}{ name={\ensuremath{      \omega_{\mys}}}      , sort=A00, description={ Spin}}
-\newglossaryentry{vomep_th}{ name={\ensuremath{     \omega_{\myth}}}      , sort=A00, description={Horizontal tumbling }}
-\newglossaryentry{vomep_tv}{ name={\ensuremath{     \omega_{\mytv}}}      , sort=A00, description={Vertical tumbling}}
+\newglossaryentry{vomep_s}{ name={\ensuremath{      \omega_{\myps}}}      , sort=A00, description={ Spin}}
+\newglossaryentry{vomep_th}{ name={\ensuremath{     \omega_{\mypth}}}      , sort=A00, description={Horizontal tumbling }}
+\newglossaryentry{vomep_tv}{ name={\ensuremath{     \omega_{\myptv}}}      , sort=A00, description={Vertical tumbling}}
 % ad-hoc components
 \newglossaryentry{vup_v}{  name={\ensuremath{{u}_{pV}}}      ,type=print, sort=J00, description={Vertical component of particle's velocity}}
+\newglossaryentry{vup_ll}{ name={\ensuremath{{u}_{\mypll}}}      ,type=print, sort=J00, description={Horizontal component of particle's velocity}}
 \newglossaryentry{vup_h}{  name={\ensuremath{{u}_{pH}}}      ,type=print, sort=J00, description={Horizontal component of particle's velocity}}
 \newglossaryentry{vup_hzp}{name={\ensuremath{{u}_{pHz\perp}}},type=print, sort=J00, description={Horizontal perpendicular to $z$ component of particle's velocity}}
 
@@ -159,6 +164,11 @@
 \newglossaryentry{epHzp}{name={\ensuremath{\vec{e}_{\mypHzp}}},type=print, sort=P00, description={Particle's velocity}}
 \newglossaryentry{epll}{ name={\ensuremath{\vec{e}_{\mypll}}}     ,type=print, sort=P00, description={Particle's velocity}}
 \newglossaryentry{epp}{  name={\ensuremath{\vec{e}_{\myperp}}}  ,type=print, sort=P00, description={Particle's velocity}}
+
+
+\newglossaryentry{eps}{ name={\ensuremath{\vec{e}_{\myps}}} ,type=print, sort=P00, description={Director spin vector }}
+\newglossaryentry{epth}{name={\ensuremath{\vec{e}_{\mypth}}},type=print, sort=P00, description={Director horitontal tumbling vector }}
+\newglossaryentry{eptv}{name={\ensuremath{\vec{e}_{\myptv}}},type=print, sort=P00, description={Director vertical tumbling vector }}
 
 % averaged quantities
 \newglossaryentry{vup_x_m}{  name={\ensuremath{{\langle u_p \rangle}}}   ,type=print, sort=J00, description={Averaged       $x$ component of particle's velocity}}
