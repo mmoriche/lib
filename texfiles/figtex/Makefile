@@ -17,6 +17,9 @@ all: $(OBJECTS)
 %.pdf: $(OTANK)/%.pdf 
 	@echo building figure $<
 
+%.png: $(OTANK)/%.png 
+	@echo building figure $<
+
 %.tex: $(OTANK)/%.tex
 	@echo building table $<
 
@@ -74,4 +77,41 @@ $(OTANK)/%.tex: %.tab
 	@echo -e "Congratulations! File \033[7;32m $@ \033[0m built"
 	@echo ""
 
+.SECONDARY:
+$(OTANK)/%.pdf: %.svg
+	@echo ""
+	@echo ""
+	@echo "Making dot graph $<"
+	@echo ""
+	if ! [ -d $(OTANK) ]; then mkdir -p $(OTANK); fi
+	if ! [ -d $(CATALOGUE) ]; then mkdir -p $(CATALOGUE); fi
+	if ! [ -d "aux" ]; then mkdir aux; fi
+	@echo ""
+	(dot -Tpdf $< -o aux/job.pdf && cp aux/job.pdf $@ && \
+          cp aux/job.pdf  $(CATALOGUE)/$(DATELABEL)_$*.pdf && cp $< $(CATALOGUE)/$(DATELABEL)_$*.gv )
+	echo $@
+	echo $@
+	echo $@
+	@echo ""
+	@echo -e "Congratulations! File \033[7;32m $@ \033[0m built"
+	@echo ""
+
+.SECONDARY:
+$(OTANK)/%.png: %.svg
+	@echo ""
+	@echo ""
+	@echo "Making dot graph $<"
+	@echo ""
+	if ! [ -d $(OTANK) ]; then mkdir -p $(OTANK); fi
+	if ! [ -d $(CATALOGUE) ]; then mkdir -p $(CATALOGUE); fi
+	if ! [ -d "aux" ]; then mkdir aux; fi
+	@echo ""
+	(dot -Tpng $< -o aux/job.png && cp aux/job.png $@ && \
+          cp aux/job.png  $(CATALOGUE)/$(DATELABEL)_$*.png && cp $< $(CATALOGUE)/$(DATELABEL)_$*.gv )
+	echo $@
+	echo $@
+	echo $@
+	@echo ""
+	@echo -e "Congratulations! File \033[7;32m $@ \033[0m built"
+	@echo ""
 
