@@ -1,0 +1,29 @@
+\ProvidesPackage{mypython}
+
+\RequirePackage{mycolors}
+\RequirePackage{mycollect}
+\RequirePackage{mylistings}
+\RequirePackage{textcomp}
+
+\lstdefinestyle{mypython}{language=python,
+        style=mystyle,
+        morekeywords={
+                      },
+        % Matlab Classes
+        morekeywords={[2]},
+        % Matlab Classes.methods 
+        morekeywords={[3]},
+        % Matlab Classes.properties
+        morekeywords={[8]},
+        % Matlab functions defined
+        morekeywords={[4]},
+        % Matlab Aux vars typically used
+        morekeywords={[5]},
+        % Matlab Class Aux vars typically used
+        morekeywords={[6]},
+        % Matlab packages
+        morekeywords={[7] }}
+
+
+\endinput
+

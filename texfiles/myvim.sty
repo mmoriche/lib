@@ -1,0 +1,51 @@
+\ProvidesPackage{myvim}
+
+\RequirePackage{mycolors}
+\RequirePackage{mycollect}
+\RequirePackage{mylistings}
+\RequirePackage{textcomp}
+
+\lstdefinelanguage{Vim}
+{
+  % list of keywords
+  morekeywords={
+   },
+morecomment=[l]{"}, % l is for line comment
+morestring=[b]' % defines that strings are enclosed in double quotes
+}
+
+\lstdefinestyle{myvim}{%
+   language=Vim,
+   style=mystyle,
+   morekeywords={ set, let map, nmap, filetype, on, off, autocmd, Plugin, call,
+                  bufdo, update
+                 },
+   % Matlab Classes
+   morekeywords={[2]
+                    },
+   % Matlab Classes.methods 
+   morekeywords={[3]
+                    },
+   % Matlab Classes.properties
+   morekeywords={[8]
+                    },
+   % Matlab functions defined
+   morekeywords={[4]
+                    },
+   % Matlab Aux vars typically used
+   morekeywords={[5]
+                   },
+   % Matlab Class Aux vars typically used
+   morekeywords={[6]
+                    },
+   % Matlab packages
+   morekeywords={[7]
+                    },
+}
+
+
+% INCLUDE M RANGE
+
+
+\endinput
+
