@@ -25,7 +25,7 @@ misc.assigndefaults(varargin{:});
 
 seqref='xyz';
 
-%set(fig, 'Resize', 'off');
+set(fig, 'Resize', 'off');
 aurea=1.61803398875;
 
 hl = get(ax, [seq(1) 'lim']);

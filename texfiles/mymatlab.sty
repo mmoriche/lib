@@ -8,10 +8,11 @@
 \lstdefinestyle{mymatlab}{language=matlab,
         style=mystyle,
         morekeywords={fileparts, mfilename, xlabel, ylabel,
-                      xlim, ylim, interpn, ndgrid, fullfile
+                      xlim, ylim, interpn, ndgrid, fullfile,
+                      parse, varargin,
                       },
         % Matlab Classes
-        morekeywords={[2]Results,Frame2D,Frame3D,Stats},
+        morekeywords={[2]Results,Frame2D,Frame3D,Stats,inputParser },
         % Matlab Classes.methods 
         morekeywords={[3]addTable,save,summ,appendToREADME,
                          addXYPlot, readfields, readfieldsh5,
@@ -51,7 +52,8 @@
                          st2D, st3D,
                          fr2D, fr3D},
         % Matlab packages
-        morekeywords={[7] mytab, myplot, mysignal, fields,misc,io }}
+        morekeywords={[7] mytab, myplot, mysignal, fields,misc,io,
+                          }}
 
 
 % INCLUDE M RANGE
