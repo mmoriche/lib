@@ -13,7 +13,8 @@ fi
 eval $(ssh-agent)
 
 #fnm=${GITHUB_PATH}/keys/github_rsa
-fnm=/home/mmoriche/.ssh/id_rsa
+#fnm=/home/mmoriche/.ssh/id_rsa
+fnm=/home/mmoriche/.ssh/id_github
 
 if [ -f "${fnm}" ]; then
   ssh-add  ${fnm}
