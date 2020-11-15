@@ -39,6 +39,7 @@
 \newglossaryentry{Lref}{ name={\ensuremath{L}}       , sort=A00, description={Reference length} }
 \newglossaryentry{Ug}{   name={\ensuremath{U_g}}     , sort=A00, description={Gravitational reference velocity} }
 \newglossaryentry{Uinf_du}{name={\ensuremath{U_\infty^{\text{Du\v{s}ek}}}} , type=print, sort=A00, description={Free stream velocity obtained with Spectral Element code from Du\v{s}ek}} 
+\newglossaryentry{tg}{   name={\ensuremath{\tau_g}}     , sort=A00, description={Reference gravity time} }
 
 \newglossaryentry{Lr}{   name={\ensuremath{L_r}}                      , type=print, sort=K00, description={Recirculation length}}
 \newglossaryentry{Lr_du}{name={\ensuremath{L_r^{\text{Du\v{s}ek}}}}   , type=print, sort=K00, description={Recirculation length obtained with Spectral Element code from Du\v{s}ek}} 
@@ -48,6 +49,8 @@
 \newglossaryentry{csysA}{ name={\ensuremath{C^A}}, sort=A10, description={Reference coordinate system $A$} }
 \newglossaryentry{csysB}{ name={\ensuremath{C^B}}, sort=A10, description={Reference coordinate system $B$} }
 
+\newglossaryentry{rs}{name={\ensuremath{\vec{r}}}, sort=A00, description={Position vector at surface}}
+
 %-------------------------------------------------------------------------------
 % Physical quantities
 \newglossaryentry{vg}{ name={\ensuremath{\vec{g}}} , sort=B00, description={Gravitational accelartion vector}}
@@ -55,12 +58,14 @@
 
 % Non-dimensional parameters
 \newglossaryentry{Re}{    name={\ensuremath{Re}}    , sort=A00, description={Reynolds number %
-$\gls{Re}=\gls{dd}\gls{Uinf}/\gls{n}$}}
+$\gls{Re}=\gls{dd}\gls{Uinf}/\gls{nu}$}}
 \newglossaryentry{Ga}{    name={\ensuremath{G}}     , sort=A00, description={Galileo number}}
 \newglossaryentry{Ar}{    name={\ensuremath{Ar}}     , sort=A00, description={Archimides number}}
 \newglossaryentry{kappa}{ name={\ensuremath{\tilde{\rho}}}, sort=B00, description={Density ratio $\frac{\gls{rhop}}{\gls{rhof}}$}}
 
 \newglossaryentry{Ga_s}{  name={\ensuremath{G^\ast}}     , sort=A00, description={Galileo number using same volume sphere diameter}}
+
+\newglossaryentry{Re_c}{    name={\ensuremath{Re_c}}    , sort=A00, description={Reynolds number based on the velocity $\gls{Wc}$,  $\gls{Re_c}=\gls{dd}|\gls{Wc}|/\gls{nu}$}}
 
 
 
@@ -194,10 +199,17 @@ description={Angular momentum}}
 
 
 
-\newglossaryentry{Ofix}{name={\ensuremath{O_{xyx}^\text{fix}}}, sort=A00, description={Quaternions auxiliary matrix}}
-\newglossaryentry{Oxyz}{name={\ensuremath{O_{xyz}}}, sort=A00, description={Quaternions auxiliary matrix}}
-\newglossaryentry{Orot}{name={\ensuremath{O_{xyx}^\text{rot}}}, sort=A00, description={Reference frame fixed to particle}}
+\newglossaryentry{Ofix}{name={\ensuremath{O_{xyz}^\text{fix}}}, sort=A00, description={Reference coordinate system where fluid is at rest in the absence of particles}}
+\newglossaryentry{Oxyz}{name={\ensuremath{O_{xyz}}}           , sort=A00, description={Reference coordinate system}}
+\newglossaryentry{Ocode}{name={\ensuremath{O^c_{xyz}}}        , sort=A00, description={Reference coordinate system in which equations are solved.}}
+\newglossaryentry{Osett}{name={\ensuremath{O^s_{xyz}}}        , sort=A00, description={Reference coordinate system in which equations are solved.}}
+\newglossaryentry{Obody}{name={\ensuremath{O^b_{xyz}}}        , sort=A00, description={Reference coordinate system attached to the body}}
+\newglossaryentry{Obody_i}{name={\ensuremath{O^{b,i}_{xyz}}}  , sort=A00, description={Reference coordinate system attached to the particle $i$}}
+\newglossaryentry{Oixyz}{name={\ensuremath{O^i_{xyz}}}        , sort=A00, description={Reference coordinate system travelling with velocity \vec{U}_i}}
+\newglossaryentry{Orot}{name={\ensuremath{O_{xyz}^\text{rot}}}, sort=A00, description={Reference frame fixed to particle}}
 
+\newglossaryentry{ex}{   name={\ensuremath{\vec{e}_{x}}},       type=print, sort=J00, description={Particle's velocity}}
+\newglossaryentry{ey}{   name={\ensuremath{\vec{e}_{y}}},       type=print, sort=J00, description={Particle's velocity}}
 \newglossaryentry{ez}{   name={\ensuremath{\vec{e}_{z}}},       type=print, sort=J00, description={Particle's velocity}}
 
 % rotations

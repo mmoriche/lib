@@ -41,11 +41,13 @@ $(OTANK)/%.pdf: %.tex
 	$(shell cat $<                                       >> aux/job.tex)
 	$(shell echo '\end{document}'                        >> aux/job.tex)
 	(export TEXINPUTS=.:$(DOC)/:$(LIB)//: &&  lualatex --shell-escape -jobname=aux/job -interaction=nonstopmode \
-         "\def\tank{$(TANK_PATH)}\def\github{$(GITHUB_PATH)}\input{aux/job.tex}" && \
+         "\def\tank{$(TANK_PATH)}\def\dropbox{$(DROPBOX_PATH)}\def\github{$(GITHUB_PATH)}\input{aux/job.tex}" && \
           cp aux/job.pdf  $@ && cp aux/job.tex  $(OTANK)/$*_source.tex && \
           cp aux/job.pdf  $(CATALOGUE)/$(DATELABEL)_$*.pdf && cp aux/job.tex  $(CATALOGUE)/$(DATELABEL)_$*.tex )
 	echo $@
 	echo $@
+	@echo ""
+	@if [ -d "/tmp" ] ; then cp aux/job.pdf /tmp/ ; fi
 	echo $@
 	@echo ""
 	@echo -e "Congratulations! File \033[7;32m $@ \033[0m built"
@@ -66,12 +68,14 @@ $(OTANK)/%.tex: %.tab
 	$(shell cat $<                                       >> aux/job.tex)
 	$(shell echo '\end{document}'                        >> aux/job.tex)
 	(export TEXINPUTS=.:$(DOC)/:$(LIB)//: &&  pdflatex --shell-escape -jobname=aux/job -interaction=nonstopmode \
-         "\def\tank{$(TANK_PATH)}\def\github{$(GITHUB_PATH)}\input{aux/job.tex}" && \
+         "\def\tank{$(TANK_PATH)}\def\dropbox{$(DROPBOX_PATH)}\def\github{$(GITHUB_PATH)}\input{aux/job.tex}" && \
           sed -i 's|\\pgfutilensuremath|\\ensuremath|g' hola.tex &&  \
           cp hola.tex  $@ && cp aux/job.tex  $(OTANK)/$*_source.tex && cp aux/job.pdf  $(OTANK)/$*.pdf && \
           cp aux/job.pdf  $(CATALOGUE)/$(DATELABEL)_$*.pdf && cp aux/job.tex  $(CATALOGUE)/$(DATELABEL)_$*.tex )
 	echo $@
 	echo $@
+	@echo ""
+	@if [ -d "/tmp" ] ; then cp aux/job.pdf /tmp/ ; fi
 	echo $@
 	@echo ""
 	@echo -e "Congratulations! File \033[7;32m $@ \033[0m built"
@@ -92,6 +96,8 @@ $(OTANK)/%.pdf: %.svg
 	echo $@
 	echo $@
 	echo $@
+	@echo ""
+	@if [ -d "/tmp" ] ; then cp aux/job.pdf /tmp/ ; fi
 	@echo ""
 	@echo -e "Congratulations! File \033[7;32m $@ \033[0m built"
 	@echo ""
