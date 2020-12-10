@@ -1,4 +1,8 @@
 
+\newcommand\avgFluid[1]{\langle #1 \rangle_f}
+\newcommand\stdFluid[1]{\langle #1'#1' \rangle_f^{1/2}}
+\newcommand\stdFluidYZ[1]{\langle #1'#1' \rangle_{f,yz}^{1/2}}
+\newcommand\stdFluidXY[1]{\langle #1'#1' \rangle_{f,xy}^{1/2}}
 % non-dimensional quantites
 \newglossaryentry{Ug2}{  name={  \ensuremath{U_g^\ast}},     type=print, sort=A00, description={Reference gravitational velocity typically used in spheres} } %$\gls{Ug2}=\sqrt{(\gls{kappa}-1)\gls{g}\gls{dd}}}$}} 
 \newglossaryentry{Ga2}{  name={  \ensuremath{Ga^\ast}},      type=print, sort=A00, description={Galileo number typically used in spheres} }% $\gls{Ga_ast}=\gls{Ug2}\gls{dd}/\gls{nu}$}} 
@@ -13,17 +17,55 @@
 \newglossaryentry{thalpha}{name={\ensuremath{\alpha}}, type=print, sort=RB00, description={Thermal expansion}}
 
 % EULERIAN FIELD | VECTORS + components
+% velocity in the i  reference of frame
+\newglossaryentry{vu_c}{name={\ensuremath{\vec{u}_c}}                    , type=print, sort=E00, description={Velocity field vector in the Eulerian frame that travels with velocity Ui}}
+\newglossaryentry{vu_c_x}{name={\ensuremath{u_c}}                        , type=print, sort=E00, description={$x$ component of Velocity field vector}}
+\newglossaryentry{vu_c_y}{name={\ensuremath{v_c}}                        , type=print, sort=E00, description={$y$ component of Velocity field vector}}
+\newglossaryentry{vu_c_z}{name={\ensuremath{w_c}}                        , type=print, sort=E00, description={$z$ component of Velocity field vector}}
+
+\newglossaryentry{vu_c_x_m}{name={  \ensuremath{\langle u_c\rangle}}         , type=print, sort=E00, description={$x$ average fluid velocity}}
+\newglossaryentry{vu_c_y_m}{name={  \ensuremath{\langle v_c\rangle}}         , type=print, sort=E00, description={$y$ average fluid velocity}}
+\newglossaryentry{vu_c_z_m}{name={  \ensuremath{\langle w_c\rangle}}         , type=print, sort=E00, description={$z$ average fluid velocity}}
 % velocity
-\newglossaryentry{vu}{name={\ensuremath{\vec{u}}}               , sort=D01, description={Velocity field vector in the Eulerian frame}}
-\newglossaryentry{vu_x}{name={\ensuremath{u}} ,       type=print, sort=E00, description={$x$ component of Velocity field vector}}
-\newglossaryentry{vu_y}{name={\ensuremath{v}} ,       type=print, sort=E00, description={$y$ component of Velocity field vector}}
-\newglossaryentry{vu_z}{name={\ensuremath{w}} ,       type=print, sort=E00, description={$z$ component of Velocity field vector}}
+\newglossaryentry{vu}{name={\ensuremath{\vec{u}}}                        , type=print, sort=E00, description={Velocity field vector in the Eulerian frame}}
+\newglossaryentry{vu_x}{name={\ensuremath{u}}                            , type=print, sort=E00, description={$x$ component of Velocity field vector}}
+\newglossaryentry{vu_y}{name={\ensuremath{v}}                            , type=print, sort=E00, description={$y$ component of Velocity field vector}}
+\newglossaryentry{vu_z}{name={\ensuremath{w}}                            , type=print, sort=E00, description={$z$ component of Velocity field vector}}
+\newglossaryentry{vu_x_m}{name={  \ensuremath{\langle u\rangle}}         , type=print, sort=E00, description={$x$ average fluid velocity}}
+\newglossaryentry{vu_y_m}{name={  \ensuremath{\langle v\rangle}}         , type=print, sort=E00, description={$y$ average fluid velocity}}
+\newglossaryentry{vu_z_m}{name={  \ensuremath{\langle w\rangle}}         , type=print, sort=E00, description={$z$ average fluid velocity}}
+\newglossaryentry{vu_x_sqm}{name={\ensuremath{\langle u\,u\rangle}} , type=print, sort=E00, description={$x$ average fluid velocity}}
+\newglossaryentry{vu_y_sqm}{name={\ensuremath{\langle v\,v\rangle}} , type=print, sort=E00, description={$y$ average fluid velocity}}
+\newglossaryentry{vu_z_sqm}{name={\ensuremath{\langle w\,w\rangle}} , type=print, sort=E00, description={$z$ average fluid velocity}}
+\newglossaryentry{vu_x_s}{name={  \ensuremath{u^\text{std}}}             , type=print, sort=E00, description={Standard deviation of $x$ fluid velocity}}
+\newglossaryentry{vu_y_s}{name={  \ensuremath{v^\text{std}}}             , type=print, sort=E00, description={Standard deviation of $y$ fluid velocity}}
+\newglossaryentry{vu_z_s}{name={  \ensuremath{w^\text{std}}}             , type=print, sort=E00, description={Standard deviation of $z$ fluid velocity}}
+% pure fluid average
+\newglossaryentry{vu_mf}{name={  \ensuremath{\langle \gls{vu}\rangle_f}}         , type=print, sort=E00, description={$x$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
+\newglossaryentry{vu_x_mf}{name={  \ensuremath{\langle u\rangle_f}}         , type=print, sort=E00, description={$x$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
+\newglossaryentry{vu_y_mf}{name={  \ensuremath{\langle v\rangle_f}}         , type=print, sort=E00, description={$y$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
+\newglossaryentry{vu_z_mf}{name={  \ensuremath{\langle w\rangle_f}}         , type=print, sort=E00, description={$z$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
+
+\newglossaryentry{vu_x_sf}{name={  \ensuremath{\stdFluid{u}}}         , type=print, sort=E00, description={$x$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
+\newglossaryentry{vu_y_sf}{name={  \ensuremath{\stdFluid{v}}}         , type=print, sort=E00, description={$y$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
+\newglossaryentry{vu_z_sf}{name={  \ensuremath{\stdFluid{w}}}         , type=print, sort=E00, description={$z$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
+
+\newglossaryentry{vu_x_sfyz}{name={  \ensuremath{\stdFluidYZ{u}}}         , type=print, sort=E00, description={$x$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
+\newglossaryentry{vu_y_sfyz}{name={  \ensuremath{\stdFluidYZ{v}}}         , type=print, sort=E00, description={$y$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
+\newglossaryentry{vu_z_sfyz}{name={  \ensuremath{\stdFluidYZ{w}}}         , type=print, sort=E00, description={$z$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
+\newglossaryentry{vu_x_sfxy}{name={  \ensuremath{\stdFluidXY{u}}}         , type=print, sort=E00, description={$x$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
+\newglossaryentry{vu_y_sfxy}{name={  \ensuremath{\stdFluidXY{v}}}         , type=print, sort=E00, description={$y$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
+\newglossaryentry{vu_z_sfxy}{name={  \ensuremath{\stdFluidXY{w}}}         , type=print, sort=E00, description={$z$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
 
 % vorticity
 \newglossaryentry{vw}{  name={\ensuremath{\vec{\omega} }}, sort=D01, description={Vorticity field vector}}
 \newglossaryentry{vw_x}{name={\ensuremath{     \omega_x}}, sort=B00, description={Component $x$ of the vorticity}}
 \newglossaryentry{vw_y}{name={\ensuremath{     \omega_y}}, sort=B00, description={Component $y$ of the vorticity}}
 \newglossaryentry{vw_z}{name={\ensuremath{     \omega_z}}, sort=B00, description={Component $z$ of the vorticity}}
+\newglossaryentry{vw_c}{  name={\ensuremath{\vec{\omega}_c }}, sort=D01, description={Vorticity field vector}}
+\newglossaryentry{vw_c_x}{name={\ensuremath{     \omega_{x,c}}}, sort=B00, description={Component $x$ of the vorticity}}
+\newglossaryentry{vw_c_y}{name={\ensuremath{     \omega_{y,c}}}, sort=B00, description={Component $y$ of the vorticity}}
+\newglossaryentry{vw_c_z}{name={\ensuremath{     \omega_{z,c}}}, sort=B00, description={Component $z$ of the vorticity}}
 
 % EULERIAN FIELD, SCALARS
 \newglossaryentry{te}{   name={\ensuremath{T}}      ,  type=print, sort=E00, description={Temperature field}}
@@ -33,6 +75,11 @@
 
 % EULERIAN FIELD, tensors
 \newglossaryentry{stress}{name={\ensuremath{\bar{\tau}}} ,type=print, sort=B00, description={Angular momentum}}
+% PHYSICS
+\newglossaryentry{tau}{   name={\ensuremath{\tens{\tau}}},  type=print, sort=A00, description={Stress tensor}}
+\newglossaryentry{graduS}{name={\ensuremath{\tens{S}}},     type=print, sort=A00, description={Symmetrical part of velocity gradient tensor}}
+\newglossaryentry{graduO}{name={\ensuremath{\tens{\Omega}}},type=print, sort=A00, description={Anti-symmetrical part of velocity gradient tensor}}
+
 
 
 \newglossaryentry{vf}{name={\ensuremath{\vec{f}}},      sort=D01, description={Volume force vector in the Eulerian frame}}
@@ -88,7 +135,7 @@
 \newglossaryentry{uy}{name={\ensuremath{u_y}},      sort=B00, description={Velocity in $y$ coordinate}}
 \newglossaryentry{uz}{name={\ensuremath{u_z}},      sort=B00, description={Velocity in $z$ coordinate}}
 
-\newglossaryentry{ws}{name={\ensuremath{\omega_s}}, sort=B00, description={Streamwise vorticity}}
+%\newglossaryentry{ws}{name={\ensuremath{\omega_s}}, sort=B00, description={Streamwise vorticity}}
 \newglossaryentry{wx}{name={\ensuremath{\omega_x}}, sort=B00, description={Component $x$ of the vorticity}}
 \newglossaryentry{wy}{name={\ensuremath{\omega_y}}, sort=B00, description={Component $y$ of the vorticity}}
 \newglossaryentry{wz}{name={\ensuremath{\omega_z}}, sort=B00, description={Component $z$ of the vorticity}}
@@ -96,3 +143,9 @@
 
 % MAX VELOCITY IN LINEAR SENSE
 \newglossaryentry{Umax}{name={\ensuremath{U_{max}}}, sort=B00, description={Maximum absolute velocity in 1D sense. Typically obtained from CFL history}}
+
+
+
+% Auto correlation functions
+\newglossaryentry{Rii}{   name={\ensuremath{R_{\alpha\alpha}}},          , sort=B00, description={Autocorrelation of component $\alpha$ of fluid velocity}}
+\newglossaryentry{Rufii}{ name={\ensuremath{R_{u_{f\alpha}u_{f\alpha}}}}           , sort=B00, description={Autocorrelation of component $\alpha$ of fluid velocity}}

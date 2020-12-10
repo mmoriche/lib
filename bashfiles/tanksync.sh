@@ -16,8 +16,15 @@
 #  remote       ::           taifun:/data5/guerrero
 #  bring_flags  ::          --exclude="uvwp*"
 #  send_flags   ::
+#
+#
+# In adition to the get/send flag, a string with additional flags for the rsync can be given
+#
+#
+#
 function tanksync {
 direction=$1
+extraflags=$2
 
 DATADIR=$PWD
 CASEDATA=${DATADIR}/CASEDATA
@@ -26,10 +33,19 @@ while ! [ -f "${CASEDATA}" ]; do
    CASEDATA=${DATADIR}/CASEDATA
    if [ -z ${DATADIR} ]; then
       echo "I need the file CASE data with the info to move data"
+      echo "----------------------------------------------------"
+      echo localtank    ::       $TANK_PATH
+      echo remote       ::       icaro:$TANK_PATH
+      echo bring_flags  ::       -auvz 
+      echo send_flags   ::       -auvz
+      echo "----------------------------------------------------"
       return 1
    fi
 done
 echo data file : $CASEDATA
+echo ---------------------------------
+cat $CASEDATA
+echo ---------------------------------
 
 localtank=`cat  $CASEDATA | grep '^localtank'   | sed 's|^localtank\s*::\s*\(.*\)|\1|g'`
 remote=`cat     $CASEDATA | grep '^remote'      | sed 's|^remote\s*::\s*\(.*\)|\1|g'`
@@ -74,16 +90,16 @@ if [ "$direction" == "get" ]; then
    echo 
    echo "Getting files from remote"
    echo 
-   echo rsync ${bflags} ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
+   echo rsync ${bflags} ${extraflags} --exclude="CASEDATA" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
    echo 
-   eval rsync ${bflags} ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
+   eval rsync ${bflags} ${extraflags} --exclude="CASEDATA" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
 elif [ "$direction" == "send" ]; then
    echo 
    echo "Sending files to remote"
    echo 
-   echo rsync ${sflags} ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
+   echo rsync ${sflags} ${extraflags} --exclude="CASEDATA" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
    echo                              
-   eval rsync ${sflags} ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
+   eval rsync ${sflags} ${extraflags} --exclude="CASEDATA" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
 else
    echo "Either get or send should be specified"
    return 1

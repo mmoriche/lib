@@ -1,0 +1,74 @@
+\ProvidesPackage{exetables}
+
+
+\pgfplotstableset{exetable/.style={%
+%columns/date/.style={     column name={Date},date type={{\monthname}}  },
+columns/options/.style={  column name={{\normalsize\tt options}}, column type={>{\footnotesize}p{4.2cm}} , string type},
+columns/edir/.style={     column name={{\tt edir}}     , myverbl},
+columns/date/.style={     column name={Date},string type},
+columns/twall/.style={    column name={Wall time (s)}  },
+columns/npfixed/.style={  column name={$N_{fix}$}  },
+columns/nclmx/.style={    column name={$N $} },
+columns/src/.style={  column name={{\tt source}}  , myverbl},
+columns/mod/.style={  column name={{\tt modif.}}  , myverbl},
+columns/machine/.style={  column name={{\tt machine}}  , myverbl},
+columns/nprocs/.style={   column name={     Procs. }   ,        },
+% ratio vs 128^3
+columns/r128/.style={column name={{Ratio vs $128^3$}}, fixed, fixed zerofill, precision=3}, 
+%columns/r128/.style={column name={{Ratio vs $128^3$}}, frac, frac whole=false}, 
+% proc grid
+columns/procgrid/.style={column name={Proc. grid}, string type }, 
+create on use/procgrid/.style={
+   create col/assign/.code={%
+     \edef\entry{\noexpand\pgfmathprintnumber[fixed, precision=1]{\thisrow{nxprocs}} %
+              x  \noexpand\pgfmathprintnumber[fixed, precision=1]{\thisrow{nyprocs}} %
+              x  \noexpand\pgfmathprintnumber[fixed, precision=1]{\thisrow{nzprocs}}}%
+     \pgfkeyslet{/pgfplots/table/create col/next content}\entry
+   }},
+% total grid
+columns/grid/.style={column name={Grid}, string type }, 
+create on use/grid/.style={
+   create col/assign/.code={%
+     \edef\entry{\noexpand\pgfmathprintnumber[fixed, precision=1]{\thisrow{nx}} %
+              x  \noexpand\pgfmathprintnumber[fixed, precision=1]{\thisrow{ny}} %
+              x  \noexpand\pgfmathprintnumber[fixed, precision=1]{\thisrow{nz}}}%
+     \pgfkeyslet{/pgfplots/table/create col/next content}\entry
+   }},
+% local grid
+columns/box/.style={column name={Local grid}, string type }, 
+create on use/box/.style={
+   create col/assign/.code={%
+     \edef\entry{\noexpand\pgfmathprintnumber[fixed, precision=1]{\thisrow{bx}} %
+              x  \noexpand\pgfmathprintnumber[fixed, precision=1]{\thisrow{by}} %
+              x  \noexpand\pgfmathprintnumber[fixed, precision=1]{\thisrow{bz}}}%
+     \pgfkeyslet{/pgfplots/table/create col/next content}\entry
+   }},
+% ONLY IMPLEMENTATION
+columns/ixp/.style={ myverbr}, columns/jyq/.style={ myverbr}, columns/kzr/.style={ myverbr},
+columns/iex/.style={ myverbr}, columns/jey/.style={ myverbr}, columns/kez/.style={ myverbr},
+columns/nxprocs/.style={column name={{\tt ndx}}, myverbr}, 
+columns/nyprocs/.style={column name={{\tt ndy}}, myverbr}, 
+columns/nzprocs/.style={column name={{\tt ndz}},  myverbr},
+columns/nls/.style={ myverbr},
+}
+}
+
+
+
+\newcommand\updateTable[1]{
+% nprocs
+\pgfplotstablecreatecol[expr={ \thisrow{nxprocs}*\thisrow{nyprocs}*\thisrow{nzprocs}} ] {nprocs}#1
+% total grid size
+\pgfplotstablecreatecol[expr={ \thisrow{ixp}*2^(\thisrow{iex}-1)} ] {nx}#1
+\pgfplotstablecreatecol[expr={ \thisrow{jyq}*2^(\thisrow{jey}-1)} ] {ny}#1
+\pgfplotstablecreatecol[expr={ \thisrow{kzr}*2^(\thisrow{kez}-1)} ] {nz}#1
+% local  grid size (processor)
+\pgfplotstablecreatecol[expr={ (\thisrow{ixp}/\thisrow{nxprocs})*2^(\thisrow{iex}-1)} ] {bx}#1
+\pgfplotstablecreatecol[expr={ (\thisrow{jyq}/\thisrow{nyprocs})*2^(\thisrow{jey}-1)} ] {by}#1
+\pgfplotstablecreatecol[expr={ (\thisrow{kzr}/\thisrow{nzprocs})*2^(\thisrow{kez}-1)} ] {bz}#1
+\pgfplotstablecreatecol[expr={ (\thisrow{bx}*\thisrow{by}*\thisrow{bz})/(128^3)}      ] {r128}#1
+}
+
+
+
+\endinput

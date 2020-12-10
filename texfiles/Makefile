@@ -47,6 +47,8 @@ doc: main.tex dir
          cp aux/job.pdf $(ODIR).pdf)
 	@echo -e "Congratulations! File \033[7;35m$(ODIR).pdf \033[0m built"
 	@echo ""
+	#@if [ -d "/tmp" ] ; then cp aux/job.pdf /tmp/ ; fi
+	@echo ""
 
 compress:
 	gs -sDEVICE=pdfwrite -dPDFSETTINGS=/default -q -o $(ODIR)_comp.pdf $(ODIR).pdf

@@ -1,0 +1,28 @@
+
+\pgfplotstableset{cases/.style={%
+columns/manuscript/.style={column name={Manuscript}, myverbl },
+columns/dt/.style={        column name={{$\frac{\gls{dt}\gls{Uinf}}{L}$}} },
+columns/chi/.style={       column name={{\gls{chi}}} },
+columns/mstar/.style={     column name={{\gls{mstar}}} },
+columns/kappa/.style={     column name={{\gls{kappa}}} },
+columns/Ga/.style={        column name={{\gls{Ga}}} },
+columns/vertices/.style={  column name={{Vertices}},  myverbl },
+columns/cdir/.style={      column name={{\tt cdir} }, myverbl},
+columns/exe/.style={       column name={{\tt exe} },  myverbl},
+columns/status/.style={    column name={St.} ,  string type},
+columns/location/.style={  column name={Loc.} ,  myverbl},
+% multiparticle
+columns/svf/.style={    column name={{\gls{svf}}} },
+columns/N/.style={      column name={{$N$}}} ,
+% proc grid
+      columns/configuration/.style={column name={Configuration}, myverbl }, 
+      columns/domain/.style={column name={Domain}, string type }, 
+create on use/domain/.style={
+   create col/assign/.code={%
+     \edef\entry{\noexpand\pgfmathprintnumber[fixed, precision=2]{\thisrow{lx}} %
+              x  \noexpand\pgfmathprintnumber[fixed, precision=2]{\thisrow{ly}} %
+              x  \noexpand\pgfmathprintnumber[fixed, precision=2]{\thisrow{lz}}}%
+     \pgfkeyslet{/pgfplots/table/create col/next content}\entry
+   }},
+}
+}
