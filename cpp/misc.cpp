@@ -3,11 +3,11 @@
 #include <string>
 #include <cstring>
 //#include <filesystem> // compile with -std=c++17
-#include <experimental/filesystem>
+//#include <experimental/filesystem>
 #include "misc.h"
 
 //namespace fs = std::filesystem;
-namespace fs = std::experimental::filesystem;
+//namespace fs = std::experimental::filesystem;
 using namespace std;
 
 void printHeader(string afile, ostream& unit) {
@@ -33,7 +33,8 @@ bool isheader=false;
 
 ifstream f;
 
-bool flag=fs::is_regular_file(afile); 
+f.open(afile);
+bool flag=f.is_open();
 
 if (not flag) {
    cout << endl << "Source file does not exist. I can not read the header" << endl;
@@ -41,7 +42,6 @@ if (not flag) {
    return;
 };
 
-f.open(afile);
 
 if (f.is_open()) {
    for (int i=0;i<80;i++) { unit << "-";}; unit << endl << "<<< maybe this helps... >>>" << endl;
@@ -72,7 +72,9 @@ f.close();
 // write help from header in the output                                                                           
 void helpdoc(char odir[],string afile, string alabel){
 
-fs::path README=odir;                                                                                             
+char README[baselength];
+sprintf(README,"%s/post%s.README",odir,alabel);
+//fs::path README=odir;                                                                                             
 //README /= "post";
 //bool flag=fs::is_directory(README);                                                                                    
 //if ( not flag) {
@@ -80,8 +82,8 @@ fs::path README=odir;
 //   cout << endl << endl <<  "mkdir -p " << README << endl << endl;                                                
 //   exit(EXIT_FAILURE);                                                                                            
 //};
-README += alabel;
-README += ".README";                                                                                        
+//README += alabel;
+//README += ".README";                                                                                        
 ofstream f;
 f.open(README);
 f << endl << "Source file: " << endl;
