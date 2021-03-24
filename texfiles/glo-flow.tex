@@ -4,13 +4,12 @@
 \newcommand\stdFluidYZ[1]{\langle #1'#1' \rangle_{f,yz}^{1/2}}
 \newcommand\stdFluidXY[1]{\langle #1'#1' \rangle_{f,xy}^{1/2}}
 % non-dimensional quantites
-\newglossaryentry{Ug2}{  name={  \ensuremath{U_g^\ast}},     type=print, sort=A00, description={Reference gravitational velocity typically used in spheres} } %$\gls{Ug2}=\sqrt{(\gls{kappa}-1)\gls{g}\gls{dd}}}$}} 
-\newglossaryentry{Ga2}{  name={  \ensuremath{Ga^\ast}},      type=print, sort=A00, description={Galileo number typically used in spheres} }% $\gls{Ga_ast}=\gls{Ug2}\gls{dd}/\gls{nu}$}} 
 
 % fluid properties
-\newglossaryentry{mu}{     name={\ensuremath{\mu }}  ,  type=print, sort=RB00, description={Fluid dynamic viscosity}}
-\newglossaryentry{nu}{     name={\ensuremath{\nu }}  ,  type=print, sort=RB00, description={Fluid kinematic viscosity}}
-\newglossaryentry{rhof}{   name={\ensuremath{\rho_f}}  , type=print, sort=RB00, description={Fluid density}}
+\newglossaryentry{mu}{     name={\ensuremath{\mu }}  , type=print, sort=flow, description={Fluid dynamic viscosity}}
+\newglossaryentry{nu}{     name={\ensuremath{\nu }}  , type=print, sort=flow, description={Fluid kinematic viscosity}}
+\newglossaryentry{rhof}{   name={\ensuremath{\rho_f}}, type=print, sort=flow, description={Fluid density}}
+
 \newglossaryentry{thk}{    name={\ensuremath{k}     }, type=print, sort=RB00, description={Thermal conduction}}
 \newglossaryentry{thcp}{   name={\ensuremath{C_p}}   , type=print, sort=RB00, description={Specific heat}}
 \newglossaryentry{thkappa}{name={\ensuremath{\kappa}}, type=print, sort=RB00, description={Thermal diffusivity $\gls{thkappa}=\gls{thk}/(\gls{thcp}\gls{rho})$}}
@@ -26,6 +25,9 @@
 \newglossaryentry{vu_c_x_m}{name={  \ensuremath{\langle u_c\rangle}}         , type=print, sort=E00, description={$x$ average fluid velocity}}
 \newglossaryentry{vu_c_y_m}{name={  \ensuremath{\langle v_c\rangle}}         , type=print, sort=E00, description={$y$ average fluid velocity}}
 \newglossaryentry{vu_c_z_m}{name={  \ensuremath{\langle w_c\rangle}}         , type=print, sort=E00, description={$z$ average fluid velocity}}
+\newglossaryentry{vu_c_x_mf}{name={  \ensuremath{\avgFluid{u_c}}}         , type=print, sort=E00, description={$x$ average fluid velocity}}
+\newglossaryentry{vu_c_y_mf}{name={  \ensuremath{\avgFluid{v_c}}}         , type=print, sort=E00, description={$y$ average fluid velocity}}
+\newglossaryentry{vu_c_z_mf}{name={  \ensuremath{\avgFluid{w_c}}}         , type=print, sort=E00, description={$z$ average fluid velocity}}
 % velocity
 \newglossaryentry{vu}{name={\ensuremath{\vec{u}}}                        , type=print, sort=E00, description={Velocity field vector in the Eulerian frame}}
 \newglossaryentry{vu_x}{name={\ensuremath{u}}                            , type=print, sort=E00, description={$x$ component of Velocity field vector}}
@@ -45,6 +47,9 @@
 \newglossaryentry{vu_x_mf}{name={  \ensuremath{\langle u\rangle_f}}         , type=print, sort=E00, description={$x$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
 \newglossaryentry{vu_y_mf}{name={  \ensuremath{\langle v\rangle_f}}         , type=print, sort=E00, description={$y$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
 \newglossaryentry{vu_z_mf}{name={  \ensuremath{\langle w\rangle_f}}         , type=print, sort=E00, description={$z$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
+\newglossaryentry{vu_x_sqmf}{name={\ensuremath{\langle u\,u\rangle_f}} , type=print, sort=E00, description={$x$ average fluid velocity}}
+\newglossaryentry{vu_y_sqmf}{name={\ensuremath{\langle v\,v\rangle_f}} , type=print, sort=E00, description={$y$ average fluid velocity}}
+\newglossaryentry{vu_z_sqmf}{name={\ensuremath{\langle w\,w\rangle_f}} , type=print, sort=E00, description={$z$ average fluid velocity}}
 
 \newglossaryentry{vu_x_sf}{name={  \ensuremath{\stdFluid{u}}}         , type=print, sort=E00, description={$x$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
 \newglossaryentry{vu_y_sf}{name={  \ensuremath{\stdFluid{v}}}         , type=print, sort=E00, description={$y$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
@@ -149,3 +154,36 @@
 % Auto correlation functions
 \newglossaryentry{Rii}{   name={\ensuremath{R_{\alpha\alpha}}},          , sort=B00, description={Autocorrelation of component $\alpha$ of fluid velocity}}
 \newglossaryentry{Rufii}{ name={\ensuremath{R_{u_{f\alpha}u_{f\alpha}}}}           , sort=B00, description={Autocorrelation of component $\alpha$ of fluid velocity}}
+
+
+
+% BOX FILTERING
+\newglossaryentry{boxf_w}{   name = {\ensuremath{N_w}}, sort=B00, description={Width of box filter}}
+\newglossaryentry{boxf_iew}{ name = {\ensuremath{i_w}}, sort=B00, description={Power $2$ exponent of width of box filter}}
+
+\newglossaryentry{fibm}{name={\ensuremath{{\cal F}}} , sort=PD01, description={Total sum of volume force in the IBM}}
+\newglossaryentry{mibm}{name={\ensuremath{{\cal M}}} , sort=PD01, description={Total sum of volume torque in the IBM }}
+\newglossaryentry{fiibm}{name={\ensuremath{{\cal F}^{(i)}}} , sort=PD01, description={Total sum of volume force in the IBM of the $i$th particle}}
+\newglossaryentry{miibm}{name={\ensuremath{{\cal M}^{(i)}}} , sort=PD01, description={Total sum of volume torque in the IBM of the $i$th particle }}
+
+
+\newglossaryentry{f:Rzw}{   name={\ensuremath{R^z_{ww}}},          , sort=flow, description={Two point autocorrelation function }}
+\newglossaryentry{f:Rhw}{name={\ensuremath{R^{h}_{ww}}},          , sort=flow, description={Two point autocorrelation function }}
+\newglossaryentry{f:Rzu}{   name={\ensuremath{R^z_{uu}}},          , sort=flow, description={Two point autocorrelation function }}
+\newglossaryentry{f:Rh1u}{   name={\ensuremath{R^{h_{||}}_{uu}}},          , sort=flow, description={Two point autocorrelation function }}
+\newglossaryentry{f:Rh2u}{  name={\ensuremath{R^{h_\perp}_{uu}}},          , sort=flow, description={Two point autocorrelation function }}
+
+\newglossaryentry{f:vuhat}{name={\ensuremath{\vec{c}}},          , sort=flow, description={Fourier coefficient (complex)}}
+\newglossaryentry{f:re(vuhat)}{name={\ensuremath{\vec{a}}},          , sort=flow, description={Fourier coefficient (complex)}}
+\newglossaryentry{f:im(vuhat)}{name={\ensuremath{\vec{b}}},          , sort=flow, description={Fourier coefficient (complex)}}
+\newglossaryentry{f:vuhatx}{name={\ensuremath{\vec{c}^{x}}},          , sort=flow, description={Fourier coefficient (complex)}}
+\newglossaryentry{f:re(vuhatx)}{name={\ensuremath{\vec{a}^{x}}},          , sort=flow, description={Fourier coefficient (complex)}}
+\newglossaryentry{f:im(vuhatx)}{name={\ensuremath{\vec{b}^{x}}},          , sort=flow, description={Fourier coefficient (complex)}}
+\newglossaryentry{f:vuhatxy}{name={\ensuremath{\vec{c}^{xy}}},          , sort=flow, description={Fourier coefficient (complex)}}
+\newglossaryentry{f:re(vuhatxy)}{name={\ensuremath{\vec{a}^{xy}}},          , sort=flow, description={Fourier coefficient (complex)}}
+\newglossaryentry{f:im(vuhatxy)}{name={\ensuremath{\vec{b}^{xy}}},          , sort=flow, description={Fourier coefficient (complex)}}
+\newglossaryentry{f:vuhatxyz}{name={\ensuremath{\vec{c}^{xyz}}},          , sort=flow, description={Fourier coefficient (complex)}}
+\newglossaryentry{f:re(vuhatxyz)}{name={\ensuremath{\vec{a}^{xyz}}},          , sort=flow, description={Fourier coefficient (complex)}}
+\newglossaryentry{f:im(vuhatxyz)}{name={\ensuremath{\vec{b}^{xyz}}},          , sort=flow, description={Fourier coefficient (complex)}}
+
+

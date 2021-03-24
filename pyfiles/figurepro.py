@@ -1,9 +1,12 @@
+import os
 from matplotlib.pyplot import *
 from matplotlib.transforms import Bbox                                                                         
 
 
 class FigurePro(Figure):
    ax=None
+   desc=""
+   label=""
    def __init__(self,
                 figsize=None,
                 dpi=None,
@@ -15,7 +18,9 @@ class FigurePro(Figure):
                 tight_layout=None,  # rc figure.autolayout
                 constrained_layout=None,  # rc figure.constrained_layout.use
                 rect=(0.2,0.2,0.7,0.7), ## NEW ARGUMENTS
-                ww=6.0,hh=6.0/1.618):
+                ww=6.0,hh=6.0/1.618,
+                desc="",
+                label=""):
       super().__init__(figsize, dpi, facecolor, edgecolor, linewidth,
                 frameon, subplotpars, tight_layout, constrained_layout)
 
@@ -23,15 +28,39 @@ class FigurePro(Figure):
       #setattr(self,'ax',self.add_axes(rect, label="main"))
       self.ax=self.add_axes(rect, label="main")
       self.ax.patch.set_alpha(0.0)
+      self.desc = desc
+      self.label =label 
 
-   def pgfprint(self,odir='.',frmt='eps',tbm='tbmb'):
+   def adddesc(self,atext,newline=True):
+      self.desc="%s\n%s" % (self.desc, atext) 
 
+   def pgfprint(self,odir='.',frmt='eps',tbm='tbmb',auxfrmt='png',auxleg=True, 
+      README=None, panel=None):
+
+      if len(self.label)>0 and panel:
+         figlabel="%s_%s" % (self.label, panel)
+      elif len(self.label)>0:
+         figlabel=self.label
+      elif panel:
+         figlabel=panel
+      else:
+         figlabel=""
       # save whole figure (for safety purposes)
-      ofnm_fig="%s/fig_%d_WITHAXES.%s"  % (odir,self.number,frmt)
+      if len(figlabel)>0:
+         ofnm_fig="%s/fig_%d-%s_WITHAXES.%s"  % (odir,self.number,figlabel,auxfrmt)
+      else:
+         ofnm_fig="%s/fig_%d_WITHAXES.%s"  % (odir,self.number,auxfrmt)
+      if auxleg: l=self.ax.legend()
       self.savefig(ofnm_fig)
+      if auxleg: l.remove()
 
       # save clean axes
-      ofnm_fig="%s/fig_%d.%s"  % (odir,self.number,frmt)
+      if len(figlabel)>0:
+         print("hola")
+         ofnm_fig="%s/fig_%d-%s.%s"  % (odir,self.number,figlabel,frmt)
+      else:
+         print("adios")
+         ofnm_fig="%s/fig_%d.%s"  % (odir,self.number,frmt)
       bb=self.ax.get_position()
       self.ax.set_position(Bbox([[0.0,0.0],[1.0,1.0]]))
       self.ax.axis("off")
@@ -40,7 +69,10 @@ class FigurePro(Figure):
       self.ax.axis("on")
       
       # save .tex file
-      ofnm_tex="%s/fig_%d.tex"  % (odir,self.number)
+      if len(figlabel)>0:
+         ofnm_tex="%s/fig_%d-%s.tex"  % (odir,self.number,figlabel)
+      else:
+         ofnm_tex="%s/fig_%d.tex"  % (odir,self.number)
       xlim=self.ax.get_xlim()
       ylim=self.ax.get_ylim()
       f=open(ofnm_tex,'w')
@@ -59,9 +91,56 @@ class FigurePro(Figure):
             if len(label)>0 and not label.startswith('_'): 
                f.write("%% %s : %s\n" % (item.get_label(), item.get_color()))
       # write line that can be directly included with \input{file}
-      f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,frmt))
+      if len(figlabel)>0:
+         f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d-%s.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,figlabel,frmt))
+      else:
+         f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,frmt))
       f.close()
 
+      if not README==None:
+         README.write(" Figure %d \n" % self.number)
+         README.write("\n")
+         README.write(" %s\n" % self.desc)
+         README.write("\n")
+         README.write(" Line2D items: \n")
+         for item in alist:
+            if item.__class__.__name__ == 'Line2D':
+               label=item.get_label()
+               if len(label)>0 and not label.startswith('_'): 
+                  README.write("    - %s : %s\n" % (item.get_label(), item.get_color()))
+         README.write("\n")
+         README.write("\n")
+   
 
+   def saveLine2D(self,odir='.',README=None, panel=None):
+      alist=self.ax.get_children()
 
+      if len(self.label)>0:
+         odir_data="%s/fig_%d-%s_data"  % (odir,self.number,self.label)
+      else:
+         odir_data="%s/fig_%d_data"  % (odir,self.number)
+      if not os.path.isdir(odir_data): os.system('mkdir %s' % odir_data)
 
+      if panel: odir_data="%s/%s"  % (odir_data,panel)
+      if not os.path.isdir(odir_data): os.system('mkdir %s' % odir_data)
+
+      if not README==None:
+         README.write(" ASCII data of Line2D objects from Figure %d:\n" % (self.number,))
+
+      for item in alist:
+         if item.__class__.__name__ == 'Line2D':
+            label=item.get_label()
+            if len(label)>0 and not label.startswith('_'): 
+               header="%s - %s" % (item.get_label(), item.get_color())
+               ofnm="%s/%s.dat"  % (odir_data, item.get_label().replace(' ','_'))
+               if not README==None:
+                  README.write(" - %s \n" % (header,))
+               f=open(ofnm,'w')
+               f.write("%25s %25s\n" % ("x","y")) 
+               x=item.get_xdata(orig=False)
+               y=item.get_ydata(orig=False)
+               n=x.shape; n=n[0]
+               for j in range(n):
+                   f.write("%25.15E %25.15E\n" % (x[j], y[j])) 
+               f.close()
+  

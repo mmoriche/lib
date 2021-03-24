@@ -18,10 +18,35 @@
 \newacronym{ibm}{IBM}{Immersed Boundary Method}
 \newacronym{sem}{SEM}{Spectral Element Method}
 \newacronym{dns}{DNS}{Direct Numerical Simulations}
+\newacronym{kde}{KDE}{Kernel Density Estimators}
 
 
-\newglossaryentry{CFL}{  name={\ensuremath{\text{CFL}}},   type=print, sort=A00, description={Courant Friedrich Levy number}} 
+% Miscelaneous
+\newglossaryentry{eye}{  name={\ensuremath{I}}       , type=print, sort=common, description={Identity matrix}}
 
+% Gravity scaled quantities
+\newglossaryentry{Ug}{   name={\ensuremath{U_g}}       , type=print, sort=common, description={Gravitational reference velocity} }
+\newglossaryentry{tg}{   name={\ensuremath{\tau_g}}    , type=print, sort=common, description={Reference gravity time} }
+
+% Physical quantities
+\newglossaryentry{vg}{ name={\ensuremath{\vec{g}}} , type=print, sort=common, description={Gravitational accelartion vector}}
+\newglossaryentry{g}{  name={\ensuremath{g}}       , type=print, sort=common, description={Gravitational accelartion modulus $\gls{g}=\left| \gls{vg} \right|$}}
+
+% misc referene quantities
+\newglossaryentry{Uref}{ name={\ensuremath{U_{\text{ref}}}}, type=print , sort=common, description={Reference velocity} }
+
+% non-dimensional quantities
+\newglossaryentry{kappa}{ name={\ensuremath{\tilde{\rho}}}, sort=B00, description={Density ratio $\frac{\gls{rhop}}{\gls{rhof}}$}}
+\newglossaryentry{Re}{    name={\ensuremath{Re}}    , sort=A00, description={Reynolds number}}
+\newglossaryentry{Ga}{    name={\ensuremath{Ga}}     , sort=A00, description={Galileo number}}
+\newglossaryentry{Ar}{    name={\ensuremath{Ar}}     , sort=A00, description={Archimides number}}
+
+%  Numerics
+\newglossaryentry{cfl}{name={\ensuremath{\text{CFL}}}, type=print, sort=common, description={Courant Friedrich Levy number}}
+
+% non-dimensional quantities
+\newglossaryentry{Ug2}{  name={  \ensuremath{U_g^\ast}}, type=print, sort=common, description={Reference gravitational velocity typically used in spheres} }
+\newglossaryentry{Ga2}{  name={  \ensuremath{Ga^\ast}},  type=print, sort=common, description={Galileo number typically used in spheres} }
 % 
 %\renewcommand\vec[1]{{\bf #1}}
 %\newcommand\tens[1]{{\overline{\overline{#1}}}}
@@ -37,9 +62,7 @@
 % Reference magnitudes
 \newglossaryentry{Uinf}{ name={\ensuremath{U_\infty}}, sort=A00, description={Free stream velocity} }
 \newglossaryentry{Lref}{ name={\ensuremath{L}}       , sort=A00, description={Reference length} }
-\newglossaryentry{Ug}{   name={\ensuremath{U_g}}     , sort=A00, description={Gravitational reference velocity} }
 \newglossaryentry{Uinf_du}{name={\ensuremath{U_\infty^{\text{Du\v{s}ek}}}} , type=print, sort=A00, description={Free stream velocity obtained with Spectral Element code from Du\v{s}ek}} 
-\newglossaryentry{tg}{   name={\ensuremath{\tau_g}}     , sort=A00, description={Reference gravity time} }
 
 \newglossaryentry{Lr}{   name={\ensuremath{L_r}}                      , type=print, sort=K00, description={Recirculation length}}
 \newglossaryentry{Lr_du}{name={\ensuremath{L_r^{\text{Du\v{s}ek}}}}   , type=print, sort=K00, description={Recirculation length obtained with Spectral Element code from Du\v{s}ek}} 
@@ -52,16 +75,7 @@
 \newglossaryentry{rs}{name={\ensuremath{\vec{r}}}, sort=A00, description={Position vector at surface}}
 
 %-------------------------------------------------------------------------------
-% Physical quantities
-\newglossaryentry{vg}{ name={\ensuremath{\vec{g}}} , sort=B00, description={Gravitational accelartion vector}}
-\newglossaryentry{g}{ name={\ensuremath{g}} , sort=B00, description={Gravitational accelartion modulus $\gls{g}=\left| \gls{vg} \right|$}}
 
-% Non-dimensional parameters
-\newglossaryentry{Re}{    name={\ensuremath{Re}}    , sort=A00, description={Reynolds number %
-$\gls{Re}=\gls{dd}\gls{Uinf}/\gls{nu}$}}
-\newglossaryentry{Ga}{    name={\ensuremath{G}}     , sort=A00, description={Galileo number}}
-\newglossaryentry{Ar}{    name={\ensuremath{Ar}}     , sort=A00, description={Archimides number}}
-\newglossaryentry{kappa}{ name={\ensuremath{\tilde{\rho}}}, sort=B00, description={Density ratio $\frac{\gls{rhop}}{\gls{rhof}}$}}
 
 \newglossaryentry{Ga_s}{  name={\ensuremath{G^\ast}}     , sort=A00, description={Galileo number using same volume sphere diameter}}
 
@@ -72,7 +86,6 @@ $\gls{Re}=\gls{dd}\gls{Uinf}/\gls{nu}$}}
 % simulation staff
 \newglossaryentry{t}{  name={\ensuremath{t}}         , sort=A00, description={Time}}
 \newglossaryentry{dt}{  name={\ensuremath{\Delta t}}         , sort=A00, description={Time}}
-\newglossaryentry{cfl}{name={\ensuremath{\text{CFL}}}, sort=A00, description={Courant Friedrich Levy number}}
 \newglossaryentry{h}{  name={\ensuremath{h}}         , sort=A00, description={Mesh width}}
 \newglossaryentry{dx}{ name={\ensuremath{\Delta x}}  , sort=A00, description={Mesh width in $x$ direction}}
 \newglossaryentry{dy}{ name={\ensuremath{\Delta y}}  , sort=A00, description={Mesh width in $y$ direction}}
@@ -163,12 +176,6 @@ description={Angular momentum}}
 \newglossaryentry{omedot_z}{name={\ensuremath{\dot{\gls{ome_z}}}}, sort=A01, description={Time derivative of Component 3 of the angular velocity}}
 
 % 
-\newglossaryentry{I}{name={\ensuremath{\tens{I}}}, sort=B00, description={Tensor of inertia}}
-\newglossaryentry{J}{name={\ensuremath{\tens{J}}}, sort=B00, description={Tensor of specific inertia ($\gls{I}/m$)}}
-\newglossaryentry{Ix}{name={\ensuremath{I_x}}    , sort=B00, description={Inertia x in principal axes}}
-\newglossaryentry{Iy}{name={\ensuremath{I_y}}    , sort=B00, description={Inertia y in principal axes}}
-\newglossaryentry{Iz}{name={\ensuremath{I_z}}    , sort=B00, description={Inertia z in principal axes}}
-\newglossaryentry{Ic}{name={\ensuremath{I_c}}    , sort=B00, description={Inertia of shpere in principal axes}}
 
 \newglossaryentry{I_0}{name={\ensuremath{\tens{I}'}}, sort=B00, description={Tensor of inertia in body-fixed reference frame}}
 \newglossaryentry{Ix_0}{name={\ensuremath{I'_x}}    , sort=B00, description={Inertia x in principal axes}}
@@ -192,7 +199,6 @@ description={Angular momentum}}
 
 
 % time integration
-\newglossaryentry{eye}{name={\ensuremath{E}}                , type=print, sort=M20, description={Eye matrix}}
 \newglossaryentry{al_k}{name={\ensuremath{{ \alpha_k }}}                , type=print, sort=M20, description={Coefficient from Runge-Kutta scheme at sub-stage $k$}}
 \newglossaryentry{ga_k}{name={\ensuremath{{ \gamma_k }}}                , type=print, sort=M20, description={Coefficient from Runge-Kutta scheme at sub-stage $k$}}
 \newglossaryentry{xi_k}{name={\ensuremath{{ \xi_k    }}}                , type=print, sort=M20, description={Coefficient from Runge-Kutta scheme at sub-stage $k$}}
