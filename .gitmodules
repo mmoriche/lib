@@ -7,3 +7,6 @@
 [submodule "thirdparty/Rigid-Body-Parameters"]
 	path = thirdparty/Rigid-Body-Parameters
 	url = https://github.com/AntonSemechko/Rigid-Body-Parameters.git
+[submodule "thirdparty/hypre/repo"]
+	path = thirdparty/hypre/repo
+	url = https://github.com/hypre-space/hypre.git
