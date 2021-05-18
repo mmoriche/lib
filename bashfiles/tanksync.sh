@@ -24,13 +24,13 @@
 #
 function tanksync {
 direction=$1
-extraflags=$2
+[ -z $2 ] && casefile=CASEDATA || casefile=$2 
 
 DATADIR=$PWD
-CASEDATA=${DATADIR}/CASEDATA
+CASEDATA=${DATADIR}/${casefile}
 while ! [ -f "${CASEDATA}" ]; do 
    DATADIR=${DATADIR%/*} 
-   CASEDATA=${DATADIR}/CASEDATA
+   CASEDATA=${DATADIR}/${casefile}
    if [ -z ${DATADIR} ]; then
       echo "I need the file CASE data with the info to move data"
       echo "----------------------------------------------------"
@@ -90,16 +90,16 @@ if [ "$direction" == "get" ]; then
    echo 
    echo "Getting files from remote"
    echo 
-   echo rsync ${bflags} ${extraflags} --exclude="CASEDATA" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
+   echo rsync ${bflags}  --exclude="${casefile}" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
    echo 
-   eval rsync ${bflags} ${extraflags} --exclude="CASEDATA" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
+   eval rsync ${bflags}  --exclude="${casefile}" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
 elif [ "$direction" == "send" ]; then
    echo 
    echo "Sending files to remote"
    echo 
-   echo rsync ${sflags} ${extraflags} --exclude="CASEDATA" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
+   echo rsync ${sflags}  --exclude="${casefile}" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
    echo                              
-   eval rsync ${sflags} ${extraflags} --exclude="CASEDATA" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
+   eval rsync ${sflags}  --exclude="${casefile}" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
 else
    echo "Either get or send should be specified"
    return 1
