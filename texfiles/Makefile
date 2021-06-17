@@ -24,12 +24,12 @@ JOB = "aux/$(LABEL)-paper"
 # -use-make tells latexmk to call make for generating missing files.
 
 # -interaction=nonstopmode keeps the pdflatex backend from stopping at a
-# -shell-escape allows pdflatex to write in the direcgtory, generating
+# --shell-escape allows pdflatex to write in the direcgtory, generating
 #  eps-converted-to.pdf files
 # missing file reference and interactively asking you for an alternative.
 
-BUILDFLAGS = -pdflatex="$(PDFLATEX)  -synctex=1 -shell-escape -interaction=nonstopmode"   \
-             -use-make -shell-escape
+BUILDFLAGS = -pdflatex="$(PDFLATEX)  -synctex=1 --shell-escape -interaction=nonstopmode"   \
+             -use-make --shell-escape
 
 BIBFLAGS = -bibtex
 
