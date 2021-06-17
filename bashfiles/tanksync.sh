@@ -90,16 +90,16 @@ if [ "$direction" == "get" ]; then
    echo 
    echo "Getting files from remote"
    echo 
-   echo rsync ${bflags}  --exclude="${casefile}" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
+   echo rsync ${bflags}  --exclude="CASEDATA*" --exclude="${casefile}" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
    echo 
-   eval rsync ${bflags}  --exclude="${casefile}" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
+   eval rsync ${bflags}  --exclude="CASEDATA*" --exclude="${casefile}" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
 elif [ "$direction" == "send" ]; then
    echo 
    echo "Sending files to remote"
    echo 
-   echo rsync ${sflags}  --exclude="${casefile}" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
+   echo rsync ${sflags}  --exclude="CASEDATA*" --exclude="${casefile}" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
    echo                              
-   eval rsync ${sflags}  --exclude="${casefile}" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
+   eval rsync ${sflags}  --exclude="CASEDATA*" --exclude="${casefile}" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
 else
    echo "Either get or send should be specified"
    return 1
