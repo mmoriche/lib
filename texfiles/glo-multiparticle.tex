@@ -16,10 +16,6 @@
 \newglossaryentry{vol_part}{    name={\ensuremath{\Sigma_p}}             ,type=print, ,sort=B00,description={Solid volume fraction}}
 \newglossaryentry{vol_fluid}{   name={\ensuremath{\Sigma_f}}             ,type=print, ,sort=B00,description={Solid volume fraction}}
 
-\newglossaryentry{vxp_c_x}{  name={\ensuremath{{x_{p,c}}}},type=print, sort=J00, description={Ensempble averaged       $x$ component of particle's velocity}}
-\newglossaryentry{vxp_c_y}{  name={\ensuremath{{y_{p,c}}}},type=print, sort=J00, description={Ensempble averaged       $y$ component of particle's velocity}}
-\newglossaryentry{vxp_c_z}{  name={\ensuremath{{z_{p,c}}}},type=print, sort=J00, description={Ensempble averaged       $z$ component of particle's velocity}}
-
 \newglossaryentry{vxp_c_x_mp}{  name={\ensuremath{{\avgParticles{x_{p,c}}}}},type=print, sort=J00, description={Ensempble averaged       $x$ component of particle's velocity}}
 \newglossaryentry{vxp_c_y_mp}{  name={\ensuremath{{\avgParticles{y_{p,c}}}}},type=print, sort=J00, description={Ensempble averaged       $y$ component of particle's velocity}}
 \newglossaryentry{vxp_c_z_mp}{  name={\ensuremath{{\avgParticles{z_{p,c}}}}},type=print, sort=J00, description={Ensempble averaged       $z$ component of particle's velocity}}
@@ -89,34 +85,26 @@
 \newglossaryentry{lmin_mp}{  name={\ensuremath{\avgParticles{l_{\text{min}}}}} ,type=print, sort=J00, description={Mean settling velocity of the solid phase}}
 
 
-\newglossaryentry{mp:f}{      name={\ensuremath{\vec{F}      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force}}
-\newglossaryentry{mp:f_x}{    name={\ensuremath{F_x      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force}}
-\newglossaryentry{mp:f_y}{    name={\ensuremath{F_y      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force}}
-\newglossaryentry{mp:f_z}{    name={\ensuremath{F_z      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force}}
 \newglossaryentry{mp:fi}{     name={\ensuremath{\vec{F}^{(i)}}}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force acting on $i$th particle}}
 \newglossaryentry{mp:fi_x}{   name={\ensuremath{F_x^{(i)}}}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force acting on $i$th particle}}
 \newglossaryentry{mp:fi_y}{   name={\ensuremath{F_y^{(i)}}}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force acting on $i$th particle}}
 \newglossaryentry{mp:fi_z}{   name={\ensuremath{F_z^{(i)}}}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force acting on $i$th particle}}
 \newglossaryentry{mp:fli}{    name={\ensuremath{\vec{F_L}^{(i)}}}             ,type=print, ,sort=multiparticle,description={Lagrangian (ibm) Force acting on $i$th particle}}
 
-\newglossaryentry{mp:vp}{     name={\ensuremath{V_p}}                         ,type=print, ,sort=multiparticle,description={Particle volume}}
 \newglossaryentry{mp:vpi}{    name={\ensuremath{V^{(i)}_p}}                   ,type=print, ,sort=multiparticle,description={Volume of $i$th particle}}
 
-\newglossaryentry{mp:cd}{     name={\ensuremath{C_D   }}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient}}
 \newglossaryentry{mp:cdi}{    name={\ensuremath{C_D^{(i)}  }}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient of $i$th particle}}
 \newglossaryentry{mp:cdi_mp}{ name={\ensuremath{\avgParticles{C_D^{(i)}}}}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient of $i$th particle}}
 \newglossaryentry{mp:cdi_sp}{ name={\ensuremath{\stdParticles{{C_D^{(i)}}}}}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient of $i$th particle}}
 \newglossaryentry{mp:cdm}{     name={\ensuremath{\overline{C}_D   }}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient}}
 \newglossaryentry{mp:cds}{     name={\ensuremath{C^{\text{std}}_D}}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient}}
 
-\newglossaryentry{mp:cl}{     name={\ensuremath{C_L   }}                    ,type=print, ,sort=multiparticle,description={Non-dimensional lift coefficient}}
 \newglossaryentry{mp:cli}{    name={\ensuremath{C_L^{(i)}  }}               ,type=print, ,sort=multiparticle,description={Non-dimensional lift coefficient of $i$th particle}}
 \newglossaryentry{mp:cli_mp}{ name={\ensuremath{\avgParticles{C_L^{(i)}}}}  ,type=print, ,sort=multiparticle,description={Ensemble average over the particles of non-dimensional lift coefficient of $i$th particle}}
 \newglossaryentry{mp:cli_sp}{ name={\ensuremath{\stdParticles{{C_L^{(i)}}}}}  ,type=print, ,sort=multiparticle,description={Ensemble average over the particles of non-dimensional lift coefficient of $i$th particle}}
 \newglossaryentry{mp:clm}{    name={\ensuremath{\overline{C}_L   }}                    ,type=print, ,sort=multiparticle,description={Non-dimensional lift coefficient}}
 \newglossaryentry{mp:cls}{    name={\ensuremath{C^{\text{std}}_L   }}                    ,type=print, ,sort=multiparticle,description={Non-dimensional lift coefficient}}
 
-\newglossaryentry{mp:cs}{     name={\ensuremath{C_S   }}                    ,type=print, ,sort=multiparticse,description={Non-dimensional lift coefficient}}
 \newglossaryentry{mp:csi}{    name={\ensuremath{C_S^{(i)}  }}               ,type=print, ,sort=multiparticse,description={Non-dimensional lift coefficient of $i$th particse}}
 \newglossaryentry{mp:csi_mp}{ name={\ensuremath{\avgParticles{C_S^{(i)}}}}  ,type=print, ,sort=multiparticse,description={Ensemble average over the particses of non-dimensional lift coefficient of $i$th particse}}
 \newglossaryentry{mp:csi_sp}{ name={\ensuremath{\stdParticles{{C_S^{(i)}}}}}  ,type=print, ,sort=multiparticse,description={Ensemble average over the particses of non-dimensional lift coefficient of $i$th particse}}

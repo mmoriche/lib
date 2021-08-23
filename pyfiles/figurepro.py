@@ -5,8 +5,10 @@ from matplotlib.transforms import Bbox
 
 class FigurePro(Figure):
    ax=None
+   ax2=[]
    desc=""
    label=""
+   rect=None
    def __init__(self,
                 figsize=None,
                 dpi=None,
@@ -24,15 +26,22 @@ class FigurePro(Figure):
       super().__init__(figsize, dpi, facecolor, edgecolor, linewidth,
                 frameon, subplotpars, tight_layout, constrained_layout)
 
+      self.rect=rect
       self.set_size_inches(ww,hh)
       #setattr(self,'ax',self.add_axes(rect, label="main"))
       self.ax=self.add_axes(rect, label="main")
       self.ax.patch.set_alpha(0.0)
       self.desc = desc
       self.label =label 
+      self.ax2=[]
 
    def adddesc(self,atext,newline=True):
       self.desc="%s\n%s" % (self.desc, atext) 
+
+   def mirrorax(self):
+      n=len(self.ax2)
+      self.ax2.append(self.add_axes(self.rect, label="%d" % (n,)))
+      self.ax2[-1].patch.set_alpha(0.0)
 
    def pgfprint(self,odir='.',frmt='eps',tbm='tbmb',auxfrmt='png',auxleg=True, 
       README=None, panel=None):
@@ -64,9 +73,16 @@ class FigurePro(Figure):
       bb=self.ax.get_position()
       self.ax.set_position(Bbox([[0.0,0.0],[1.0,1.0]]))
       self.ax.axis("off")
+      for i1 in range(len(self.ax2)):
+         self.ax2[i1].set_position(Bbox([[0.0,0.0],[1.0,1.0]]))
+         self.ax2[i1].axis("off")
+         
       self.savefig(ofnm_fig)
       self.ax.set_position(bb)
       self.ax.axis("on")
+      for i1 in range(len(self.ax2)):
+         self.ax2[i1].set_position(bb)
+         self.ax2[i1].axis("on")
       
       # save .tex file
       if len(figlabel)>0:
@@ -96,6 +112,46 @@ class FigurePro(Figure):
       else:
          f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,frmt))
       f.close()
+
+
+
+      for i1 in range(len(self.ax2)):
+         print(i1)
+         print(i1)
+         print(i1)
+         print(i1)
+         print(i1)
+         # save .tex file
+         if len(figlabel)>0:
+            ofnm_tex="%s/fig_%d-%s-extra_%d.tex"  % (odir,self.number,figlabel,i1)
+         else:
+            ofnm_tex="%s/fig_%d-extra_%d.tex"  % (odir,self.number,i1)
+         xlim=self.ax2[i1].get_xlim()
+         ylim=self.ax2[i1].get_ylim()
+         f=open(ofnm_tex,'w')
+         # write header as comments
+         bb=self.bbox_inches
+         f.write("%% width=%f in, \n" % bb.width  )
+         f.write("%% height=%f in, \n" % bb.height  )
+         f.write("%% xlabel={%s}, \n" % self.ax2[i1].get_xlabel()  )
+         f.write("%% ylabel={%s}, \n" % self.ax2[i1].get_ylabel()  )
+         f.write("%%\n")
+         f.write("%% Line2D objects: \n")
+         alist=self.ax2[i1].get_children()
+         for item in alist:
+            if item.__class__.__name__ == 'Line2D':
+               label=item.get_label()
+               if len(label)>0 and not label.startswith('_'): 
+                  f.write("%% %s : %s\n" % (item.get_label(), item.get_color()))
+         # write line that can be directly included with \input{file}
+         if len(figlabel)>0:
+            f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d-%s.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,figlabel,frmt))
+         else:
+            f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,frmt))
+         f.close()
+
+
+
 
       if not README==None:
          README.write(" Figure %d \n" % self.number)

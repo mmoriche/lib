@@ -17,8 +17,12 @@ function self = figurepro(varargin)
 
    p=inputParser();
    addOptional(p,'label',self.label);
+   addOptional(p,'ww',self.ww);
+   addOptional(p,'hh',self.hh);
    parse(p,varargin{:});
    self.label=p.Results.label;
+   self.ww   =p.Results.ww;
+   self.hh   =p.Results.hh;
 
    self.handle=figure();
    set(self.handle,'Units','inches');
@@ -39,7 +43,7 @@ end
 function pgfprint(self,varargin);
    default_odir='./';
    default_frmt='eps';
-   default_tbm='tbmb';
+   default_tbm='tbm';
    default_auxfrmt='png';
    default_auxleg=true;
    default_README='*';
@@ -65,7 +69,29 @@ function pgfprint(self,varargin);
    else
       ofnm_fig=sprintf("%s/fig_%d_WITHAXES.%s",odir,self.handle.Number,auxfrmt);
    end
+   leg=findobj(self.handle.Children,'Type','Legend');
+   if isempty(leg)
+      flag=true;
+      leg=legend(self.ax);
+      set(leg,'Interpreter','Latex','Location','NorthEastOutside');
+      pp0=get(self.handle,'Position');
+      units0=get(self.ax,'Units');
+      set(self.ax,'Units','inches');
+      ppax0=get(self.ax,'Position');
+      pp=pp0;
+      pp(3)=pp0(3)*1.2;
+      rs0=get(self.handle,'Resize');
+      set(self.handle,'Resize','off');
+      set(self.ax,'Position',ppax0);
+      set(self.handle,'Position',pp);
+   end
    saveas(self.handle,ofnm_fig,auxfrmt);
+   if flag
+      set(self.handle,'Resize',rs0);
+      set(self.handle,'Position',pp0);
+      set(self.ax,'Units',units0);
+      set(leg,'Visible','off');
+   end
 
   
    if length(self.axlist) > 1
@@ -177,6 +203,13 @@ function saveLine2D(self,varargin)
 return;
 end
 
+function setlabels(self,xstr,ystr)
+   hx=xlabel(self.ax, xstr);
+   hy=ylabel(self.ax, ystr);
+   set(hx,'Interpreter','Latex');
+   set(hy,'Interpreter','Latex');
+return;
+end
 
 end
 
