@@ -8,6 +8,8 @@ class FigurePro(Figure):
    ax2=[]
    desc=""
    label=""
+   ww=6.0
+   _hh=6.0/1.618
    rect=None
    def __init__(self,
                 figsize=None,
@@ -20,14 +22,14 @@ class FigurePro(Figure):
                 tight_layout=None,  # rc figure.autolayout
                 constrained_layout=None,  # rc figure.constrained_layout.use
                 rect=(0.2,0.2,0.7,0.7), ## NEW ARGUMENTS
-                ww=6.0,hh=6.0/1.618,
+                ww=6.0,_hh=6.0/1.618,
                 desc="",
                 label=""):
       super().__init__(figsize, dpi, facecolor, edgecolor, linewidth,
                 frameon, subplotpars, tight_layout, constrained_layout)
 
       self.rect=rect
-      self.set_size_inches(ww,hh)
+      self.set_size_inches(ww,_hh)
       #setattr(self,'ax',self.add_axes(rect, label="main"))
       self.ax=self.add_axes(rect, label="main")
       self.ax.patch.set_alpha(0.0)
@@ -200,3 +202,9 @@ class FigurePro(Figure):
                    f.write("%25.15E %25.15E\n" % (x[j], y[j])) 
                f.close()
   
+   def setww(self,ww_):
+      self.ww=ww_
+      self.set_size_inches(self.ww,self._hh)
+   def sethh(self,hh_):
+      self._hh=hh_
+      self.set_size_inches(self.ww,self._hh)
