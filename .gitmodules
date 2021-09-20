@@ -10,3 +10,6 @@
 [submodule "thirdparty/hypre/repo"]
 	path = thirdparty/hypre/repo
 	url = https://github.com/hypre-space/hypre.git
+[submodule "thirdparty/makefile2graph"]
+	path = thirdparty/makefile2graph
+	url = https://github.com/lindenb/makefile2graph
