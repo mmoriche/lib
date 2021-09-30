@@ -46,6 +46,7 @@ class FigurePro(Figure):
       self.ax2[-1].patch.set_alpha(0.0)
 
    def pgfprint(self,odir='.',frmt='eps',tbm='tbmb',auxfrmt='png',auxleg=True, 
+      suffix="",
       README=None, panel=None):
 
       if len(self.label)>0 and panel:
@@ -56,6 +57,12 @@ class FigurePro(Figure):
          figlabel=panel
       else:
          figlabel=""
+      if suffix:
+         if figlabel:
+            figlabel=figlabel+"_"+suffix
+         else:
+            figlabel=suffix
+     
       # save whole figure (for safety purposes)
       if len(figlabel)>0:
          ofnm_fig="%s/fig_%d-%s_WITHAXES.%s"  % (odir,self.number,figlabel,auxfrmt)
