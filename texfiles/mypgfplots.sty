@@ -27,6 +27,7 @@
 
 \definecolor{mycyan}{rgb}{0,0.75,0.75}
 \definecolor{mygreen}{rgb}{0,0.5,0}
+\definecolor{mymagenta}{rgb}{0.75,0,0.75}
 
 
 
@@ -75,6 +76,12 @@ noy/.style={ ylabel=\empty, yticklabels = \empty },
 
 
 
+\pgfplotsset{leg/.style={axis line style={draw=none}, width=1.0in, height=0.8in, xtick=\empty, ytick=\empty }}
+\newcommand\myL[1]{
+\begin{tikzpicture} \begin{axis}[leg]
+\addplot[#1] coordinates {(0,0)(1,0)};
+\end{axis} \end{tikzpicture}
+}
 
 
 
