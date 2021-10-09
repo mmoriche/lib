@@ -68,9 +68,15 @@ class FigurePro(Figure):
          ofnm_fig="%s/fig_%d-%s_WITHAXES.%s"  % (odir,self.number,figlabel,auxfrmt)
       else:
          ofnm_fig="%s/fig_%d_WITHAXES.%s"  % (odir,self.number,auxfrmt)
-      if auxleg: l=self.ax.legend()
+      if auxleg:
+         l=self.ax.legend(bbox_to_anchor=(1.0,0.0,1,1))
+         self.set_size_inches(2*self.ww,self._hh)
+         bb=self.ax.get_position()
+         self.ax.set_position(Bbox([[0.2,0.2],[0.5,0.8]]))
       self.savefig(ofnm_fig)
-      if auxleg: l.remove()
+      if auxleg:
+         l.remove()
+         self.set_size_inches(self.ww,self._hh)
 
       # save clean axes
       if len(figlabel)>0:
@@ -159,11 +165,11 @@ class FigurePro(Figure):
             f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,frmt))
          f.close()
 
-
-
-
       if not README==None:
-         README.write(" Figure %d \n" % self.number)
+         if figlabel:
+            README.write(" Figure %d / %s \n" % (self.number,figlabel))
+         else:
+            README.write(" Figure %d \n" % self.number)
          README.write("\n")
          README.write(" %s\n" % self.desc)
          README.write("\n")
@@ -208,6 +214,8 @@ class FigurePro(Figure):
                for j in range(n):
                    f.write("%25.15E %25.15E\n" % (x[j], y[j])) 
                f.close()
+      if not README==None:
+         README.write("\n\n")
   
    def setww(self,ww_):
       self.ww=ww_
