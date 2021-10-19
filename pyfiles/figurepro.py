@@ -9,7 +9,7 @@ class FigurePro(Figure):
    desc=""
    label=""
    ww=6.0
-   _hh=6.0/1.618
+   hh=6.0/1.618
    rect=None
    def __init__(self,
                 figsize=None,
@@ -22,14 +22,14 @@ class FigurePro(Figure):
                 tight_layout=None,  # rc figure.autolayout
                 constrained_layout=None,  # rc figure.constrained_layout.use
                 rect=(0.2,0.2,0.7,0.7), ## NEW ARGUMENTS
-                ww=6.0,_hh=6.0/1.618,
+                ww=6.0,hh=6.0/1.618,
                 desc="",
                 label=""):
       super().__init__(figsize, dpi, facecolor, edgecolor, linewidth,
                 frameon, subplotpars, tight_layout, constrained_layout)
 
       self.rect=rect
-      self.set_size_inches(ww,_hh)
+      self.set_size_inches(ww,hh)
       #setattr(self,'ax',self.add_axes(rect, label="main"))
       self.ax=self.add_axes(rect, label="main")
       self.ax.patch.set_alpha(0.0)
@@ -70,13 +70,13 @@ class FigurePro(Figure):
          ofnm_fig="%s/fig_%d_WITHAXES.%s"  % (odir,self.number,auxfrmt)
       if auxleg:
          l=self.ax.legend(bbox_to_anchor=(1.0,0.0,1,1))
-         self.set_size_inches(2*self.ww,self._hh)
+         self.set_size_inches(2*self.ww,self.hh)
          bb=self.ax.get_position()
          self.ax.set_position(Bbox([[0.2,0.2],[0.5,0.8]]))
       self.savefig(ofnm_fig)
       if auxleg:
          l.remove()
-         self.set_size_inches(self.ww,self._hh)
+         self.set_size_inches(self.ww,self.hh)
 
       # save clean axes
       if len(figlabel)>0:
@@ -219,7 +219,7 @@ class FigurePro(Figure):
   
    def setww(self,ww_):
       self.ww=ww_
-      self.set_size_inches(self.ww,self._hh)
+      self.set_size_inches(self.ww,self.hh)
    def sethh(self,hh_):
-      self._hh=hh_
-      self.set_size_inches(self.ww,self._hh)
+      self.hh=hh_
+      self.set_size_inches(self.ww,self.hh)
