@@ -1,3 +1,4 @@
+from functools import singledispatch
 import os
 from matplotlib.pyplot import *
 from matplotlib.transforms import Bbox                                                                         
@@ -11,6 +12,7 @@ class FigurePro(Figure):
    ww=6.0
    hh=6.0/1.618
    rect=None
+   markedLine={}
    def __init__(self,
                 figsize=None,
                 dpi=None,
@@ -36,6 +38,7 @@ class FigurePro(Figure):
       self.desc = desc
       self.label =label 
       self.ax2=[]
+      self.markedLine={}
 
    def adddesc(self,atext,newline=True):
       self.desc="%s\n%s" % (self.desc, atext) 
@@ -128,8 +131,6 @@ class FigurePro(Figure):
          f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,frmt))
       f.close()
 
-
-
       for i1 in range(len(self.ax2)):
          print(i1)
          print(i1)
@@ -182,7 +183,6 @@ class FigurePro(Figure):
          README.write("\n")
          README.write("\n")
    
-
    def saveLine2D(self,odir='.',README=None, panel=None):
       alist=self.ax.get_children()
 
@@ -223,3 +223,46 @@ class FigurePro(Figure):
    def sethh(self,hh_):
       self.hh=hh_
       self.set_size_inches(self.ww,self.hh)
+
+   def addNMarkers(self,label=None,marker='o',nmark=3,dshift=0,props={},xlim=False):
+      if not 'marker' in props.keys(): props['marker']=marker
+      if not 'ls' in props.keys(): props['ls']='none'
+      alist=self.ax.get_children()
+      for item in alist:
+         if item.__class__.__name__ == 'Line2D':
+            print('label',label)
+            if label==item.get_label() or (label is None and not item.get_label().startswith('_')):
+               newlabel='%s_marked' % (item.get_label(),)
+               x=item.get_xdata(orig=False)
+               y=item.get_ydata(orig=False)
+               if not xlim:
+                  n=x.shape; n=n[0]
+                  ii=np.linspace(0,n-1,nmark+1,dtype='i')
+                  ii=ii[0:-1]
+                  ishift=int(dshift*n/nmark)
+                  ii=(ii+ishift)%n
+               else:
+                  xl=self.ax.get_xlim()
+                  jj=np.where( ( x>=xl[0] ) & ( x<=xl[1] ) )
+                  if len(jj[0])==0:
+                     ii=[]
+                  else:
+                     n=len(jj[0])
+                     kk=np.linspace(0,n-1,nmark+1,dtype='i')
+                     kk=kk[0:-1]
+                     ishift=int(dshift*n/nmark)
+                     kk=(kk+ishift)%n
+                     ii=jj[0][kk]
+               if len(ii)==0:
+                  self.markedLine[newlabel]=self.ax.plot([],[],label=newlabel,**props)
+               else:
+                  self.markedLine[newlabel]=self.ax.plot(x[ii],y[ii],label=newlabel,**props)
+
+   def removeMarkedLine_all(self):
+      for item in self.markedLine.values():
+         item.pop(0).remove()
+
+   def removeMarkedLine_bylabel(self,label):
+      newlabel='%s_marked' % (label,)
+      item=self.markedLine[newlabel]
+      item.pop(0).remove()
