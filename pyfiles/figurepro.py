@@ -31,6 +31,8 @@ class FigurePro(Figure):
                 frameon, subplotpars, tight_layout, constrained_layout)
 
       self.rect=rect
+      self.ww=ww
+      self.hh=hh
       self.set_size_inches(ww,hh)
       #setattr(self,'ax',self.add_axes(rect, label="main"))
       self.ax=self.add_axes(rect, label="main")
@@ -73,7 +75,7 @@ class FigurePro(Figure):
          ofnm_fig="%s/fig_%d_WITHAXES.%s"  % (odir,self.number,auxfrmt)
       if auxleg:
          l=self.ax.legend(bbox_to_anchor=(1.0,0.0,1,1))
-         self.set_size_inches(2*self.ww,self.hh)
+         self.set_size_inches(4*self.ww,2*self.hh)
          bb=self.ax.get_position()
          self.ax.set_position(Bbox([[0.2,0.2],[0.5,0.8]]))
       self.savefig(ofnm_fig)
@@ -83,10 +85,8 @@ class FigurePro(Figure):
 
       # save clean axes
       if len(figlabel)>0:
-         print("hola")
          ofnm_fig="%s/fig_%d-%s.%s"  % (odir,self.number,figlabel,frmt)
       else:
-         print("adios")
          ofnm_fig="%s/fig_%d.%s"  % (odir,self.number,frmt)
       bb=self.ax.get_position()
       self.ax.set_position(Bbox([[0.0,0.0],[1.0,1.0]]))
@@ -132,11 +132,6 @@ class FigurePro(Figure):
       f.close()
 
       for i1 in range(len(self.ax2)):
-         print(i1)
-         print(i1)
-         print(i1)
-         print(i1)
-         print(i1)
          # save .tex file
          if len(figlabel)>0:
             ofnm_tex="%s/fig_%d-%s-extra_%d.tex"  % (odir,self.number,figlabel,i1)
@@ -230,7 +225,6 @@ class FigurePro(Figure):
       alist=self.ax.get_children()
       for item in alist:
          if item.__class__.__name__ == 'Line2D':
-            print('label',label)
             if label==item.get_label() or (label is None and not item.get_label().startswith('_')):
                newlabel='%s_marked' % (item.get_label(),)
                x=item.get_xdata(orig=False)
