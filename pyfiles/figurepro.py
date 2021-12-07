@@ -95,7 +95,10 @@ class FigurePro(Figure):
          self.ax2[i1].set_position(Bbox([[0.0,0.0],[1.0,1.0]]))
          self.ax2[i1].axis("off")
          
-      self.savefig(ofnm_fig)
+      if frmt=="png":
+         self.savefig(ofnm_fig,dpi=400)
+      else:
+         self.savefig(ofnm_fig)
       self.ax.set_position(bb)
       self.ax.axis("on")
       for i1 in range(len(self.ax2)):

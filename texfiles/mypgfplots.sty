@@ -76,7 +76,7 @@ noy/.style={ ylabel=\empty, yticklabels = \empty },
 
 
 
-\pgfplotsset{leg/.style={axis line style={draw=none}, width=1.0in, height=0.8in, xtick=\empty, ytick=\empty }}
+\pgfplotsset{leg/.style={axis line style={draw=none}, width=1.0in, height=0.7in, xtick=\empty, ytick=\empty }}
 \newcommand\myL[1]{
 \begin{tikzpicture} \begin{axis}[leg]
 \addplot[#1] coordinates {(0,0)(1,0)};
@@ -89,6 +89,12 @@ noy/.style={ ylabel=\empty, yticklabels = \empty },
 \end{axis} \end{tikzpicture}
 }
 
+\pgfplotsset{legsingle/.style={axis line style={draw=none}, width=0.7in, height=0.7in, xtick=\empty, ytick=\empty }}
+\newcommand\myLsingle[1]{
+\begin{tikzpicture} \begin{axis}[legsingle]
+\addplot[#1] coordinates {(0,0)};
+\end{axis} \end{tikzpicture}
+}
 
 
 
