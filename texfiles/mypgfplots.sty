@@ -96,6 +96,12 @@ noy/.style={ ylabel=\empty, yticklabels = \empty },
 \end{axis} \end{tikzpicture}
 }
 
+\newcommand\myLBsingle[2]{
+\begin{tikzpicture} \begin{axis}[leg]
+\addplot[#1] coordinates {(0,0)(1,0)};
+\addplot[#2] coordinates {(0.5,0)};
+\end{axis} \end{tikzpicture}
+}
 
 
 
