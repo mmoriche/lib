@@ -6,7 +6,7 @@ include make.inc
 
 EXTRADIR:= $(shell getextrapath $(DOC)/figtex)
 
-OTANK?=$(DOC)/figures/$(EXTRADIR)
+OTANK=$(DOC)/figures/$(EXTRADIR)
 HERE=$(DOC)/figtex/$(EXTRADIR)
 
 DATELABEL:= $(shell date +%Y%m%d)

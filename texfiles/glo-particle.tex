@@ -4,6 +4,15 @@
 \newglossaryentry{dd}{ name={\ensuremath{d}}       , type=print, sort=particle, description={Partilce diameter}}
 \newglossaryentry{vol}{  name={\ensuremath{V}}     , type=print, sort=particle, description={Particle volume}}
 \newglossaryentry{vp}{  name={\ensuremath{V_p}}    , type=print, sort=particle, description={Particle volume}}
+\newglossaryentry{p:vp}{name={\ensuremath{V_p}}                     ,type=print, ,sort=multiparticle,description={Particle volume}}
+
+% particle position
+\newglossaryentry{vxp}{  name={\ensuremath{\vec{x}_{p}}},type=print, sort=particle, description={Particle's position relative to fix csys}}
+\newglossaryentry{vxp_x}{name={\ensuremath{{x}_{p}}},    type=print, sort=particle, description={$x$ component of particle's position relative to fix csys}}
+\newglossaryentry{vxp_y}{name={\ensuremath{{y}_{p}}},    type=print, sort=particle, description={$y$ component of particle's position relative to fix csys}}
+\newglossaryentry{vxp_z}{name={\ensuremath{{z}_{p}}},    type=print, sort=particle, description={$z$ component of particle's position relative to fix csys}}
+\newglossaryentry{vxp_r}{  name={\ensuremath{x_{p,r}}},type=print, sort=particle, description={Particle's position relative to fix csys}}
+\newglossaryentry{vxp_s}{  name={\ensuremath{x_{p,s}}},type=print, sort=particle, description={Particle's position relative to fix csys}}
 
 % particle (linear) velocity
 \newglossaryentry{vup}{  name={\ensuremath{\vec{u}_{p}}},type=print, sort=particle, description={Particle's velocity relative to fix csys}}
@@ -11,12 +20,26 @@
 \newglossaryentry{vup_y}{name={\ensuremath{{v}_{p}}},    type=print, sort=particle, description={$y$ component of particle's velocity relative to fix csys}}
 \newglossaryentry{vup_z}{name={\ensuremath{{w}_{p}}},    type=print, sort=particle, description={$z$ component of particle's velocity relative to fix csys}}
 
+\newglossaryentry{vupr}{  name={\ensuremath{\vec{u}_{pr}}},type=print, sort=J00, description={$i$th Particle's velocity relative to fix csys}}
+\newglossaryentry{vupr_x}{name={\ensuremath{{u}_{pr}}},    type=print, sort=J00, description={$x$ component of $i$th particle's velocity relative to fix csys}}
+\newglossaryentry{vupr_y}{name={\ensuremath{{v}_{pr}}},    type=print, sort=J00, description={$y$ component of $i$th particle's velocity relative to fix csys}}
+\newglossaryentry{vupr_z}{name={\ensuremath{{w}_{pr}}},    type=print, sort=J00, description={$z$ component of $i$th particle's velocity relative to fix csys}}
+
+\newglossaryentry{vup_i}{  name={\ensuremath{      \vec{u}_{pi}}}      , type=print, sort=G40, description={$i$ component of \gls{vomep}}}
+
 % particle (angular) velocity
 \newglossaryentry{vomep}{    name={\ensuremath{{\vec{\omega}_p}}},        sort=M00, description={Velocity of center of gravity}}
 \newglossaryentry{vomep_x}{  name={\ensuremath{      \omega_{px}}}      , sort=A00, description={Component 1 of the angular velocity}}
 \newglossaryentry{vomep_y}{  name={\ensuremath{      \omega_{py}}}      , sort=A00, description={Component 2 of the angular velocity}}
 \newglossaryentry{vomep_z}{  name={\ensuremath{      \omega_{pz}}}      , sort=A00, description={Component 3 of the angular velocity}}
 
+% squared
+\newglossaryentry{vup_x;sq}{  name={\ensuremath{{ u^2_p }}}   ,type=print, sort=particle, description={$x$ component of particle's velocity squared}}
+\newglossaryentry{vup_y;sq}{  name={\ensuremath{{ v^2_p }}}   ,type=print, sort=particle, description={$y$ component of particle's velocity squared}}
+\newglossaryentry{vup_z;sq}{  name={\ensuremath{{ w^2_p }}}   ,type=print, sort=particle, description={$z$ component of particle's velocity squared}}
+\newglossaryentry{vomep_x;sq}{  name={\ensuremath{      \omega^2_{px}}}      , sort=A00, description={Component 1 of the angular velocity squared}}
+\newglossaryentry{vomep_y;sq}{  name={\ensuremath{      \omega^2_{py}}}      , sort=A00, description={Component 2 of the angular velocity squared}}
+\newglossaryentry{vomep_z;sq}{  name={\ensuremath{      \omega^2_{pz}}}      , sort=A00, description={Component 3 of the angular velocity squared}}
 % averaged quantities
 % mean
 \newglossaryentry{vup_x_m}{  name={\ensuremath{{\langle u_p \rangle}}}   ,type=print, sort=particle, description={Averaged       $x$ component of particle's velocity}}
@@ -38,6 +61,19 @@
 \newglossaryentry{vomep_c_y}{  name={\ensuremath{      \omega_{py,c}}}      , sort=particle, description={Component 2 of the angular velocity}}
 \newglossaryentry{vomep_c_z}{  name={\ensuremath{      \omega_{pz,c}}}      , sort=particle, description={Component 3 of the angular velocity}}
 
+% particle position in code sys
+\newglossaryentry{vxp_c}{  name={\ensuremath{\vec{x}_{p,c}}},type=print, sort=particle, description={Particle's position relative to fix csys}}
+\newglossaryentry{vxp_c_x}{name={\ensuremath{{x}_{p,c}}},    type=print, sort=particle, description={$x$ component of particle's position relative to fix csys}}
+\newglossaryentry{vxp_c_y}{name={\ensuremath{{y}_{p,c}}},    type=print, sort=particle, description={$y$ component of particle's position relative to fix csys}}
+\newglossaryentry{vxp_c_z}{name={\ensuremath{{z}_{p,c}}},    type=print, sort=particle, description={$z$ component of particle's position relative to fix csys}}
+
+% squared
+\newglossaryentry{vup_c_x;sq}{name={\ensuremath{{u}^2_{p,c}}},    type=print, sort=particle, description={$x$ component of particle's velocity relative to fix csys squared}}
+\newglossaryentry{vup_c_y;sq}{name={\ensuremath{{v}^2_{p,c}}},    type=print, sort=particle, description={$y$ component of particle's velocity relative to fix csys squared}}
+\newglossaryentry{vup_c_z;sq}{name={\ensuremath{{w}^2_{p,c}}},    type=print, sort=particle, description={$z$ component of particle's velocity relative to fix csys squared}}
+\newglossaryentry{vomep_c_x;sq}{  name={\ensuremath{\omega^2_{px,c}}}      , sort=particle, description={Component 1 of the angular velocity}}
+\newglossaryentry{vomep_c_y;sq}{  name={\ensuremath{\omega^2_{py,c}}}      , sort=particle, description={Component 2 of the angular velocity}}
+\newglossaryentry{vomep_c_z;sq}{  name={\ensuremath{\omega^2_{pz,c}}}      , sort=particle, description={Component 3 of the angular velocity}}
 % Averaged quantities of par. vel in code sys
 % mean
 \newglossaryentry{vup_c_x_m}{  name={\ensuremath{{\langle u_{p,c} \rangle}}}   ,type=print, sort=particle, description={Averaged       $x$ component of particle's velocity}}
@@ -59,6 +95,20 @@
 \newglossaryentry{Ic}{name={\ensuremath{I_{pc}}}   , type=print, sort=particle, description={Inertia of sphere}}
 
 \newglossaryentry{rotmat}{ name={\ensuremath{R}}  , sort=B00, description={Rotation matrix}}
+\newglossaryentry{rotmat_jr}{ name={\ensuremath{R_{jr}}}  , sort=B00, description={Rotation matrix, components...}}
+\newglossaryentry{rotmat_kr}{ name={\ensuremath{R_{kr}}}  , sort=B00, description={Rotation matrix, components...}}
+\newglossaryentry{rotmat_ks}{ name={\ensuremath{R_{ks}}}  , sort=B00, description={Rotation matrix, components...}}
+\newglossaryentry{rotmat_i1}{ name={\ensuremath{R_{i1}}}  , sort=B00, description={Rotation matrix, components...}}
+\newglossaryentry{rotmat_i2}{ name={\ensuremath{R_{i2}}}  , sort=B00, description={Rotation matrix, components...}}
+\newglossaryentry{rotmat_i3}{ name={\ensuremath{R_{i3}}}  , sort=B00, description={Rotation matrix, components...}}
+\newglossaryentry{rotmat_ir}{ name={\ensuremath{R_{ir}}}  , sort=B00, description={Rotation matrix, components...}}
+\newglossaryentry{rotmat_is}{ name={\ensuremath{R_{is}}}  , sort=B00, description={Rotation matrix, components...}}
+\newglossaryentry{rotmat_j1}{ name={\ensuremath{R_{j1}}}  , sort=B00, description={Rotation matrix, components...}}
+\newglossaryentry{rotmat_k1}{ name={\ensuremath{R_{k1}}}  , sort=B00, description={Rotation matrix, components...}}
+\newglossaryentry{rotmat_j2}{ name={\ensuremath{R_{j2}}}  , sort=B00, description={Rotation matrix, components...}}
+\newglossaryentry{rotmat_k2}{ name={\ensuremath{R_{k2}}}  , sort=B00, description={Rotation matrix, components...}}
+\newglossaryentry{rotmat_j3}{ name={\ensuremath{R_{j3}}}  , sort=B00, description={Rotation matrix, components...}}
+\newglossaryentry{rotmat_k3}{ name={\ensuremath{R_{k3}}}  , sort=B00, description={Rotation matrix, components...}}
 \newglossaryentry{rotmatT}{name={\ensuremath{R^T}}, sort=B00, description={Rotation matrix transposed}}
 \newglossaryentry{s:rotmat}{ name={{\tt R}}  , sort=B00, description={Rotation matrix}}
 \newglossaryentry{s:rotmatT}{name={{\tt RT}}, sort=B00, description={Rotation matrix transposed}}
@@ -83,6 +133,7 @@
 \newglossaryentry{alpha_p}{   name={\ensuremath{\varphi}}               ,type=print, sort=J00, description={Angle rotated by the particle wrt to ephzP}}
 %-------------------------------------------------------------------------------
 % Spheroids geometry
+\newglossaryentry{p:deq}{name={\ensuremath{D}}  , sort=B00, description={Diameter of a sphere with same volume}}
 \newglossaryentry{deq}{name={\ensuremath{d_{eq}}} , sort=B00, description={Diameter of a sphere with same volume}}
 \newglossaryentry{aa}{  name={\ensuremath{a}}  , type=print, sort=C00, description={Spheroids axis}} 
 \newglossaryentry{ee}{ name={\ensuremath{e}}   , sort=B00, description={Equatorial semi-axis}}
@@ -102,6 +153,8 @@
 \newglossaryentry{mstar}{ name={\ensuremath{m^*}}, sort=C00, description={Non-dimensional mass defined by Du\v{s}ek}}
 \newglossaryentry{Vstar}{ name={\ensuremath{V^*}}, sort=C00, description={Non-dimensional volume defined by Du\v{s}ek}}
 
+\newglossaryentry{p:Redeq}{   name={\ensuremath{Re_{\gls{p:deq}}}} , sort=A00, description={Reynolds number based on the equivalent diameter}}
+\newglossaryentry{p:Redeq;0}{ name={\ensuremath{Re^0_{\gls{p:deq}}}} , sort=A00, description={Reynolds number based on the equivalent diameter}}
 %................................................................................
 % PARTICLES
 \newglossaryentry{vHp}{      name={\ensuremath{{\vec{H}_p}}},                   sort=M00, description={Angular momentum}}
@@ -195,14 +248,16 @@
 \newglossaryentry{vomep_hzp}{name={\ensuremath{    \omega_{pHz\perp}}}, sort=A00, description={Component 3 of the angular velocity}}
 \newglossaryentry{vomep_v}{  name={\ensuremath{      \omega_{pV}}}      , sort=A00, description={Component 3 of the angular velocity}}
 \newglossaryentry{vomep_pp}{ name={\ensuremath{      \omega_{\myperp}}}      , sort=A00, description={Component 3 of the angular velocity}}
-\newglossaryentry{vomep_s}{ name={\ensuremath{      \omega_{\myps}}}      , sort=A00, description={ Spin}}
+\newglossaryentry{vomep_sp}{ name={\ensuremath{      \omega_{\myps}}}      , sort=A00, description={ Spin}}
 \newglossaryentry{vomep_th}{ name={\ensuremath{     \omega_{\mypth}}}      , sort=A00, description={Horizontal tumbling }}
 \newglossaryentry{vomep_tv}{ name={\ensuremath{     \omega_{\myptv}}}      , sort=A00, description={Vertical tumbling}}
 % ad-hoc components
-\newglossaryentry{vup_v}{  name={\ensuremath{{u}_{pV}}}      ,type=print, sort=J00, description={Vertical component of particle's velocity}}
+\newglossaryentry{vup_v}{  name={\ensuremath{{u}_{\mypV}}}      ,type=print, sort=J00, description={Vertical component of particle's velocity}}
 \newglossaryentry{vup_ll}{ name={\ensuremath{{u}_{\mypll}}}      ,type=print, sort=J00, description={Horizontal component of particle's velocity}}
-\newglossaryentry{vup_h}{  name={\ensuremath{{u}_{pH}}}      ,type=print, sort=J00, description={Horizontal component of particle's velocity}}
-\newglossaryentry{vup_hzp}{name={\ensuremath{{u}_{pHz\perp}}},type=print, sort=J00, description={Horizontal perpendicular to $z$ component of particle's velocity}}
+\newglossaryentry{vup_h}{  name={\ensuremath{{u}_{\mypH}}}      ,type=print, sort=J00, description={Horizontal component of particle's velocity}}
+\newglossaryentry{vup_hzp}{name={\ensuremath{{u}_{\mypHzp}}},type=print, sort=J00, description={Horizontal perpendicular to $z$ component of particle's velocity}}
+\newglossaryentry{vup_h;sq}{  name={\ensuremath{{u}^2_{\mypH}}},type=print, sort=J00, description={Horizontal component of particle's velocity squared}}
+\newglossaryentry{vup_v;sq}{  name={\ensuremath{{u}^2_{\mypV}}},type=print, sort=J00, description={Vertical component of particle's velocity squared}}
 
 \newglossaryentry{Re_ll}{ name={\ensuremath{{Re}_{\mypll}}}      ,type=print, sort=J00, description={Reynolds number considering the velocity parallel to the trajectory}}
 
@@ -234,6 +289,28 @@
 \newglossaryentry{vop_z_s}{  name={\ensuremath{{        \omega_{pz}''}}}         ,type=print, sort=J00, description={Fluctuation of $z$ component of particle's angular velocity}}
 
 
+\newglossaryentry{p:f}{      name={\ensuremath{\vec{F}      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force}}
+\newglossaryentry{p:f_x}{    name={\ensuremath{F_x      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force}}
+\newglossaryentry{p:f_y}{    name={\ensuremath{F_y      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force}}
+\newglossaryentry{p:f_z}{    name={\ensuremath{F_z      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force}}
+\newglossaryentry{p:f_x;sq}{    name={\ensuremath{F^2_x      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force squared}}
+\newglossaryentry{p:f_y;sq}{    name={\ensuremath{F^2_y      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force squared}}
+\newglossaryentry{p:f_z;sq}{    name={\ensuremath{F^2_z      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force squared}}
+
+\newglossaryentry{p:t}{      name={\ensuremath{\vec{T}      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic torque}}
+\newglossaryentry{p:t_x}{    name={\ensuremath{T_x      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic torque}}
+\newglossaryentry{p:t_y}{    name={\ensuremath{T_y      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic torque}}
+\newglossaryentry{p:t_z}{    name={\ensuremath{T_z      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic torque}}
+\newglossaryentry{p:t_x;sq}{    name={\ensuremath{T^2_x      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic torque squared}}
+\newglossaryentry{p:t_y;sq}{    name={\ensuremath{T^2_y      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic torque squared}}
+\newglossaryentry{p:t_z;sq}{    name={\ensuremath{T^2_z      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic torque squared}}
+
+\newglossaryentry{p:cd}{     name={\ensuremath{C_D   }}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient}}
+\newglossaryentry{p:cl}{     name={\ensuremath{C_L   }}                    ,type=print, ,sort=multiparticle,description={Non-dimensional lift coefficient}}
+\newglossaryentry{p:cs}{     name={\ensuremath{C_S   }}                    ,type=print, ,sort=multiparticse,description={Non-dimensional lift coefficient}}
+\newglossaryentry{p:ct}{    name={\ensuremath{C_T   }}                    ,type=print, ,sort=multiparticse,description={Non-dimensional torque coefficient}}
+\newglossaryentry{p:cth}{    name={\ensuremath{C_{T,h}   }}                    ,type=print, ,sort=multiparticse,description={Non-dimensional torque coefficient in horizontal plane}}
+
 
 \newglossaryentry{lagF}{     name={\ensuremath{\mathcal{F}}},     type=print,  sort=M10, description={Lagrangian force}}
 \newglossaryentry{lagF_k}{   name={\ensuremath{\mathcal{F}^k}}, type=print,  sort=M10, description={Lagrangian torque}}
@@ -247,3 +324,21 @@
 \newglossaryentry{xb}{name={\ensuremath{x_b}}, type=print,sort=csys, description={Body-fixed $x$ axis}}
 \newglossaryentry{yb}{name={\ensuremath{y_b}}, type=print,sort=csys, description={Body-fixed $y$ axis}}
 \newglossaryentry{zb}{name={\ensuremath{z_b}}, type=print,sort=csys, description={Body-fixed $z$ axis}}
+
+\newglossaryentry{vup_c_s}{    name={\ensuremath{\vec{u}^s_{p,c}}},type=print, sort=particle, description={Particle's velocity relative to fix csys}}
+\newglossaryentry{vup_c_sp1}{  name={\ensuremath{\vec{u}^{s+1}_{p,c}}},type=print, sort=particle, description={Particle's velocity relative to fix csys}}
+
+\newglossaryentry{vomep_c_s}{    name={\ensuremath{ \vec{\omega}^{s}_{p,c}}}      , sort=particle, description={Velocity of center of gravity}}
+\newglossaryentry{vomep_c_sp1}{    name={\ensuremath{ \vec{\omega}^{s+1}_{p,c}}}      , sort=particle, description={Velocity of center of gravity}}
+
+\newglossaryentry{vup_s}{  name={\ensuremath{\vec{u}^s_{p}}},type=print, sort=particle, description={Particle's velocity relative to fix csys}}
+\newglossaryentry{vup_sp1}{  name={\ensuremath{\vec{u}^{s+1}_{p}}},type=print, sort=particle, description={Particle's velocity relative to fix csys}}
+\newglossaryentry{vomep_s}{    name={\ensuremath{{\vec{\omega}^s_p}}},        sort=M00, description={Velocity of center of gravity}}
+\newglossaryentry{vomep_sp1}{    name={\ensuremath{{\vec{\omega}^{s+1}_p}}},        sort=M00, description={Velocity of center of gravity}}
+
+\newglossaryentry{p:vshell}{    name={\ensuremath{V_\text{shell}}},        sort=M00, description={Volume in the surface shell}}
+
+\newglossaryentry{p:chi}{ name={\ensuremath{\chi}}, sort=B00, description={Spheroids Aspect ratio}}
+\newglossaryentry{p:ichi}{name={\ensuremath{\chi^{-1}}}, sort=B00, description={Spheroids Aspect ratio}}
+
+

@@ -17,6 +17,7 @@
 % DEFINE ACRONYMS HERE
 \newacronym{ibm}{IBM}{Immersed Boundary Method}
 \newacronym{sem}{SEM}{Spectral Element Method}
+\newacronym{lbm}{LBM}{Lattice Boltzmann Method}
 \newacronym{dns}{DNS}{Direct Numerical Simulations}
 \newacronym{kde}{KDE}{Kernel Density Estimators}
 
@@ -26,8 +27,11 @@
 
 % Gravity scaled quantities
 \newglossaryentry{Ug}{   name={\ensuremath{U_g}}       , type=print, sort=common, description={Gravitational reference velocity} }
+\newglossaryentry{Ug;sq}{   name={\ensuremath{U^2_g}}       , type=print, sort=common, description={Gravitational reference velocity} }
+\newglossaryentry{Ug;cb}{   name={\ensuremath{U^3_g}}       , type=print, sort=common, description={Gravitational reference velocity} }
 \newglossaryentry{UgDus}{   name={\ensuremath{U_{g,Dus}}}       , type=print, sort=common, description={Gravitational reference velocity} }
 \newglossaryentry{tg}{   name={\ensuremath{\tau_g}}    , type=print, sort=common, description={Reference gravity time} }
+%\newglossaryentry{Tg}{   name={\ensuremath{T_g}}       , type=print, sort=common, description={Time interval in gravitational units} }
 
 % Physical quantities
 \newglossaryentry{vg}{     name={\ensuremath{\vec{g}}} , type=print, sort=common, description={Gravitational accelartion vector}}
@@ -36,6 +40,8 @@
 
 % misc referene quantities
 \newglossaryentry{Uref}{ name={\ensuremath{U_{\text{ref}}}}, type=print , sort=common, description={Reference velocity} }
+\newglossaryentry{Uref;sq}{ name={\ensuremath{U^2_{\text{ref}}}}, type=print , sort=common, description={Reference velocity} }
+\newglossaryentry{Uref;cb}{ name={\ensuremath{U^3_{\text{ref}}}}, type=print , sort=common, description={Reference velocity} }
 
 % non-dimensional quantities
 \newglossaryentry{kappa}{ name={\ensuremath{\tilde{\rho}}}, sort=B00, description={Density ratio $\frac{\gls{rhop}}{\gls{rhof}}$}}
@@ -44,8 +50,18 @@
 \newglossaryentry{GaDus}{name={\ensuremath{Ga_{Dus}}} , sort=A00, description={Galileo number according to Du\v{s}ek group}}
 \newglossaryentry{Ar}{    name={\ensuremath{Ar}}     , sort=A00, description={Archimides number}}
 
+
+\newglossaryentry{tadv}{  name={\ensuremath{\tau_{\text{a}}}}       , type=print, sort=common, description={Reference gravity time} }
+\newglossaryentry{tinf}{  name={\ensuremath{\tau_{\infty}}}, type=print, sort=common, description={Reference time based on free stream velocity \gls{Uinf}} }
+\newglossaryentry{tref}{  name={\ensuremath{\tau_{\text{ref}}}}, type=print, sort=common, description={Reference time based on free stream velocity \gls{Uinf}} }
+\newglossaryentry{Reinf}{ name={\ensuremath{Re_{\infty}}}  , sort=A00, description={Reynolds number based on free stream velocity \gls{Uinf}}}
+\newglossaryentry{Reref}{ name={\ensuremath{Re_{\text{ref}}}}  , sort=A00, description={Reynolds number based on reference velocity \gls{Uref}}}
+
+% iteration
+
 %  Numerics
 \newglossaryentry{cfl}{name={\ensuremath{\text{CFL}}}, type=print, sort=common, description={Courant Friedrich Levy number}}
+\newglossaryentry{CFL}{name={\ensuremath{\text{CFL}}}, type=print, sort=common, description={Courant Friedrich Levy number}}
 
 % non-dimensional quantities
 \newglossaryentry{Ug2}{  name={  \ensuremath{U_g^\ast}}, type=print, sort=common, description={Reference gravitational velocity typically used in spheres} }
@@ -64,8 +80,12 @@
 %-------------------------------------------------------------------------------
 % Reference magnitudes
 \newglossaryentry{Uinf}{ name={\ensuremath{U_\infty}}, sort=A00, description={Free stream velocity} }
-\newglossaryentry{Lref}{ name={\ensuremath{L}}       , sort=A00, description={Reference length} }
+\newglossaryentry{Uinf;sq}{ name={\ensuremath{U^2_\infty}}, sort=A00, description={Free stream velocity squared} }
+\newglossaryentry{Lref}{ name={\ensuremath{L_{\text{ref}}}}       , sort=A00, description={Reference length} }
 \newglossaryentry{Uinf_du}{name={\ensuremath{U_\infty^{\text{Du\v{s}ek}}}} , type=print, sort=A00, description={Free stream velocity obtained with Spectral Element code from Du\v{s}ek}} 
+
+\newglossaryentry{Lref;sq}{ name={\ensuremath{L^2_{\text{ref}}}}       , sort=A00, description={Reference length} }
+\newglossaryentry{Lref;cb}{ name={\ensuremath{L^3_{\text{ref}}}}       , sort=A00, description={Reference length} }
 
 \newglossaryentry{Lr}{   name={\ensuremath{L_r}}                      , type=print, sort=K00, description={Recirculation length}}
 \newglossaryentry{Lr_du}{name={\ensuremath{L_r^{\text{Du\v{s}ek}}}}   , type=print, sort=K00, description={Recirculation length obtained with Spectral Element code from Du\v{s}ek}} 
@@ -97,6 +117,12 @@
 \newglossaryentry{dvi}{ name={\ensuremath{\Delta v_i}}  , sort=A00, description={Volume associated to a marker Lagrangian Marker}}
 \newglossaryentry{da}{ name={\ensuremath{\Delta a}}  , sort=A00, description={Marker volume}}
 \newglossaryentry{dai}{ name={\ensuremath{\Delta a_i}}  , sort=A00, description={Marker volume}}
+
+
+
+\newglossaryentry{dtg}{  name={\ensuremath{\Delta t_g}}         , sort=A00, description={Time}}
+\newglossaryentry{dtref}{  name={\ensuremath{\Delta t_\text{ref}}}         , sort=A00, description={Time}}
+\newglossaryentry{dtinf}{  name={\ensuremath{\Delta t_\infty}}         , sort=A00, description={Time}}
 
 
 % resolution
@@ -207,19 +233,42 @@ description={Angular momentum}}
 \newglossaryentry{xi_k}{name={\ensuremath{{ \xi_k    }}}                , type=print, sort=M20, description={Coefficient from Runge-Kutta scheme at sub-stage $k$}}
 
 
+\newglossaryentry{Oxyz}{name={\ensuremath{O_{xyz}}}      , sort=A00, description={Reference coordinate system}}
+\newglossaryentry{Oxyz_x}{name={\ensuremath{x}}          , sort=A00, description={$x$ axis of reference coordinate system}}
+\newglossaryentry{Oxyz_y}{name={\ensuremath{y}}          , sort=A00, description={$y$ axis of reference coordinate system}}
+\newglossaryentry{Oxyz_z}{name={\ensuremath{z}}          , sort=A00, description={$z$ axis of reference coordinate system}}
+\newglossaryentry{Oxyz_vx}{name={\ensuremath{\vec{x}}}          , sort=A00, description={$x$ axis of reference coordinate system}}
 
-\newglossaryentry{Ofix}{name={\ensuremath{O_{xyz}^\text{fix}}}, sort=A00, description={Reference coordinate system where fluid is at rest in the absence of particles}}
-\newglossaryentry{Oxyz}{name={\ensuremath{O_{xyz}}}           , sort=A00, description={Reference coordinate system}}
 \newglossaryentry{Ocode}{name={\ensuremath{O^c_{xyz}}}        , sort=A00, description={Reference coordinate system in which equations are solved.}}
-\newglossaryentry{Osett}{name={\ensuremath{O^s_{xyz}}}        , sort=A00, description={Reference coordinate system in which equations are solved.}}
+\newglossaryentry{Ocode_x}{name={\ensuremath{x_c}}          , sort=A00, description={$x$ axis of reference coordinate system}}
+\newglossaryentry{Ocode_y}{name={\ensuremath{y_c}}          , sort=A00, description={$y$ axis of reference coordinate system}}
+\newglossaryentry{Ocode_z}{name={\ensuremath{z_c}}          , sort=A00, description={$z$ axis of reference coordinate system}}
+
 \newglossaryentry{Obody}{name={\ensuremath{O^b_{xyz}}}        , sort=A00, description={Reference coordinate system attached to the body}}
 \newglossaryentry{Obody_i}{name={\ensuremath{O^{b,i}_{xyz}}}  , sort=A00, description={Reference coordinate system attached to the particle $i$}}
+\newglossaryentry{Obody_vx}{name={\ensuremath{\vec{x}_b}}          , sort=A00, description={$x$ axis of reference coordinate system}}
+\newglossaryentry{Obody_x}{name={\ensuremath{x_b}}          , sort=A00, description={$x$ axis of reference coordinate system}}
+\newglossaryentry{Obody_y}{name={\ensuremath{y_b}}          , sort=A00, description={$y$ axis of reference coordinate system}}
+\newglossaryentry{Obody_z}{name={\ensuremath{z_b}}          , sort=A00, description={$z$ axis of reference coordinate system}}
+\newglossaryentry{Obody_i_x}{name={\ensuremath{x_{b,i}}}          , sort=A00, description={$x$ axis of reference coordinate system}}
+\newglossaryentry{Obody_i_y}{name={\ensuremath{y_{b,i}}}          , sort=A00, description={$y$ axis of reference coordinate system}}
+\newglossaryentry{Obody_i_z}{name={\ensuremath{z_{b,i}}}          , sort=A00, description={$z$ axis of reference coordinate system}}
+
+\newglossaryentry{Obody_x;sq}{name={\ensuremath{x_b^2}}          , sort=A00, description={$x$ axis of reference coordinate system}}
+\newglossaryentry{Obody_y;sq}{name={\ensuremath{y_b^2}}          , sort=A00, description={$y$ axis of reference coordinate system}}
+\newglossaryentry{Obody_z;sq}{name={\ensuremath{z_b^2}}          , sort=A00, description={$z$ axis of reference coordinate system}}
+
+\newglossaryentry{Ofix}{name={\ensuremath{O_{xyz}^\text{fix}}}, sort=A00, description={Reference coordinate system where fluid is at rest in the absence of particles}}
+\newglossaryentry{Osett}{name={\ensuremath{O^s_{xyz}}}        , sort=A00, description={Reference coordinate system in which equations are solved.}}
 \newglossaryentry{Oixyz}{name={\ensuremath{O^i_{xyz}}}        , sort=A00, description={Reference coordinate system travelling with velocity \vec{U}_i}}
 \newglossaryentry{Orot}{name={\ensuremath{O_{xyz}^\text{rot}}}, sort=A00, description={Reference frame fixed to particle}}
 
 \newglossaryentry{ex}{   name={\ensuremath{\vec{e}_{x}}},       type=print, sort=J00, description={Particle's velocity}}
 \newglossaryentry{ey}{   name={\ensuremath{\vec{e}_{y}}},       type=print, sort=J00, description={Particle's velocity}}
 \newglossaryentry{ez}{   name={\ensuremath{\vec{e}_{z}}},       type=print, sort=J00, description={Particle's velocity}}
+\newglossaryentry{ex_c}{   name={\ensuremath{\vec{e}^c_x}},       type=print, sort=J00, description={Unitary vector in the $x$ code axis}}
+\newglossaryentry{ey_c}{   name={\ensuremath{\vec{e}^c_y}},       type=print, sort=J00, description={Unitary vector in the $y$ code axis}}
+\newglossaryentry{ez_c}{   name={\ensuremath{\vec{e}^c_z}},       type=print, sort=J00, description={Unitary vector in the $z$ code axis}}
 
 % rotations
 \newglossaryentry{Rot}{name={\ensuremath{R}}, sort=A00, description={Rotation matrix}}
@@ -289,5 +338,30 @@ description={Position vector in the Lagrangian frame}}
 \newglossaryentry{Roxox}{   name={\ensuremath{R_{\omega_{px}\hspace{-0.5mm} \omega_{px}}}}           , sort=B00, description={Autocorrelation of velocities uu}}
 \newglossaryentry{Royoy}{   name={\ensuremath{R_{\omega_{py}\hspace{-0.5mm} \omega_{py}}}}           , sort=B00, description={Autocorrelation of velocities uu}}
 \newglossaryentry{Rozoz}{   name={\ensuremath{R_{\omega_{pz}\hspace{-0.5mm} \omega_{pz}}}}           , sort=B00, description={Autocorrelation of velocities uu}}
+
+
+
+\newglossaryentry{Reinf_s}{ name={\ensuremath{Re^s_\infty}}  , sort=A00, description={Reynolds number based on inference velocity \gls{Uinf}}}
+\newglossaryentry{Reinf_sp1}{ name={\ensuremath{Re^{s+1}_\infty}}  , sort=A00, description={Reynolds number based on inference velocity \gls{Uinf}}}
+\newglossaryentry{Reref_s}{ name={\ensuremath{Re^s_{\text{ref}}}}  , sort=A00, description={Reynolds number based on reference velocity \gls{Uref}}}
+\newglossaryentry{Reref_sp1}{ name={\ensuremath{Re^{s+1}_{\text{ref}}}}  , sort=A00, description={Reynolds number based on reference velocity \gls{Uref}}}
+\newglossaryentry{dt_s}{  name={\ensuremath{\Delta t^s}}         , sort=A00, description={Time}}
+\newglossaryentry{g_s}{      name={\ensuremath{g^s}}       , type=print, sort=common, description={Gravitational accelartion modulus $\gls{g}=\left| \gls{vg} \right|$}}
+
+\newglossaryentry{Ug_s}{   name={\ensuremath{U^s_g}}       , type=print, sort=common, description={Gravitational reference velocity} }
+\newglossaryentry{Ug_sp1}{   name={\ensuremath{U^{s+1}_g}}       , type=print, sort=common, description={Gravitational reference velocity} }
+\newglossaryentry{Ug_sp1;sq}{   name={\ensuremath{U^{s+1 2}_g}}       , type=print, sort=common, description={Gravitational reference velocity} }
+
+\newglossaryentry{T}{   name={\ensuremath{T}}            , type=print, sort=common, description={Time interval accumulated} }
+\newglossaryentry{Tref}{name={\ensuremath{T_\text{ref}}} , type=print, sort=common, description={Time interval in reference units} }
+\newglossaryentry{Tg}{  name={\ensuremath{T_g}}          , type=print, sort=common, description={Time interval in gravitaional units} }
+%
+\newglossaryentry{T0}{    name={\ensuremath{T_0}}         , type=print, sort=common, description={Startin time of a simulation} }
+\newglossaryentry{Ts}{    name={\ensuremath{T^s}}         , type=print, sort=common, description={Time interval of one run} }
+\newglossaryentry{Trefs}{ name={\ensuremath{T^s_\text{ref}}}, type=print, sort=common, description={Time interval of one run} }
+\newglossaryentry{Tgs}{   name={\ensuremath{T^s_g}}         , type=print, sort=common, description={Time interval of one run} }
+\newglossaryentry{Tacc}{  name={\ensuremath{T}}          , type=print, sort=common, description={Time interval in gravitaional units} }
+\newglossaryentry{Tgacc}{  name={\ensuremath{T_g}}          , type=print, sort=common, description={Time interval in gravitaional units} }
+\newglossaryentry{Trefacc}{name={\ensuremath{T_\text{ref}}}          , type=print, sort=common, description={Time interval in gravitaional units} }
 
 \endinput

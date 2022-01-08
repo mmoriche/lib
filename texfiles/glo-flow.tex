@@ -30,6 +30,8 @@
 \newglossaryentry{vu_c_z_mf}{name={  \ensuremath{\avgFluid{w_c}}}         , type=print, sort=E00, description={$z$ average fluid velocity}}
 % velocity
 \newglossaryentry{vu}{name={\ensuremath{\vec{u}}}                        , type=print, sort=E00, description={Velocity field vector in the Eulerian frame}}
+\newglossaryentry{vu_i}{name={\ensuremath{u_i}}                            , type=print, sort=E00, description={$i$ component of Velocity field vector}}
+\newglossaryentry{vu_j}{name={\ensuremath{u_j}}                            , type=print, sort=E00, description={$j$ component of Velocity field vector}}
 \newglossaryentry{vu_x}{name={\ensuremath{u}}                            , type=print, sort=E00, description={$x$ component of Velocity field vector}}
 \newglossaryentry{vu_y}{name={\ensuremath{v}}                            , type=print, sort=E00, description={$y$ component of Velocity field vector}}
 \newglossaryentry{vu_z}{name={\ensuremath{w}}                            , type=print, sort=E00, description={$z$ component of Velocity field vector}}
@@ -50,6 +52,8 @@
 \newglossaryentry{vu_x_sqmf}{name={\ensuremath{\langle u\,u\rangle_f}} , type=print, sort=E00, description={$x$ average fluid velocity}}
 \newglossaryentry{vu_y_sqmf}{name={\ensuremath{\langle v\,v\rangle_f}} , type=print, sort=E00, description={$y$ average fluid velocity}}
 \newglossaryentry{vu_z_sqmf}{name={\ensuremath{\langle w\,w\rangle_f}} , type=print, sort=E00, description={$z$ average fluid velocity}}
+
+
 
 \newglossaryentry{vu_x_sf}{name={  \ensuremath{\stdFluid{u}}}         , type=print, sort=E00, description={$x$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
 \newglossaryentry{vu_y_sf}{name={  \ensuremath{\stdFluid{v}}}         , type=print, sort=E00, description={$y$ component of fluid velocity \gls{vu} averaged in the fluid domain}}
@@ -75,6 +79,8 @@
 % EULERIAN FIELD, SCALARS
 \newglossaryentry{te}{   name={\ensuremath{T}}      ,  type=print, sort=E00, description={Temperature field}}
 \newglossaryentry{p}{   name={\ensuremath{p}}      ,  type=print, sort=E00, description={Pressure field}}
+\newglossaryentry{p_s}{   name={\ensuremath{p^s}}      ,  type=print, sort=E00, description={Pressure field}}
+\newglossaryentry{p_sp1}{   name={\ensuremath{p^{s+1}}}      ,  type=print, sort=E00, description={Pressure field}}
 
 
 
@@ -167,11 +173,17 @@
 \newglossaryentry{miibm}{name={\ensuremath{{\cal M}^{(i)}}} , sort=PD01, description={Total sum of volume torque in the IBM of the $i$th particle }}
 
 
+%\newglossaryentry{f:Rww}{    name={\ensuremath{R_{ww}}}, sort=flow, description={Two point autocorrelation function }}
+%\newglossaryentry{f:Ruu}{    name={\ensuremath{R_{uu}}}, sort=flow, description={Two point autocorrelation function }}
+\newglossaryentry{f:Ruuperp}{name={\ensuremath{R^{\perp}_{uu}}}, sort=flow, description={Two point autocorrelation function }}
 \newglossaryentry{f:Rzw}{   name={\ensuremath{R^z_{ww}}},          , sort=flow, description={Two point autocorrelation function }}
 \newglossaryentry{f:Rhw}{name={\ensuremath{R^{h}_{ww}}},          , sort=flow, description={Two point autocorrelation function }}
 \newglossaryentry{f:Rzu}{   name={\ensuremath{R^z_{uu}}},          , sort=flow, description={Two point autocorrelation function }}
 \newglossaryentry{f:Rh1u}{   name={\ensuremath{R^{h_{||}}_{uu}}},          , sort=flow, description={Two point autocorrelation function }}
 \newglossaryentry{f:Rh2u}{  name={\ensuremath{R^{h_\perp}_{uu}}},          , sort=flow, description={Two point autocorrelation function }}
+
+\newglossaryentry{f:Ruu}{   name={\ensuremath{R_{uu}}},  sort=flow, description={Two point autocorrelation function }}
+\newglossaryentry{f:Rww}{   name={\ensuremath{R_{ww}}},  sort=flow, description={Two point autocorrelation function }}
 
 \newglossaryentry{f:vuhat}{name={\ensuremath{\vec{c}}},          , sort=flow, description={Fourier coefficient (complex)}}
 \newglossaryentry{f:re(vuhat)}{name={\ensuremath{\vec{a}}},          , sort=flow, description={Fourier coefficient (complex)}}
@@ -187,3 +199,29 @@
 \newglossaryentry{f:im(vuhatxyz)}{name={\ensuremath{\vec{b}^{xyz}}},          , sort=flow, description={Fourier coefficient (complex)}}
 
 
+
+\newglossaryentry{nu_s}{     name={\ensuremath{\nu^s}}  , type=print, sort=flow, description={Fluid kinematic viscosity}}
+\newglossaryentry{vu_c_s}{name={\ensuremath{\vec{u}^s_c}}                    , type=print, sort=E00, description={Velocity field vector in the Eulerian frame that travels with velocity Ui}}
+\newglossaryentry{vu_c_sp1}{name={\ensuremath{\vec{u}^{s+1}_c}}                    , type=print, sort=E00, description={Velocity field vector in the Eulerian frame that travels with velocity Ui}}
+
+\newglossaryentry{vu_s}{name={\ensuremath{\vec{u}^s}}                        , type=print, sort=E00, description={Velocity field vector in the Eulerian frame}}
+\newglossaryentry{vu_sp1}{name={\ensuremath{\vec{u}^{s+1}}}                        , type=print, sort=E00, description={Velocity field vector in the Eulerian frame}}
+
+\newglossaryentry{f:Q}{name={\ensuremath{Q}},        sort=B00, description={Q criterion}}
+
+\newglossaryentry{f:vu;filt}{name={\ensuremath{\tilde{\vec{u}}}}                        , type=print, sort=E00, description={Velocity field vector in the Eulerian frame}}
+\newglossaryentry{f:vu_x;filt}{name={\ensuremath{\tilde{u}}}                            , type=print, sort=E00, description={$x$ component of Velocity field vector}}
+\newglossaryentry{f:vu_y;filt}{name={\ensuremath{\tilde{v}}}                           , type=print, sort=E00, description={$y$ component of Velocity field vector}}
+\newglossaryentry{f:vu_z;filt}{name={\ensuremath{\tilde{w}}}                            , type=print, sort=E00, description={$z$ component of Velocity field vector filtered}}
+
+\newglossaryentry{f:vu_z;mmix}{name={\ensuremath{W}}                            , type=print, sort=E00, description={$z$ component of Velocity field vector filtered}}
+
+\newglossaryentry{f:eps}{    name={\ensuremath{\varepsilon}}                , type=print, sort=E00, description={Dissipation}}
+\newglossaryentry{f:eps;avg}{name={\ensuremath{\langle\varepsilon\rangle}}  , type=print, sort=E00, description={Dissipation averaged}}
+
+\newglossaryentry{f:Ek}{    name={\ensuremath{E_k}}                 , type=print, sort=E00, description={Kinetic enegy }}
+\newglossaryentry{f:Ek;avg}{name={\ensuremath{\langle E_k\rangle}}  , type=print, sort=E00, description={Kinetic enegy averaged}}
+\newglossaryentry{f:fibm}{    name={\ensuremath{f^{\text{ibm}}}}                 , type=print, sort=E00, description={IBM forcing }}
+\newglossaryentry{f:fibm;avg}{name={\ensuremath{\langle f^{\text{ibm}} \rangle}}  , type=print, sort=E00, description={IBM forcing}}
+
+\newglossaryentry{f:Sij}{name={\ensuremath{S_{ij}}}  , type=print, sort=E00, description={Symmetric rate-of-strain tensor}}

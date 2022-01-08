@@ -16,10 +16,6 @@
 \newglossaryentry{vol_part}{    name={\ensuremath{\Sigma_p}}             ,type=print, ,sort=B00,description={Solid volume fraction}}
 \newglossaryentry{vol_fluid}{   name={\ensuremath{\Sigma_f}}             ,type=print, ,sort=B00,description={Solid volume fraction}}
 
-\newglossaryentry{vxp_c_x}{  name={\ensuremath{{x_{p,c}}}},type=print, sort=J00, description={Ensempble averaged       $x$ component of particle's velocity}}
-\newglossaryentry{vxp_c_y}{  name={\ensuremath{{y_{p,c}}}},type=print, sort=J00, description={Ensempble averaged       $y$ component of particle's velocity}}
-\newglossaryentry{vxp_c_z}{  name={\ensuremath{{z_{p,c}}}},type=print, sort=J00, description={Ensempble averaged       $z$ component of particle's velocity}}
-
 \newglossaryentry{vxp_c_x_mp}{  name={\ensuremath{{\avgParticles{x_{p,c}}}}},type=print, sort=J00, description={Ensempble averaged       $x$ component of particle's velocity}}
 \newglossaryentry{vxp_c_y_mp}{  name={\ensuremath{{\avgParticles{y_{p,c}}}}},type=print, sort=J00, description={Ensempble averaged       $y$ component of particle's velocity}}
 \newglossaryentry{vxp_c_z_mp}{  name={\ensuremath{{\avgParticles{z_{p,c}}}}},type=print, sort=J00, description={Ensempble averaged       $z$ component of particle's velocity}}
@@ -79,88 +75,91 @@
 %\newglossaryentry{vupri_yz_mp}{  name={\ensuremath{{\langle v^{(i)}_{pr} \rangle_p}}},type=print, sort=J00, description={Ensempble averaged       $y$ component of particle's velocity}}
 %\newglossaryentry{vupri_yz_sp}{  name={\ensuremath{{\avgParticles{{w'^{(i)}_{pr} w'^{(i)}_{pr}}}^{1/2}}}},type=print, sort=J00, description={Ensempble averaged       $z$ component of particle's velocity}}
 
+\newglossaryentry{vupr_z_mp;fixed}{  name={\ensuremath{{\langle w^0_{pr} \rangle_p}}},type=print, sort=J00, description={Ensempble averaged       $z$ component of particle's velocity}}
+
 \newglossaryentry{vup_ws}{  name={\ensuremath{w_s}} ,             type=print, sort=multiparticle, description={Mean settling velocity of the solid phase}}
 \newglossaryentry{vup_wstd}{name={\ensuremath{w_s^{\text{std}}}} ,type=print, sort=multiparticle, description={Mean settling velocity of the solid phase}}
 \newglossaryentry{vup_ul}{  name={\ensuremath{u_l}} ,             type=print, sort=multiparticle, description={Mean lateral velocity of the solid phase}}
 \newglossaryentry{vup_ustd}{name={\ensuremath{u_l^{\text{std}}}} ,type=print, sort=multiparticle, description={Mean lateral velocity of the solid phase}}
+
+\newglossaryentry{mp:vup_ws;abs}{  name={\ensuremath{\left|w_s\right|}} ,             type=print, sort=multiparticle, description={Mean settling velocity of the solid phase}}
 
 \newglossaryentry{lmin}{    name={\ensuremath{l_{\text{min}}}}                ,type=print, sort=J00, description={Minimum distance to the rest of the particles}}
 \newglossaryentry{limin}{   name={\ensuremath{l^{(i)}_{\text{min}}}}          ,type=print, sort=J00, description={Minimum distance to the rest of the particles}}
 \newglossaryentry{lmin_mp}{  name={\ensuremath{\avgParticles{l_{\text{min}}}}} ,type=print, sort=J00, description={Mean settling velocity of the solid phase}}
 
 
-\newglossaryentry{mp:f}{      name={\ensuremath{\vec{F}      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force}}
-\newglossaryentry{mp:f_x}{    name={\ensuremath{F_x      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force}}
-\newglossaryentry{mp:f_y}{    name={\ensuremath{F_y      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force}}
-\newglossaryentry{mp:f_z}{    name={\ensuremath{F_z      }}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force}}
 \newglossaryentry{mp:fi}{     name={\ensuremath{\vec{F}^{(i)}}}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force acting on $i$th particle}}
 \newglossaryentry{mp:fi_x}{   name={\ensuremath{F_x^{(i)}}}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force acting on $i$th particle}}
 \newglossaryentry{mp:fi_y}{   name={\ensuremath{F_y^{(i)}}}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force acting on $i$th particle}}
 \newglossaryentry{mp:fi_z}{   name={\ensuremath{F_z^{(i)}}}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force acting on $i$th particle}}
 \newglossaryentry{mp:fli}{    name={\ensuremath{\vec{F_L}^{(i)}}}             ,type=print, ,sort=multiparticle,description={Lagrangian (ibm) Force acting on $i$th particle}}
 
-\newglossaryentry{mp:vp}{     name={\ensuremath{V_p}}                         ,type=print, ,sort=multiparticle,description={Particle volume}}
 \newglossaryentry{mp:vpi}{    name={\ensuremath{V^{(i)}_p}}                   ,type=print, ,sort=multiparticle,description={Volume of $i$th particle}}
 
-\newglossaryentry{mp:cd}{     name={\ensuremath{C_D   }}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient}}
 \newglossaryentry{mp:cdi}{    name={\ensuremath{C_D^{(i)}  }}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient of $i$th particle}}
 \newglossaryentry{mp:cdi_mp}{ name={\ensuremath{\avgParticles{C_D^{(i)}}}}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient of $i$th particle}}
 \newglossaryentry{mp:cdi_sp}{ name={\ensuremath{\stdParticles{{C_D^{(i)}}}}}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient of $i$th particle}}
 \newglossaryentry{mp:cdm}{     name={\ensuremath{\overline{C}_D   }}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient}}
 \newglossaryentry{mp:cds}{     name={\ensuremath{C^{\text{std}}_D}}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient}}
 
-\newglossaryentry{mp:cl}{     name={\ensuremath{C_L   }}                    ,type=print, ,sort=multiparticle,description={Non-dimensional lift coefficient}}
 \newglossaryentry{mp:cli}{    name={\ensuremath{C_L^{(i)}  }}               ,type=print, ,sort=multiparticle,description={Non-dimensional lift coefficient of $i$th particle}}
 \newglossaryentry{mp:cli_mp}{ name={\ensuremath{\avgParticles{C_L^{(i)}}}}  ,type=print, ,sort=multiparticle,description={Ensemble average over the particles of non-dimensional lift coefficient of $i$th particle}}
 \newglossaryentry{mp:cli_sp}{ name={\ensuremath{\stdParticles{{C_L^{(i)}}}}}  ,type=print, ,sort=multiparticle,description={Ensemble average over the particles of non-dimensional lift coefficient of $i$th particle}}
 \newglossaryentry{mp:clm}{    name={\ensuremath{\overline{C}_L   }}                    ,type=print, ,sort=multiparticle,description={Non-dimensional lift coefficient}}
 \newglossaryentry{mp:cls}{    name={\ensuremath{C^{\text{std}}_L   }}                    ,type=print, ,sort=multiparticle,description={Non-dimensional lift coefficient}}
 
-\newglossaryentry{mp:cs}{     name={\ensuremath{C_S   }}                    ,type=print, ,sort=multiparticse,description={Non-dimensional lift coefficient}}
-\newglossaryentry{mp:csi}{    name={\ensuremath{C_S^{(i)}  }}               ,type=print, ,sort=multiparticse,description={Non-dimensional lift coefficient of $i$th particse}}
-\newglossaryentry{mp:csi_mp}{ name={\ensuremath{\avgParticles{C_S^{(i)}}}}  ,type=print, ,sort=multiparticse,description={Ensemble average over the particses of non-dimensional lift coefficient of $i$th particse}}
-\newglossaryentry{mp:csi_sp}{ name={\ensuremath{\stdParticles{{C_S^{(i)}}}}}  ,type=print, ,sort=multiparticse,description={Ensemble average over the particses of non-dimensional lift coefficient of $i$th particse}}
-\newglossaryentry{mp:csm}{    name={\ensuremath{\overline{C}_S   }}                    ,type=print, ,sort=multiparticse,description={Non-dimensional lift coefficient}}
-\newglossaryentry{mp:css}{    name={\ensuremath{C^{\text{std}}_S   }}                    ,type=print, ,sort=multiparticse,description={Non-dimensional lift coefficient}}
+\newglossaryentry{mp:csi}{    name={\ensuremath{C_S^{(i)}  }}               ,type=print, ,sort=multiparticles,description={Non-dimensional lift coefficient of $i$th particse}}
+\newglossaryentry{mp:csi_mp}{ name={\ensuremath{\avgParticles{C_S^{(i)}}}}  ,type=print, ,sort=multiparticles,description={Ensemble average over the particses of non-dimensional lift coefficient of $i$th particse}}
+\newglossaryentry{mp:csi_sp}{ name={\ensuremath{\stdParticles{{C_S^{(i)}}}}}  ,type=print, ,sort=multiparticles,description={Ensemble average over the particses of non-dimensional lift coefficient of $i$th particse}}
+\newglossaryentry{mp:csm}{    name={\ensuremath{\overline{C}_S   }}                    ,type=print, ,sort=multiparticles,description={Non-dimensional lift coefficient}}
+\newglossaryentry{mp:css}{    name={\ensuremath{C^{\text{std}}_S   }}                    ,type=print, ,sort=multiparticles,description={Non-dimensional lift coefficient}}
 
-\newglossaryentry{mp:vvor}{    name={\ensuremath{V_v}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvori}{   name={\ensuremath{V^{(i)}_v}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvori_m}{ name={\ensuremath{\langle V^{(i)}_v\rangle}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvor_m}{ name={\ensuremath{\langle V_v\rangle}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort}{    name={\ensuremath{\tilde{V}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvorti}{    name={\ensuremath{\tilde{V}_i}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvor}{    name={\ensuremath{V_v}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvori}{   name={\ensuremath{V^{(i)}_v}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvori_m}{ name={\ensuremath{\langle V^{(i)}_v\rangle}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvor_m}{  name={\ensuremath{\langle V_v\rangle}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvor_mp}{ name={\ensuremath{\avgParticles{ V_v}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort}{   name={\ensuremath{\tilde{V}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvorti}{  name={\ensuremath{\tilde{V}_i}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_m}{ name={\ensuremath{\langle \gls{mp:vvort} \rangle}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_s}{ name={\ensuremath{\langle \gls{mp:vvorti} \gls{mp:vvorti} \rangle^{1/2}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_s;rnd}{ name={\ensuremath{\langle \gls{mp:vvorti} \gls{mp:vvorti} \rangle_\text{rnd}^{1/2}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
 
-\newglossaryentry{mp:vvort_min}{ name={\ensuremath{\tilde{V}_\text{min}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_max}{ name={\ensuremath{\tilde{V}_\text{max}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_mid}{ name={\ensuremath{\tilde{V}_\text{*}}}                      ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_min}{ name={\ensuremath{\tilde{V}_\text{min}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_max}{ name={\ensuremath{\tilde{V}_\text{max}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_mid}{ name={\ensuremath{\tilde{V}_\text{*}}}                      ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
 
-\newglossaryentry{mp:vvort_ee}{ name={\ensuremath{\tilde{V}_{e}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_eei}{  name={\ensuremath{\tilde{V}_{e_i}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_eeip1}{name={\ensuremath{\tilde{V}_{e_{i+1}}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_bb}{  name={\ensuremath{\Delta\tilde{V}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_bbi}{  name={\ensuremath{\Delta\tilde{V}_{i}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_bblim}{name={\ensuremath{\Delta\tilde{V}_{\text{lim}}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_bbmid}{name={\ensuremath{\Delta\tilde{V}_{*}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_ee}{ name={\ensuremath{\tilde{V}_{e}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_eei}{  name={\ensuremath{\tilde{V}_{e_i}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_eeip1}{name={\ensuremath{\tilde{V}_{e_{i+1}}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_bb}{  name={\ensuremath{\Delta\tilde{V}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_bbi}{  name={\ensuremath{\Delta\tilde{V}_{i}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_bblim}{name={\ensuremath{\Delta\tilde{V}_{\text{lim}}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_bbmid}{name={\ensuremath{\Delta\tilde{V}_{*}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
 % detail edges
-\newglossaryentry{mp:vvort_ee1}{name={\ensuremath{\tilde{V}_{e_1}}}                    , ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_ee2}{name={\ensuremath{\tilde{V}_{e_2}}}                    , ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_ee3}{name={\ensuremath{\tilde{V}_{e_3}}}                    , ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_eeNl}{name={\ensuremath{\tilde{V}_{e_{N_l}}}}                    , ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_eeNlm1}{name={\ensuremath{\tilde{V}_{e_{N_l-1}}}}                    , ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_eeNlp1}{name={\ensuremath{\tilde{V}_{e_{N_l+1}}}}                    , ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_eeNlp2}{name={\ensuremath{\tilde{V}_{e_{N_l+2}}}}                    , ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_eeNlp3}{name={\ensuremath{\tilde{V}_{e_{N_l+3}}}}                    , ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_eeNlpNu}{  name={\ensuremath{\tilde{V}_{e_{N_l+N_u}}}}                    , ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_eeNlpNum1}{name={\ensuremath{\tilde{V}_{e_{N_l+N_u-1}}}}                    , ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_eeNlpNup1}{name={\ensuremath{\tilde{V}_{e_{N_l+N_u+1}}}}                    , ,sort=multiparticse,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_ee1}{name={\ensuremath{\tilde{V}_{e_1}}}                    , ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_ee2}{name={\ensuremath{\tilde{V}_{e_2}}}                    , ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_ee3}{name={\ensuremath{\tilde{V}_{e_3}}}                    , ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_eeNl}{name={\ensuremath{\tilde{V}_{e_{N_l}}}}                    , ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_eeNlm1}{name={\ensuremath{\tilde{V}_{e_{N_l-1}}}}                    , ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_eeNlp1}{name={\ensuremath{\tilde{V}_{e_{N_l+1}}}}                    , ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_eeNlp2}{name={\ensuremath{\tilde{V}_{e_{N_l+2}}}}                    , ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_eeNlp3}{name={\ensuremath{\tilde{V}_{e_{N_l+3}}}}                    , ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_eeNlpNu}{  name={\ensuremath{\tilde{V}_{e_{N_l+N_u}}}}                    , ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_eeNlpNum1}{name={\ensuremath{\tilde{V}_{e_{N_l+N_u-1}}}}                    , ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_eeNlpNup1}{name={\ensuremath{\tilde{V}_{e_{N_l+N_u+1}}}}                    , ,sort=multiparticles,description={Vorono\"i cell volume}}
 
-\newglossaryentry{mp:vvort_bbl1}{  name={\ensuremath{\Delta\tilde{V}^l_{1}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_bbl2}{  name={\ensuremath{\Delta\tilde{V}^l_{2}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_bblNl}{ name={\ensuremath{\Delta\tilde{V}^l_{N_l}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_bblNlm1}{name={\ensuremath{\Delta\tilde{V}^l_{N_l-1}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_bbu1}{  name={\ensuremath{\Delta\tilde{V}^u_{1}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_bbu2}{  name={\ensuremath{\Delta\tilde{V}^u_{2}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_bbuNu}{ name={\ensuremath{\Delta\tilde{V}^u_{N_u}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
-\newglossaryentry{mp:vvort_bbuNum1}{name={\ensuremath{\Delta\tilde{V}^u_{N_u-1}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_bbl1}{  name={\ensuremath{\Delta\tilde{V}^l_{1}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_bbl2}{  name={\ensuremath{\Delta\tilde{V}^l_{2}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_bblNl}{ name={\ensuremath{\Delta\tilde{V}^l_{N_l}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_bblNlm1}{name={\ensuremath{\Delta\tilde{V}^l_{N_l-1}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_bbu1}{  name={\ensuremath{\Delta\tilde{V}^u_{1}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_bbu2}{  name={\ensuremath{\Delta\tilde{V}^u_{2}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_bbuNu}{ name={\ensuremath{\Delta\tilde{V}^u_{N_u}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_bbuNum1}{name={\ensuremath{\Delta\tilde{V}^u_{N_u-1}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
 
-\newglossaryentry{mp:vvort_bb_min}{  name={\ensuremath{\Delta\tilde{V}_{\text{min}}}}                    ,type=print, ,sort=multiparticse,description={Vorono\"i cell volume}}
+\newglossaryentry{mp:vvort_bb_min}{  name={\ensuremath{\Delta\tilde{V}_{\text{min}}}}                    ,type=print, ,sort=multiparticles,description={Vorono\"i cell volume}}
+
+\newglossaryentry{mp:tkiss}{  name={\ensuremath{t_{cI}}}               ,type=print, sort=multiparticles,description={Time to first collision in DKT }}
+\newglossaryentry{mp:tinter}{ name={\ensuremath{t_{cR}}}               ,type=print, sort=multiparticles,description={Time interacting in DKT }}
