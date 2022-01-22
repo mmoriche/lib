@@ -1,0 +1,21 @@
+\ProvidesPackage{mydiff}
+
+\RequirePackage{mycolors}
+\RequirePackage{mycollect}
+\RequirePackage{mylistings}
+
+%\usepackage[svgnames]{xcolor}
+\definecolor{diffstart}{rgb}{0.5,0.5,0.5}
+\definecolor{diffincl}{rgb}{0,0.6,0}
+\definecolor{diffrem}{rgb}{1,0,0}
+
+\lstdefinelanguage{diff}{
+  style=mystyle,
+  %basicstyle=\ttfamily\small,
+  morecomment=[f][\color{diffstart}]{@@},
+  morecomment=[f][\color{diffincl}]{+\ },
+  morecomment=[f][\color{diffrem}]{-\ },
+}
+
+ 
+\endinput
