@@ -1,7 +1,10 @@
 
 % average operator for particles
 \newcommand\avgParticles[1]{\langle #1 \rangle_p}
+\newcommand\avgParticlesTime[1]{\langle #1 \rangle_{pt}}
 \newcommand\stdParticles[1]{\langle #1'#1' \rangle^{1/2}_p}
+\newcommand\stdParticlesTime[1]{\langle #1'#1' \rangle^{1/2}_{pt}}
+\newcommand\avgTime[1]{\langle #1 \rangle_t}
 
 \newglossaryentry{Wc}{     name={\ensuremath{W_{c}}}            ,type=print, ,sort=B00,description={Settling velocity (Positive downwards of a single particle)}}
 \newglossaryentry{ws}{     name={\ensuremath{w_{s}}}            ,type=print, ,sort=B00,description={Mean settling particle velocity}}
@@ -72,6 +75,14 @@
 \newglossaryentry{vupri_x_sp}{  name={\ensuremath{{\avgParticles{{u'^{(i)}_{pr} u'^{(i)}_{pr}}}^{1/2}}}},type=print, sort=J00, description={Ensempble averaged       $x$ component of particle's velocity}}
 \newglossaryentry{vupri_y_sp}{  name={\ensuremath{{\avgParticles{{v'^{(i)}_{pr} v'^{(i)}_{pr}}}^{1/2}}}},type=print, sort=J00, description={Ensempble averaged       $y$ component of particle's velocity}}
 \newglossaryentry{vupri_z_sp}{  name={\ensuremath{{\avgParticles{{w'^{(i)}_{pr} w'^{(i)}_{pr}}}^{1/2}}}},type=print, sort=J00, description={Ensempble averaged       $z$ component of particle's velocity}}
+
+\newglossaryentry{vomep_x_mp}{  name={\ensuremath{{\avgParticles{\omega_{px}}}}},type=print, sort=J00, description={Ensempble averaged $x$ component of particle's angular velocity}}
+\newglossaryentry{vomep_y_mp}{  name={\ensuremath{{\avgParticles{\omega_{py}}}}},type=print, sort=J00, description={Ensempble averaged $y$ component of particle's angular velocity}}
+\newglossaryentry{vomep_z_mp}{  name={\ensuremath{{\avgParticles{\omega_{pz}}}}},type=print, sort=J00, description={Ensempble averaged $z$ component of particle's angular velocity}}
+\newglossaryentry{vomepi_x_sp}{  name={\ensuremath{{\avgParticles{{\omega'^{(i)}_{px}\omega'^{(i)}_{px}}}^{1/2}}}},type=print, sort=J00, description={Standard deviation of $x$ component of particle's angular velocity}}
+\newglossaryentry{vomepi_y_sp}{  name={\ensuremath{{\avgParticles{{\omega'^{(i)}_{py}\omega'^{(i)}_{py}}}^{1/2}}}},type=print, sort=J00, description={Standard deviation of $y$ component of particle's angular velocity}}
+\newglossaryentry{vomepi_z_sp}{  name={\ensuremath{{\avgParticles{{\omega'^{(i)}_{pz}\omega'^{(i)}_{pz}}}^{1/2}}}},type=print, sort=J00, description={Standard deviation of $z$ component of particle's angular velocity}}
+
 %\newglossaryentry{vupri_yz_mp}{  name={\ensuremath{{\langle v^{(i)}_{pr} \rangle_p}}},type=print, sort=J00, description={Ensempble averaged       $y$ component of particle's velocity}}
 %\newglossaryentry{vupri_yz_sp}{  name={\ensuremath{{\avgParticles{{w'^{(i)}_{pr} w'^{(i)}_{pr}}}^{1/2}}}},type=print, sort=J00, description={Ensempble averaged       $z$ component of particle's velocity}}
 
@@ -82,12 +93,24 @@
 \newglossaryentry{vup_ul}{  name={\ensuremath{u_l}} ,             type=print, sort=multiparticle, description={Mean lateral velocity of the solid phase}}
 \newglossaryentry{vup_ustd}{name={\ensuremath{u_l^{\text{std}}}} ,type=print, sort=multiparticle, description={Mean lateral velocity of the solid phase}}
 
+
+\newglossaryentry{mp:vomep_z;avg}{name={\ensuremath{\omega_v}} ,type=print, sort=multiparticle, description={Average value of vertical angular velocity of the solid phase}}
+\newglossaryentry{mp:vomep_l;avg}{name={\ensuremath{\omega_l}} ,type=print, sort=multiparticle, description={Average value of combined lateral angular velocity of the solid phase}}
+\newglossaryentry{mp:vomep_z;std}{name={\ensuremath{\omega_v^{\text{std}}}}  ,type=print, sort=multiparticle, description={Standard deviation of vertical angular velocity of the solid phase}}
+\newglossaryentry{mp:vomep_l;std}{name={\ensuremath{\omega_l^{\text{std}}}}  ,type=print, sort=multiparticle, description={Standard deviation of lateral angular velocity of the solid phase}}
+\newglossaryentry{mp:vomep_z;std_pt}{name={\ensuremath{\avgTime{\gls{mp:vomep_z;std}}}}  ,type=print, sort=multiparticle, description={Standard deviation of vertical angular velocity of the solid phase}}
+\newglossaryentry{mp:vomep_l;std_pt}{name={\ensuremath{\avgTime{\gls{mp:vomep_l;std}}}}  ,type=print, sort=multiparticle, description={Standard deviation of lateral angular velocity of the solid phase}}
+
 \newglossaryentry{mp:vup_ws;abs}{  name={\ensuremath{\left|w_s\right|}} ,             type=print, sort=multiparticle, description={Mean settling velocity of the solid phase}}
+
+\newglossaryentry{mp:vup_ws;avg}{  name={\ensuremath{\avgTime{\gls{vup_ws}}}} ,             type=print, sort=multiparticle, description={Mean settling velocity of the solid phase}}
+\newglossaryentry{mp:vup_ul;avg}{  name={\ensuremath{\avgTime{\gls{vup_ul}}}} ,             type=print, sort=multiparticle, description={Mean settling velocity of the solid phase}}
+\newglossaryentry{mp:vup_wstd;avg}{name={\ensuremath{\avgTime{\gls{vup_wstd}}}} ,             type=print, sort=multiparticle, description={Mean settling velocity of the solid phase}}
+\newglossaryentry{mp:vup_ustd;avg}{name={\ensuremath{\avgTime{\gls{vup_ustd}}}} ,             type=print, sort=multiparticle, description={Mean settling velocity of the solid phase}}
 
 \newglossaryentry{lmin}{    name={\ensuremath{l_{\text{min}}}}                ,type=print, sort=J00, description={Minimum distance to the rest of the particles}}
 \newglossaryentry{limin}{   name={\ensuremath{l^{(i)}_{\text{min}}}}          ,type=print, sort=J00, description={Minimum distance to the rest of the particles}}
 \newglossaryentry{lmin_mp}{  name={\ensuremath{\avgParticles{l_{\text{min}}}}} ,type=print, sort=J00, description={Mean settling velocity of the solid phase}}
-
 
 \newglossaryentry{mp:fi}{     name={\ensuremath{\vec{F}^{(i)}}}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force acting on $i$th particle}}
 \newglossaryentry{mp:fi_x}{   name={\ensuremath{F_x^{(i)}}}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force acting on $i$th particle}}
@@ -163,3 +186,10 @@
 
 \newglossaryentry{mp:tkiss}{  name={\ensuremath{t_{cI}}}               ,type=print, sort=multiparticles,description={Time to first collision in DKT }}
 \newglossaryentry{mp:tinter}{ name={\ensuremath{t_{cR}}}               ,type=print, sort=multiparticles,description={Time interacting in DKT }}
+
+\newglossaryentry{mp:az}{ name={\ensuremath{\varphi_{z}}}               ,type=print, sort=multiparticles,description={Angle between symmetry axis and vertical axix}}
+\newglossaryentry{mp:az;avg}{ name={\ensuremath{\avgParticles{\varphi_{z}}}}               ,type=print, sort=multiparticles,description={Angle between symmetry axis and vertical axix}}
+\newglossaryentry{mp:az;std}{ name={\ensuremath{\stdParticles{\varphi_{z}}}}               ,type=print, sort=multiparticles,description={Angle between symmetry axis and vertical axix}}
+
+\newglossaryentry{mp:az;avg_pt}{name={\ensuremath{\avgParticlesTime{\varphi_{z}}}}               ,type=print, sort=multiparticles,description={Angle between symmetry axis and vertical axix}}
+\newglossaryentry{mp:az;std_pt}{name={\ensuremath{\stdParticlesTime{\varphi_{z}}}}               ,type=print, sort=multiparticles,description={Angle between symmetry axis and vertical axix}}

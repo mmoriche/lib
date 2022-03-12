@@ -24,7 +24,7 @@ class FigurePro(Figure):
                 tight_layout=None,  # rc figure.autolayout
                 constrained_layout=None,  # rc figure.constrained_layout.use
                 rect=(0.2,0.2,0.7,0.7), ## NEW ARGUMENTS
-                ww=6.0,hh=6.0/1.618,
+                ww=6.0,hh=6.0/1.333,
                 desc="",
                 label=""):
       super().__init__(figsize, dpi, facecolor, edgecolor, linewidth,
