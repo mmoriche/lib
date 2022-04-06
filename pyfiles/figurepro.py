@@ -47,7 +47,13 @@ class FigurePro(Figure):
 
    def mirrorax(self):
       n=len(self.ax2)
-      self.ax2.append(self.add_axes(self.rect, label="%d" % (n,)))
+      #self.ax2.append(self.add_axes(self.rect, label="%d" % (n,)))
+      self.ax2.append(self.ax.twinx())
+      self.ax2[-1].patch.set_alpha(0.0)
+   def mirroray(self):
+      n=len(self.ax2)
+      #self.ax2.append(self.add_axes(self.rect, label="%d" % (n,)))
+      self.ax2.append(self.ax.twiny())
       self.ax2[-1].patch.set_alpha(0.0)
 
    def pgfprint(self,odir='.',frmt='eps',tbm='tbmb',auxfrmt='png',auxleg=True, 
@@ -78,6 +84,12 @@ class FigurePro(Figure):
          self.set_size_inches(4*self.ww,2*self.hh)
          bb=self.ax.get_position()
          self.ax.set_position(Bbox([[0.2,0.2],[0.5,0.8]]))
+         for i1 in range(len(self.ax2)):
+            l=self.ax2[i1].legend(bbox_to_anchor=(1.0,0.0,1,0.5-i1*0.2))
+            #self.set_size_inches(4*self.ww,2*self.hh)
+            bb=self.ax2[i1].get_position()
+            self.ax2[i1].set_position(Bbox([[0.2,0.2],[0.5,0.8]]))
+
       self.savefig(ofnm_fig)
       if auxleg:
          l.remove()
