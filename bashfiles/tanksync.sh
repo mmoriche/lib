@@ -24,7 +24,7 @@
 #
 function tanksync {
 direction=$1
-[ -z $2 ] && casefile=CASEDATA || casefile=$2 
+[ -z $2 ] && casefile=CASEDATA || casefile=CASEDATA-$2 
 
 DATADIR=$PWD
 CASEDATA=${DATADIR}/${casefile}
@@ -42,6 +42,10 @@ while ! [ -f "${CASEDATA}" ]; do
       return 1
    fi
 done
+if [ "$direction" == "edit" ]; then
+   vi $CASEDATA
+   return
+fi
 echo data file : $CASEDATA
 echo ---------------------------------
 cat $CASEDATA
@@ -93,6 +97,13 @@ if [ "$direction" == "get" ]; then
    echo rsync ${bflags}  --exclude="CASEDATA*" --exclude="${casefile}" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
    echo 
    eval rsync ${bflags}  --exclude="CASEDATA*" --exclude="${casefile}" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
+elif [ "$direction" == "dryget" ]; then
+   echo 
+   echo "Checking files to get from remote"
+   echo 
+   echo rsync ${bflags} --dry-run --exclude="CASEDATA*" --exclude="${casefile}" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
+   echo 
+   eval rsync ${bflags} --dry-run --exclude="CASEDATA*" --exclude="${casefile}" ${remotemachine}:${RTANK}/${EX}/ ${TANK}/${EX}/
 elif [ "$direction" == "send" ]; then
    echo 
    echo "Sending files to remote"
@@ -100,8 +111,17 @@ elif [ "$direction" == "send" ]; then
    echo rsync ${sflags}  --exclude="CASEDATA*" --exclude="${casefile}" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
    echo                              
    eval rsync ${sflags}  --exclude="CASEDATA*" --exclude="${casefile}" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
+elif [ "$direction" == "drysend" ]; then
+   echo 
+   echo "Checking files to send to remote"
+   echo 
+   echo rsync ${sflags} --dry-run --exclude="CASEDATA*" --exclude="${casefile}" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
+   echo                              
+   eval rsync ${sflags} --dry-run --exclude="CASEDATA*" --exclude="${casefile}" ${TANK}/${EX}/ ${remotemachine}:${RTANK}/${EX}/
 else
    echo "Either get or send should be specified"
+   echo "  ... or dry versions (dryget, drysend)"
+   echo "  ... or edit"
    return 1
 fi
 return 0
