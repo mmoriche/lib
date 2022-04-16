@@ -24,7 +24,7 @@ class FigurePro(Figure):
                 tight_layout=None,  # rc figure.autolayout
                 constrained_layout=None,  # rc figure.constrained_layout.use
                 rect=(0.2,0.2,0.7,0.7), ## NEW ARGUMENTS
-                ww=6.0,hh=6.0/1.333,
+                ww=6.0,hh=4.5,
                 desc="",
                 label=""):
       super().__init__(figsize, dpi, facecolor, edgecolor, linewidth,
@@ -181,6 +181,8 @@ class FigurePro(Figure):
             README.write(" Figure %d / %s \n" % (self.number,figlabel))
          else:
             README.write(" Figure %d \n" % self.number)
+         README.write(f" ww,hh = {self.ww},{self.hh} \n")
+         README.write(f" ww/hh = {self.ww/self.hh} \n")
          README.write("\n")
          README.write(" %s\n" % self.desc)
          README.write("\n")
@@ -194,7 +196,6 @@ class FigurePro(Figure):
          README.write("\n")
    
    def saveLine2D(self,odir='.',README=None, panel=None):
-      alist=self.ax.get_children()
 
       if len(self.label)>0:
          odir_data="%s/fig_%d-%s_data"  % (odir,self.number,self.label)
@@ -208,6 +209,7 @@ class FigurePro(Figure):
       if not README==None:
          README.write(" ASCII data of Line2D objects from Figure %d:\n" % (self.number,))
 
+      alist=self.ax.get_children()
       for item in alist:
          if item.__class__.__name__ == 'Line2D':
             label=item.get_label()
@@ -224,6 +226,24 @@ class FigurePro(Figure):
                for j in range(n):
                    f.write("%25.15E %25.15E\n" % (x[j], y[j])) 
                f.close()
+      for i in range(len(self.ax2)):
+         alist=self.ax2[i].get_children()
+         for item in alist:
+            if item.__class__.__name__ == 'Line2D':
+               label=item.get_label()
+               if len(label)>0 and not label.startswith('_'): 
+                  header="%s - %s" % (item.get_label(), item.get_color())
+                  ofnm="%s/%s.dat"  % (odir_data, item.get_label().replace(' ','_'))
+                  if not README==None:
+                     README.write(" - %s \n" % (header,))
+                  f=open(ofnm,'w')
+                  f.write("%25s %25s\n" % ("x","y")) 
+                  x=item.get_xdata(orig=False)
+                  y=item.get_ydata(orig=False)
+                  n=x.shape; n=n[0]
+                  for j in range(n):
+                      f.write("%25.15E %25.15E\n" % (x[j], y[j])) 
+                  f.close()
       if not README==None:
          README.write("\n\n")
   
@@ -235,8 +255,9 @@ class FigurePro(Figure):
       self.set_size_inches(self.ww,self.hh)
 
    def addNMarkers(self,label=None,marker='o',nmark=3,dshift=0,props={},xlim=False):
-      if not 'marker' in props.keys(): props['marker']=marker
-      if not 'ls' in props.keys(): props['ls']='none'
+      localprops=props.copy()
+      if not 'marker' in localprops.keys(): localprops['marker']=marker
+      if not 'ls' in localprops.keys(): localprops['ls']='none'
       alist=self.ax.get_children()
       for item in alist:
          if item.__class__.__name__ == 'Line2D':
@@ -263,9 +284,39 @@ class FigurePro(Figure):
                      kk=(kk+ishift)%n
                      ii=jj[0][kk]
                if len(ii)==0:
-                  self.markedLine[newlabel]=self.ax.plot([],[],label=newlabel,**props)
+                  self.markedLine[newlabel]=self.ax.plot([],[],label=newlabel,**localprops)
                else:
-                  self.markedLine[newlabel]=self.ax.plot(x[ii],y[ii],label=newlabel,**props)
+                  self.markedLine[newlabel]=self.ax.plot(x[ii],y[ii],label=newlabel,**localprops)
+      for i in range(len(self.ax2)):
+         alist=self.ax2[i].get_children()
+         for item in alist:
+            if item.__class__.__name__ == 'Line2D':
+               if label==item.get_label() or (label is None and not item.get_label().startswith('_')):
+                  newlabel='%s_marked' % (item.get_label(),)
+                  x=item.get_xdata(orig=False)
+                  y=item.get_ydata(orig=False)
+                  if not xlim:
+                     n=x.shape; n=n[0]
+                     ii=np.linspace(0,n-1,nmark+1,dtype='i')
+                     ii=ii[0:-1]
+                     ishift=int(dshift*n/nmark)
+                     ii=(ii+ishift)%n
+                  else:
+                     xl=self.ax2[i].get_xlim()
+                     jj=np.where( ( x>=xl[0] ) & ( x<=xl[1] ) )
+                     if len(jj[0])==0:
+                        ii=[]
+                     else:
+                        n=len(jj[0])
+                        kk=np.linspace(0,n-1,nmark+1,dtype='i')
+                        kk=kk[0:-1]
+                        ishift=int(dshift*n/nmark)
+                        kk=(kk+ishift)%n
+                        ii=jj[0][kk]
+                  if len(ii)==0:
+                     self.markedLine[newlabel]=self.ax2[i].plot([],[],label=newlabel,**localprops)
+                  else:
+                     self.markedLine[newlabel]=self.ax2[i].plot(x[ii],y[ii],label=newlabel,**localprops)
 
    def removeMarkedLine_all(self):
       for item in self.markedLine.values():
@@ -275,3 +326,42 @@ class FigurePro(Figure):
       newlabel='%s_marked' % (label,)
       item=self.markedLine[newlabel]
       item.pop(0).remove()
+
+   def align_yvalue_around_main(self,val=0.0,iax=0):
+      axref = self.ax;
+      ax    = self.ax2[iax];
+      ylref = axref.get_ylim()
+      yl    = ax.get_ylim()
+      loold=yl[0] 
+      hiold=yl[1] 
+      loref=ylref[0] 
+      hiref=ylref[1] 
+      m=(hiref-val)/(val-loref)
+      # assume 
+      hi=val+(val-loold)*m
+      if hi>hiold: 
+         lo=loold
+      else:
+         hi=hiold
+         lo=val-(hiold-val)/m
+      ax.set_ylim([lo,hi])  
+      return
+   def align_xvalue_around_main(self,val=0.0,iax=0):
+      axref = self.ax;
+      ax    = self.ax2[iax];
+      ylref = axref.get_xlim()
+      yl    = ax.get_xlim()
+      loold=yl[0] 
+      hiold=yl[1] 
+      loref=ylref[0] 
+      hiref=ylref[1] 
+      m=(hiref-val)/(val-loref)
+      # assume 
+      hi=val+(val-loold)*m
+      if hi>hiold: 
+         lo=loold
+      else:
+         hi=hiold
+         lo=val-(hiold-val)/m
+      ax.set_xlim([lo,hi])  
+      return
