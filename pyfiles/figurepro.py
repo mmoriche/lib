@@ -2,7 +2,7 @@ from functools import singledispatch
 import os
 from matplotlib.pyplot import *
 from matplotlib.transforms import Bbox                                                                         
-
+import re
 
 class FigurePro(Figure):
    ax=None
@@ -319,8 +319,12 @@ class FigurePro(Figure):
                      self.markedLine[newlabel]=self.ax2[i].plot(x[ii],y[ii],label=newlabel,**localprops)
 
    def removeMarkedLine_all(self):
-      for item in self.markedLine.values():
-         item.pop(0).remove()
+      keystoremove=[]
+      for key,value in self.markedLine.items():
+         value.pop(0).remove()
+         keystoremove.append(key)
+      for key in keystoremove:
+         self.markedLine.pop(key)
 
    def removeMarkedLine_bylabel(self,label):
       newlabel='%s_marked' % (label,)
@@ -365,3 +369,24 @@ class FigurePro(Figure):
          lo=val-(hiold-val)/m
       ax.set_xlim([lo,hi])  
       return
+
+   def highlight_regex(self,patt): 
+      self.patt = patt
+      p = re.compile(patt)
+      alist=self.ax.get_children()
+      for item in alist:
+         if item.__class__.__name__ == 'Line2D':
+            m = p.match(item.get_label())
+            if m is None:
+               item.oldcolor = item.get_color()
+               item.set_color('0.5')
+   def highlight_reset(self): 
+      p = re.compile(self.patt)
+      alist=self.ax.get_children()
+      for item in alist:
+         if item.__class__.__name__ == 'Line2D':
+            m = p.match(item.get_label())
+            if m is None:
+               item.set_color(item.oldcolor)
+         
+    
