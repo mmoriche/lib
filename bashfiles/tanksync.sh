@@ -51,10 +51,10 @@ echo ---------------------------------
 cat $CASEDATA
 echo ---------------------------------
 
-localtank=`cat  $CASEDATA | grep '^localtank'   | sed 's|^localtank\s*::\s*\(.*\)|\1|g'`
-remote=`cat     $CASEDATA | grep '^remote'      | sed 's|^remote\s*::\s*\(.*\)|\1|g'`
-bflags=`cat     $CASEDATA | grep '^bring_flags' | sed 's|^bring_flags\s*::\s*\(.*\)|\1|g'`
-sflags=`cat     $CASEDATA | grep '^send_flags'  | sed 's|^send_flags\s*::\s*\(.*\)|\1|g'`
+localtank=`cat  $CASEDATA | grep '^localtank'   | sed 's|^localtank *:: *\(.*\)|\1|g'`
+remote=`cat     $CASEDATA | grep '^remote'      | sed 's|^remote *:: *\(.*\)|\1|g'`
+bflags=`cat     $CASEDATA | grep '^bring_flags' | sed 's|^bring_flags *:: *\(.*\)|\1|g'`
+sflags=`cat     $CASEDATA | grep '^send_flags'  | sed 's|^send_flags *:: *\(.*\)|\1|g'`
 aa=(${remote//:/ })
 remotemachine=${aa[0]}
 remotetank=${aa[1]}
