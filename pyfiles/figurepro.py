@@ -370,7 +370,7 @@ class FigurePro(Figure):
       ax.set_xlim([lo,hi])  
       return
 
-   def highlight_regex(self,patt): 
+   def highlight_regex(self,patt,hide='0.5'): 
       self.patt = patt
       p = re.compile(patt)
       alist=self.ax.get_children()
@@ -378,8 +378,10 @@ class FigurePro(Figure):
          if item.__class__.__name__ == 'Line2D':
             m = p.match(item.get_label())
             if m is None:
+               item.oldzorder = item.get_zorder()
                item.oldcolor = item.get_color()
-               item.set_color('0.5')
+               item.set_color(hide)
+               item.set_zorder(item.get_zorder()-0.5)
    def highlight_reset(self): 
       p = re.compile(self.patt)
       alist=self.ax.get_children()
@@ -388,5 +390,6 @@ class FigurePro(Figure):
             m = p.match(item.get_label())
             if m is None:
                item.set_color(item.oldcolor)
+               item.set_zorder(item.oldzorder)
          
     
