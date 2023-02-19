@@ -195,7 +195,7 @@ class FigurePro(Figure):
          README.write("\n")
          README.write("\n")
    
-   def saveLine2D(self,odir='.',README=None, panel=None):
+   def saveLine2D(self,odir='.',labelList=[],README=None, panel=None):
 
       if len(self.label)>0:
          odir_data="%s/fig_%d-%s_data"  % (odir,self.number,self.label)
@@ -213,6 +213,7 @@ class FigurePro(Figure):
       for item in alist:
          if item.__class__.__name__ == 'Line2D':
             label=item.get_label()
+            if len(labelList) > 0 and not label in labelList: continue
             if len(label)>0 and not label.startswith('_'): 
                header="%s - %s" % (item.get_label(), item.get_color())
                ofnm="%s/%s.dat"  % (odir_data, item.get_label().replace(' ','_'))
@@ -231,6 +232,7 @@ class FigurePro(Figure):
          for item in alist:
             if item.__class__.__name__ == 'Line2D':
                label=item.get_label()
+               if len(labelList) > 0 and not label in labelList: continue
                if len(label)>0 and not label.startswith('_'): 
                   header="%s - %s" % (item.get_label(), item.get_color())
                   ofnm="%s/%s.dat"  % (odir_data, item.get_label().replace(' ','_'))
