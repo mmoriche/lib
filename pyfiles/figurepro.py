@@ -1,5 +1,6 @@
 from functools import singledispatch
 import os
+import matplotlib as mpl
 from matplotlib.pyplot import *
 from matplotlib.transforms import Bbox                                                                         
 import re
@@ -67,7 +68,7 @@ class FigurePro(Figure):
       elif panel:
          figlabel=panel
       else:
-         figlabel=""
+         figlabel="%d" % (self.number,)
       if suffix:
          if figlabel:
             figlabel=figlabel+"_"+suffix
@@ -75,10 +76,11 @@ class FigurePro(Figure):
             figlabel=suffix
      
       # save whole figure (for safety purposes)
-      if len(figlabel)>0:
-         ofnm_fig="%s/fig_%d-%s_WITHAXES.%s"  % (odir,self.number,figlabel,auxfrmt)
-      else:
-         ofnm_fig="%s/fig_%d_WITHAXES.%s"  % (odir,self.number,auxfrmt)
+      ofnm_fig="%s/fig_%s_WITHAXES.%s"  % (odir,figlabel,auxfrmt)
+      #if len(figlabel)>0:
+      #   ofnm_fig="%s/fig_%d-%s_WITHAXES.%s"  % (odir,self.number,figlabel,auxfrmt)
+      #else:
+      #   ofnm_fig="%s/fig_%d_WITHAXES.%s"  % (odir,self.number,auxfrmt)
       if auxleg:
          l=self.ax.legend(bbox_to_anchor=(1.0,0.0,1,1))
          self.set_size_inches(4*self.ww,2*self.hh)
@@ -96,10 +98,11 @@ class FigurePro(Figure):
          self.set_size_inches(self.ww,self.hh)
 
       # save clean axes
-      if len(figlabel)>0:
-         ofnm_fig="%s/fig_%d-%s.%s"  % (odir,self.number,figlabel,frmt)
-      else:
-         ofnm_fig="%s/fig_%d.%s"  % (odir,self.number,frmt)
+      ofnm_fig="%s/fig_%s.%s"  % (odir,figlabel,frmt)
+      #if len(figlabel)>0:
+      #   ofnm_fig="%s/fig_%d-%s.%s"  % (odir,self.number,figlabel,frmt)
+      #else:
+      #   ofnm_fig="%s/fig_%d.%s"  % (odir,self.number,frmt)
       bb=self.ax.get_position()
       self.ax.set_position(Bbox([[0.0,0.0],[1.0,1.0]]))
       self.ax.axis("off")
@@ -118,10 +121,11 @@ class FigurePro(Figure):
          self.ax2[i1].axis("on")
       
       # save .tex file
-      if len(figlabel)>0:
-         ofnm_tex="%s/fig_%d-%s.tex"  % (odir,self.number,figlabel)
-      else:
-         ofnm_tex="%s/fig_%d.tex"  % (odir,self.number)
+      ofnm_tex="%s/fig_%s.tex"  % (odir,figlabel)
+      #if len(figlabel)>0:
+      #   ofnm_tex="%s/fig_%d-%s.tex"  % (odir,self.number,figlabel)
+      #else:
+      #   ofnm_tex="%s/fig_%d.tex"  % (odir,self.number)
       xlim=self.ax.get_xlim()
       ylim=self.ax.get_ylim()
       f=open(ofnm_tex,'w')
@@ -140,18 +144,20 @@ class FigurePro(Figure):
             if len(label)>0 and not label.startswith('_'): 
                f.write("%% %s : %s\n" % (item.get_label(), item.get_color()))
       # write line that can be directly included with \input{file}
-      if len(figlabel)>0:
-         f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d-%s.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,figlabel,frmt))
-      else:
-         f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,frmt))
+      f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%s.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,figlabel,frmt))
+      #if len(figlabel)>0:
+      #   f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d-%s.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,figlabel,frmt))
+      #else:
+      #   f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,frmt))
       f.close()
 
       for i1 in range(len(self.ax2)):
          # save .tex file
-         if len(figlabel)>0:
-            ofnm_tex="%s/fig_%d-%s-extra_%d.tex"  % (odir,self.number,figlabel,i1)
-         else:
-            ofnm_tex="%s/fig_%d-extra_%d.tex"  % (odir,self.number,i1)
+         ofnm_tex="%s/fig_%s-extra_%d.tex"  % (odir,figlabel,i1)
+         #if len(figlabel)>0:
+         #   ofnm_tex="%s/fig_%d-%s-extra_%d.tex"  % (odir,self.number,figlabel,i1)
+         #else:
+         #   ofnm_tex="%s/fig_%d-extra_%d.tex"  % (odir,self.number,i1)
          xlim=self.ax2[i1].get_xlim()
          ylim=self.ax2[i1].get_ylim()
          f=open(ofnm_tex,'w')
@@ -170,17 +176,19 @@ class FigurePro(Figure):
                if len(label)>0 and not label.startswith('_'): 
                   f.write("%% %s : %s\n" % (item.get_label(), item.get_color()))
          # write line that can be directly included with \input{file}
-         if len(figlabel)>0:
-            f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d-%s.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,figlabel,frmt))
-         else:
-            f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,frmt))
+         f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%s.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,figlabel,frmt))
+         #if len(figlabel)>0:
+         #   f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d-%s.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,figlabel,frmt))
+         #else:
+         #   f.write("\\addplot[] graphics [xmin=%E,xmax=%E,ymin=%E,ymax=%E] {\\%s/fig_%d.%s};" % (xlim[0],xlim[1],ylim[0],ylim[1],tbm,self.number,frmt))
          f.close()
 
       if not README==None:
-         if figlabel:
-            README.write(" Figure %d / %s \n" % (self.number,figlabel))
-         else:
-            README.write(" Figure %d \n" % self.number)
+         README.write(" Figure %d : %s \n" % (self.number,figlabel))
+         #if figlabel:
+         #   README.write(" Figure %d / %s \n" % (self.number,figlabel))
+         #else:
+         #   README.write(" Figure %d \n" % self.number)
          README.write(f" ww,hh = {self.ww},{self.hh} \n")
          README.write(f" ww/hh = {self.ww/self.hh} \n")
          README.write("\n")
@@ -215,7 +223,7 @@ class FigurePro(Figure):
             label=item.get_label()
             if len(labelList) > 0 and not label in labelList: continue
             if len(label)>0 and not label.startswith('_'): 
-               header="%s - %s" % (item.get_label(), item.get_color())
+               header="%s - %s" % (item.get_label(), mpl.colors.to_rgb(item.get_color()))
                ofnm="%s/%s.dat"  % (odir_data, item.get_label().replace(' ','_'))
                if not README==None:
                   README.write(" - %s \n" % (header,))
@@ -234,7 +242,7 @@ class FigurePro(Figure):
                label=item.get_label()
                if len(labelList) > 0 and not label in labelList: continue
                if len(label)>0 and not label.startswith('_'): 
-                  header="%s - %s" % (item.get_label(), item.get_color())
+                  header="%s - %s" % (item.get_label(), mpl.colors.to_rgb(item.get_color()))
                   ofnm="%s/%s.dat"  % (odir_data, item.get_label().replace(' ','_'))
                   if not README==None:
                      README.write(" - %s \n" % (header,))

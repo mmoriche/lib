@@ -14,6 +14,10 @@
 \newglossaryentry{ver:dx0}{  name={  \ensuremath{ {\Delta x}_0  }}, type=print, sort=ver, description={Mesh width scaled for a particle whose volume is the volume of the nominal sphere} } 
 \newglossaryentry{ver:dx}{   name={  \ensuremath{ {\Delta x}    }}, type=print, sort=ver, description={Mesh width scaled for the simulated particle } } 
 
+\newglossaryentry{ver:hc}{  name={  \ensuremath{ h_c  }}, type=print, sort=ver, description={Mesh width for which the Lagrangian volumes of the design particle are defined} } 
+\newglossaryentry{ver:h0}{  name={  \ensuremath{ h_0  }}, type=print, sort=ver, description={Mesh width scaled for a particle whose volume is the volume of the nominal sphere} } 
+\newglossaryentry{ver:h}{   name={  \ensuremath{ h    }}, type=print, sort=ver, description={Mesh width scaled for the simulated particle } } 
+
 \newglossaryentry{ver:r}{    name={  \ensuremath{ {r}    }}, type=print, sort=ver, description={Spatial resolution for which the vertices coordinates and volumes are defined} } 
 
 % Vertices coordinates
@@ -21,8 +25,25 @@
 \newglossaryentry{ver:xi0}{   name={  \ensuremath{ {\vec{x}_{i,0}}  }}, type=print, sort=ver, description={Vertices coordinates of the nominal particle} } 
 \newglossaryentry{ver:xi}{    name={  \ensuremath{ {\vec{x}_{i}}    }}, type=print, sort=ver, description={Vertices coordinates of the simulated particle} } 
 
+% Vertices coordinates
+\newglossaryentry{ver:mi}{    name={  \ensuremath{ {\vec{m}_{i}}    }}, type=print, sort=ver, description={Marker} } 
+
 % Vertices volumes
+\newglossaryentry{ver:cell_i}{     name={  \ensuremath{ {C_i}  }}, type=print, sort=ver, description={Cell} } 
+\newglossaryentry{ver:ci}{     name={  \ensuremath{ {\vec{c}_i}  }}, type=print, sort=ver, description={Cell centroid} } 
+\newglossaryentry{ver:vi}{     name={  \ensuremath{ { v_i}  }}     , type=print, sort=ver, description={Cell volume} } 
 \newglossaryentry{ver:dvic}{   name={  \ensuremath{ {{\Delta v}_{i,c}}  }}, type=print, sort=ver, description={Lagrangian volume of the design particle} } 
 \newglossaryentry{ver:dvi0}{   name={  \ensuremath{ {{\Delta v}_{i,0}}  }}, type=print, sort=ver, description={Lagrangian volume of the nominal particle} } 
 \newglossaryentry{ver:dvi}{    name={  \ensuremath{ {{\Delta v}_{i}}    }}, type=print, sort=ver, description={Lagrangian volume of the simulated particle} } 
 
+% Definitions: surfaces
+\newglossaryentry{ver:SR}{   name={  \ensuremath{ {S_R} } }, type=print, sort=ver, description={Reference surface} } 
+\newglossaryentry{ver:SG}{   name={  \ensuremath{ {S_M} } }, type=print, sort=ver, description={Grided surface} } 
+\newglossaryentry{ver:SA}{   name={  \ensuremath{ {S^-_B} } }, type=print, sort=ver, description={Surface A} } 
+\newglossaryentry{ver:SB}{   name={  \ensuremath{ {S^+_B} } }, type=print, sort=ver, description={Surface B} } 
+\newglossaryentry{ver:un}{   name={  \ensuremath{ {\vec{n}} } }, type=print, sort=ver, description={unit normal vector} } 
+\newglossaryentry{ver:us}{   name={  \ensuremath{ {\vec{s}} } }, type=print, sort=ver, description={Shift vector} } 
+\newglossaryentry{ver:s}{    name={  \ensuremath{ {s} } }, type=print, sort=ver, description={Shift length $\gls{ver:s}=|\gls{ver:us}|$} } 
+
+\newglossaryentry{ver:VF}{    name={  \ensuremath{ {V_f} } }, type=print, sort=ver, description={Filled volume.} } 
+\newglossaryentry{ver:RF}{    name={  \ensuremath{ {\Omega} } }, type=print, sort=ver, description={Filled volume.} } 

@@ -17,6 +17,9 @@ all: $(OBJECTS)
 %.pdf: $(OTANK)/%.pdf 
 	@echo building figure $<
 
+%.eps: $(OTANK)/%.eps
+	@echo building figure $<
+
 %.png: $(OTANK)/%.png 
 	@echo building figure $<
 
@@ -120,4 +123,37 @@ $(OTANK)/%.png: %.svg
 	@echo ""
 	@echo -e "Congratulations! File \033[7;32m $@ \033[0m built"
 	@echo ""
+
+
+
+# FIGURES
+.SECONDARY:
+$(OTANK)/%.eps: %.tex 
+	@echo ""
+	@echo ""
+	@echo "Making figure $<"
+	@echo ""
+	if ! [ -d $(OTANK) ]; then mkdir -p $(OTANK); fi
+	if ! [ -d $(CATALOGUE) ]; then mkdir -p $(CATALOGUE); fi
+	if ! [ -d "aux" ]; then mkdir aux; fi
+	@echo ""
+	$(shell cat standalone_header.tex                     > aux/job.tex)
+	$(shell cat $<                                       >> aux/job.tex)
+	$(shell echo '\end{document}'                        >> aux/job.tex)
+	(export TEXINPUTS=.:$(DOC)/:$(LIB)//: &&  latex -shell-escape -jobname=aux/job -interaction=nonstopmode \
+        "\def\tank{$(TANK_PATH)}\def\dropbox{$(DROPBOX_PATH)}\def\github{$(GITHUB_PATH)}\input{aux/job.tex}"  && \
+         dvips aux/job.dvi -o aux/job.ps && \
+         ps2eps -f aux/job.ps aux/job.eps && \
+         eps2eps -f aux/job.eps aux/job2.eps && cp aux/job2.eps $@ )
+	echo $@
+	echo $@
+	@echo ""
+	@if [ -d "/tmp" ] ; then cp aux/job.eps /tmp/ ; fi
+	echo $@
+	@echo ""
+	@echo -e "Congratulations! File \033[7;32m $@ \033[0m built"
+	@echo ""
+
+#cp aux/job.eps  $@ && cp aux/job.tex  $(OTANK)/$*_source.tex && \
+#cp aux/job.eps  $(CATALOGUE)/$(DATELABEL)_$*.eps && cp aux/job.tex  $(CATALOGUE)/$(DATELABEL)_$*.tex )
 

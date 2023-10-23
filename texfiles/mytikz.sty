@@ -20,6 +20,7 @@
 %  tikzpicture[overlay, remember picture]
 %
 %  \myrule
+%  \myruleXL
 %
 % To draw a grid on the node with primary and secondary lines
 % 
@@ -66,6 +67,7 @@
 
 \ProvidesPackage{mytikz}
 \RequirePackage{mybasic}
+\RequirePackage{xifthen}
 \RequirePackage{tikz}
 \tikzset{%
     mynodepreview/.style={thin,color=red,fill=black},
@@ -104,13 +106,13 @@
 
 \newcommand\mywrule{
 \draw[help lines] (-9, -4) grid (9, 4);
-\draw[-,line width=0.2mm]  (-5 , 0) -- (5,  0);
+\draw[-,line width=0.2mm]  (-8 , 0) -- (8,  0);
 \draw[-,line width=0.2mm]  ( 0, -4) -- (0,  4);
 % xaxis labels
-\forLoop[1]{iii}{-5}{\value{iii} < 6}{
+\forLoop[1]{iii}{-8}{\value{iii} < 9}{
   \draw (\arabic{iii} , -4) node[below]{\arabic{iii}};
 }
-\forLoop[1]{iii}{-5}{\value{iii} < 6}{
+\forLoop[1]{iii}{-8}{\value{iii} < 9}{
   \draw (\arabic{iii} ,  4) node[above]{\arabic{iii}};
 }
 % yaxis labels
@@ -274,5 +276,16 @@
 
 
 }
+
+
+\tikzset{%
+   frame/.style = {
+      inner sep=0pt
+     ,overlay
+     ,remember picture
+     ,yshift=-0.5cm 
+   }
+}
+\tikzstyle{every picture}+=[remember picture]
 
 \endinput

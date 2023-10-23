@@ -4,7 +4,6 @@
 \newcommand\avgParticlesTime[1]{\langle #1 \rangle_{pt}}
 \newcommand\stdParticles[1]{\langle #1'#1' \rangle^{1/2}_p}
 \newcommand\stdParticlesTime[1]{\langle #1'#1' \rangle^{1/2}_{pt}}
-\newcommand\avgTime[1]{\langle #1 \rangle_t}
 
 \newglossaryentry{Wc}{     name={\ensuremath{W_{c}}}            ,type=print, ,sort=B00,description={Settling velocity (Positive downwards of a single particle)}}
 \newglossaryentry{ws}{     name={\ensuremath{w_{s}}}            ,type=print, ,sort=B00,description={Mean settling particle velocity}}
@@ -13,6 +12,7 @@
 \newglossaryentry{svf_}{   name={\ensuremath{\phi}}             ,type=print, ,sort=B00,description={Solid volume fraction}}
 \newglossaryentry{svf_xy}{ name={\ensuremath{\langle\phi\rangle_{xy}}} ,type=print, ,sort=B00,description={Solid volume fraction}}
 \newglossaryentry{svf_yz}{ name={\ensuremath{\langle\phi\rangle_{yz}}} ,type=print, ,sort=B00,description={Solid volume fraction}}
+\newglossaryentry{svf_yz;sq}{ name={\ensuremath{\langle\phi\rangle^2_{yz}}} ,type=print, ,sort=B00,description={Solid volume fraction averaged in yz, squared}}
 
 \newglossaryentry{npart}{   name={\ensuremath{N_p}}             ,type=print, ,sort=B00,description={Number of particles}}
 
@@ -26,6 +26,9 @@
 \newglossaryentry{vxp_c_x_sp}{  name={\ensuremath{{\stdParticles{x_{p,c}}}}},type=print, sort=J00, description={Ensempble averaged       $x$ component of particle's velocity}}
 \newglossaryentry{vxp_c_y_sp}{  name={\ensuremath{{\stdParticles{y_{p,c}}}}},type=print, sort=J00, description={Ensempble averaged       $y$ component of particle's velocity}}
 \newglossaryentry{vxp_c_z_sp}{  name={\ensuremath{{\stdParticles{z_{p,c}}}}},type=print, sort=J00, description={Ensempble averaged       $z$ component of particle's velocity}}
+
+%\newglossaryentry{mp:vxp_z_sp;avg}{name={\ensuremath{{\avgTime{\stdParticles{z_{pi}}}}}},type=print, sort=J00, description={Ensempble averaged       $z$ component of particle's velocity}}
+\newglossaryentry{mp:vxp_z;std;avg}{name={\ensuremath{{\avgTime{z_\mathrm{std}}}}},type=print, sort=J00, description={Ensempble averaged       $z$ component of particle's velocity}}
 
 \newglossaryentry{vup_x_mp}{  name={\ensuremath{{\avgParticles{u_p}}}},type=print, sort=J00, description={Ensempble averaged       $x$ component of particle's velocity}}
 \newglossaryentry{vup_y_mp}{  name={\ensuremath{{\avgParticles{v_p}}}},type=print, sort=J00, description={Ensempble averaged       $y$ component of particle's velocity}}
@@ -118,7 +121,6 @@
 \newglossaryentry{mp:fi_z}{   name={\ensuremath{F_z^{(i)}}}               ,type=print, ,sort=multiparticle,description={Hydrodynamic force acting on $i$th particle}}
 \newglossaryentry{mp:fli}{    name={\ensuremath{\vec{F_L}^{(i)}}}             ,type=print, ,sort=multiparticle,description={Lagrangian (ibm) Force acting on $i$th particle}}
 
-\newglossaryentry{mp:vpi}{    name={\ensuremath{V^{(i)}_p}}                   ,type=print, ,sort=multiparticle,description={Volume of $i$th particle}}
 
 \newglossaryentry{mp:cdi}{    name={\ensuremath{C_D^{(i)}  }}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient of $i$th particle}}
 \newglossaryentry{mp:cdi_mp}{ name={\ensuremath{\avgParticles{C_D^{(i)}}}}               ,type=print, ,sort=multiparticle,description={Non-dimensional drag coefficient of $i$th particle}}
