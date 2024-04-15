@@ -205,10 +205,11 @@ class FigurePro(Figure):
    
    def saveLine2D(self,odir='.',labelList=[],README=None, panel=None):
 
-      if len(self.label)>0:
-         odir_data="%s/fig_%d-%s_data"  % (odir,self.number,self.label)
-      else:
-         odir_data="%s/fig_%d_data"  % (odir,self.number)
+      odir_data="%s/fig_%s_data"  % (odir,self.label)
+      #if len(self.label)>0:
+      #   odir_data="%s/fig_%d-%s_data"  % (odir,self.number,self.label)
+      #else:
+      #   odir_data="%s/fig_%d_data"  % (odir,self.number)
       if not os.path.isdir(odir_data): os.system('mkdir %s' % odir_data)
 
       if panel: odir_data="%s/%s"  % (odir_data,panel)
