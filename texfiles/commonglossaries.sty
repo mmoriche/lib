@@ -4,7 +4,13 @@
 
 \setlength{\glsdescwidth}{0.7\textwidth}
 
+%\newglossary*{comm}{Common}
+%\newglossary*{flow}{Flow}
+%\newglossary*{part}{Particles}
+%\newglossary*{mpart}{Multiparticles}
+%\newglossary*{set}{Settling}
 \newglossary*{print}{Nomenclature}
+\newglossary*{hide}{Auxiliar terms}
 
 \renewcommand{\glossarysection}[2][]{}
 
@@ -19,14 +25,18 @@
 \newacronym{sem}{SEM}{Spectral Element Method}
 \newacronym{lbm}{LBM}{Lattice Boltzmann Method}
 \newacronym{dns}{DNS}{Direct Numerical Simulations}
+\newacronym{prdns}{PR-DNS}{Particle-resolved direct numerical simulation}
 \newacronym{kde}{KDE}{Kernel Density Estimators}
-\newacronym{cvt}{CVT}{Central Voronoi Tessellation}
+\newacronym{cvt}{CVT}{Centroidal Voronoi Tessellation}
 
 
 \newcommand\avgTime[1]{\langle #1 \rangle_t}
 
 % Miscelaneous
 \newglossaryentry{eye}{  name={\ensuremath{I}}       , type=print, sort=common, description={Identity matrix}}
+
+\newglossaryentry{nabla;nD}{     name={\ensuremath{\nabla_D}}       , type=print, sort=common, description={Nabla operator with spatial gradients normalized with D} }
+\newglossaryentry{nabla;sq;nD}{  name={\ensuremath{\nabla^2_D}}     , type=print, sort=common, description={Laplace operator with spatial gradients normalized with D} }
 
 % Gravity scaled quantities
 \newglossaryentry{Ug}{   name={\ensuremath{U_g}}       , type=print, sort=common, description={Gravitational reference velocity} }
@@ -266,12 +276,12 @@ description={Angular momentum}}
 \newglossaryentry{Oixyz}{name={\ensuremath{O^i_{xyz}}}        , sort=A00, description={Reference coordinate system travelling with velocity \vec{U}_i}}
 \newglossaryentry{Orot}{name={\ensuremath{O_{xyz}^\text{rot}}}, sort=A00, description={Reference frame fixed to particle}}
 
-\newglossaryentry{ex}{   name={\ensuremath{\vec{e}_{x}}},       type=print, sort=J00, description={Particle's velocity}}
-\newglossaryentry{ey}{   name={\ensuremath{\vec{e}_{y}}},       type=print, sort=J00, description={Particle's velocity}}
-\newglossaryentry{ez}{   name={\ensuremath{\vec{e}_{z}}},       type=print, sort=J00, description={Particle's velocity}}
-\newglossaryentry{ex_c}{   name={\ensuremath{\vec{e}^c_x}},       type=print, sort=J00, description={Unitary vector in the $x$ code axis}}
-\newglossaryentry{ey_c}{   name={\ensuremath{\vec{e}^c_y}},       type=print, sort=J00, description={Unitary vector in the $y$ code axis}}
-\newglossaryentry{ez_c}{   name={\ensuremath{\vec{e}^c_z}},       type=print, sort=J00, description={Unitary vector in the $z$ code axis}}
+\newglossaryentry{ex}{   name={\ensuremath{\vec{e}_{x}}},       type=print, sort=J00, description={Unitary vector aligned with $x$ direction}}
+\newglossaryentry{ey}{   name={\ensuremath{\vec{e}_{y}}},       type=print, sort=J00, description={Unitary vector aligned with $y$ direction}}
+\newglossaryentry{ez}{   name={\ensuremath{\vec{e}_{z}}},       type=print, sort=J00, description={Unitary vector aligned with $z$ direction}}
+\newglossaryentry{ex_c}{ name={\ensuremath{\vec{e}^c_x}},       type=print, sort=J00, description={Unitary vector in the $x$ code axis}}
+\newglossaryentry{ey_c}{ name={\ensuremath{\vec{e}^c_y}},       type=print, sort=J00, description={Unitary vector in the $y$ code axis}}
+\newglossaryentry{ez_c}{ name={\ensuremath{\vec{e}^c_z}},       type=print, sort=J00, description={Unitary vector in the $z$ code axis}}
 
 % rotations
 \newglossaryentry{Rot}{name={\ensuremath{R}}, sort=A00, description={Rotation matrix}}

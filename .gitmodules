@@ -13,3 +13,6 @@
 [submodule "thirdparty/makefile2graph"]
 	path = thirdparty/makefile2graph
 	url = https://github.com/lindenb/makefile2graph
+[submodule "thirdparty/rbdl"]
+	path = thirdparty/rbdl
+	url = git@github.com:rbdl/rbdl.git

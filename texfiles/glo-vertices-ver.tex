@@ -1,5 +1,12 @@
-% Equivalent sphere diameter
-\newglossaryentry{ver:deqc}{  name={  \ensuremath{ D_{eq,c}  }}, type=print, sort=ver, description={Equivalent radius of the design particle} } 
+\newcommand\ngeVer[3]{
+\newglossaryentry{ver:#1}{
+   name={ #2 },
+   type=print,
+   sort=ver,
+   description={#3}
+} 
+}
+% Equivalent sphere diameter \newglossaryentry{ver:deqc}{  name={  \ensuremath{ D_{eq,c}  }}, type=print, sort=ver, description={Equivalent radius of the design particle} } 
 \newglossaryentry{ver:d0}{    name={  \ensuremath{ D_0       }}, type=print, sort=ver, description={Diameter of the nominal sphere ($\gls{ver:d0}=2$} } 
 \newglossaryentry{ver:r0}{    name={  \ensuremath{ R_0       }}, type=print, sort=ver, description={Radius of the nominal sphere ($\gls{ver:r0}=1$} } 
 \newglossaryentry{ver:deq}{   name={  \ensuremath{ D_{eq}    }}, type=print, sort=ver, description={Equivalent radius of the simulated particle } } 
@@ -31,7 +38,10 @@
 % Vertices volumes
 \newglossaryentry{ver:cell_i}{     name={  \ensuremath{ {C_i}  }}, type=print, sort=ver, description={Cell} } 
 \newglossaryentry{ver:ci}{     name={  \ensuremath{ {\vec{c}_i}  }}, type=print, sort=ver, description={Cell centroid} } 
-\newglossaryentry{ver:vi}{     name={  \ensuremath{ { v_i}  }}     , type=print, sort=ver, description={Cell volume} } 
+%\newglossaryentry{ver:vi}{     name={  \ensuremath{ { v_i}  }}     , type=print, sort=ver, description={Cell volume} } 
+%\newglossaryentry{ver:v}{      name={  \ensuremath{ { v_i}  }}     , type=print, sort=ver, description={Cell volume} } 
+\ngeVer{v}{ \ensuremath{ v   }                      }{ Cell volume}
+\ngeVer{vi}{\ensuremath{ v_i }                      }{ $i$th cell volume}
 \newglossaryentry{ver:dvic}{   name={  \ensuremath{ {{\Delta v}_{i,c}}  }}, type=print, sort=ver, description={Lagrangian volume of the design particle} } 
 \newglossaryentry{ver:dvi0}{   name={  \ensuremath{ {{\Delta v}_{i,0}}  }}, type=print, sort=ver, description={Lagrangian volume of the nominal particle} } 
 \newglossaryentry{ver:dvi}{    name={  \ensuremath{ {{\Delta v}_{i}}    }}, type=print, sort=ver, description={Lagrangian volume of the simulated particle} } 
@@ -47,3 +57,7 @@
 
 \newglossaryentry{ver:VF}{    name={  \ensuremath{ {V_f} } }, type=print, sort=ver, description={Filled volume.} } 
 \newglossaryentry{ver:RF}{    name={  \ensuremath{ {\Omega} } }, type=print, sort=ver, description={Filled volume.} } 
+
+\ngeVer{vi;std}{\ensuremath{ {\sigma} }                      }{ Standard deviation of volumes normalized with mean volume}
+\ngeVer{vi;avg}{\ensuremath{ {\langle \gls{ver:vi}\rangle} } }{ Mean volume}
+\ngeVer{v;avg}{\ensuremath{ {\langle \gls{ver:v}\rangle} } }{ Mean volume}
